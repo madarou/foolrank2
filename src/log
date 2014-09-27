@@ -1,0 +1,140 @@
+2013.01.21
+   根据shiro的login修改logincontrol的/login/checkuser及过滤器的配置
+   该错了，应该修改shiroTest类文件，同时修改过滤器配置
+   出错，怀疑是spring使用代理的问题，但以前未应用cglib为什么就没出现，该问题无法解决，返回到上个版本。
+      1 在web.xml中加入filter，未报错
+      2 在application.xml中加入filter定义，导入包，以及security control文件，更改登录控制器shiroTest的login方法
+2013.01.22
+   1 将dao层全部改成@Repository，据说可以自动增加异常抛出等功能
+   2 研究shiro给出的spring源码，及其它源码，判断是否其它地方出错
+       1）在web.xml中发现未定义过滤器,成功，但正确用户名，密码无法登录,报密码错误。
+       2)联系到realm内的用法，联想到可能是数据类型不对,注释掉密码判断的一段
+       3）将生成token的构造函数改成char[],依然报密码错误，看源码,可能是采用了md5加密的原因,注释掉md5加密，成功！
+   3 spring的数据绑定
+       1)测试spring的数据绑定，修改login.jsp,报jsp错误，将<form:form action中jsp <%=path%> 去掉，成功
+       2)将checkuser用数据绑定替换先
+       3）<%=path%>不可去，否则会引起重复提交错误，比如在主页login提交用户名、密码失败后，再次提交会嵌套成login/login/*,因此在外面嵌套一个form代替
+       该方法失败，js提交错误，因此先用绝对路径,成功。
+   4  测试shiro的认证能力
+2013.01.23
+   1 在jstl标签中使用单引号即可使用jsp，失败。用EL表达式尝试,依然失败，先暂时搁置。
+     使用EL表达式成功，将变量存入pageContext即可
+   2 测试shiro的认证能力：（当使用shiro时页面跳转中文无法正常显示）
+      1) 初步测试，权限认证无效果
+      2) 原因已找到，未加入shiro的过滤器，但是加入后会报错代理类使用错误，怀疑shiro是使用的java默认
+      代理，但spring应该能做到自由切换,该配置引起的问题，
+      <bean
+          class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+	  depends-on="lifecycleBeanPostProcessor" />
+   3 尝试将spring的默认代理关掉,按照shiro的写法修改application.xml
+      1） 注释掉<mvc:annotation-driven>,依然代理报错，恢复
+      2） 去掉 transaction-manager="transactionManager"，报错，恢复
+ 2013.01.24
+   1 继续研究shiro的认证能力
+     1）注释掉<tx:..>，成功，应该是代理的冲突，tx使用的spring代理，而DefaultAdvisorAutoProxyCreator使用的是cglib
+     2）权限判断生效，但全部判断均通不过，怀疑是role中的空格问题，因此先去掉空格，依然无法通过
+     3）看源码，发现未对role进行判断，可能是role出问题
+     4）问题解决，是用requestrole的annotation即可
+     因此shiro框架研究基本结束
+   2 还存在事务问题，把事务配置注释掉了
+
+   3 将事务换成 <tx:annotation-driven mode="aspectj"></tx:annotation-driven> 但是貌似未起作用，小问题，留待以后解决
+  
+  I am sick.....
+ 
+  2013.01.30
+   1 重做登录页面，将注册登录提到页头。需要在页面中判断是否已登录，参考shiro的api
+
+  2013.02.0-5
+   1 调整登录布局，尝试对导航栏内容做判断逻辑，若未登录则提示用户登录；若已登录则显示用户的登录名、密码
+  
+  2013.02.07
+    准备采用如下方法：
+    直接在前端jsp中判断，若已登录则直接显示用户名
+    1 改造Userlogincontrol,加入shiro权限模块
+    2  将url:login该为url:home;将login.jsp改为home.jsp
+    3  将登录请求换成ajax请求
+    4  前端ajax代码改写。。  
+  2013.02.26
+     1 出现Attribute value must not be null错误，将null值放入了session，去掉UserLoginController的注释
+  @SessionAttributes("username")
+     2 ajax前端到后端传递值问题
+       使用HttpServletRequest取值
+
+  2013.03.06
+     1 使用bootstrap前端框架修改前端并成功
+     2 学习fat-ui-master。。是否使用框架或自学前端？
+
+  2013.03.09
+     1 使用bootstrap重做主页
+       1）div若不加入长度，宽度限制的话则无法显示
+       2）border-radius为圆角矩形
+       3）bootstrap的span整行加起来为12
+     2 判空警告无法解决
+  
+  2013.03.12
+      jquery post提交无效，浏览器无报错，服务器端也无显示
+      1 在末尾加上return false
+      使用chrome的监视工具发现是路径不对http://localhost:8080/checkuser 而不是http://localhost:8080/uunemo/checkuser
+      提交路径加上uunemo/checkuser,问题解决，可以正确提交到路径了。
+      报错 unknow exception，后台shiro还是存在问题，明天解决。
+   
+   2013.03.13
+      1 登录测试成功，小bug：无法判断用户名是否合法
+      2  在jsp中通过shiro api直接取用户名,无法取到，自己通过session或cookie来实现，先实现，以后再改
+      3  修改realm的 doGetAuthorizationInfo方法，将认证从getuserid改为getusername，成功，能取得用户名
+      4  登录框的替换显示成功
+
+   2013.03.16
+      1 修改逻辑控制，进入home路径直接判断是否登录，在home页面将值传递给js进行判断
+      2 表单若为空则会向自己提交？？？，因此会引起ajax提交无效
+      回调函数还是无用
+        1）与是否加数据类型json无关
+	2）与服务端是否抛异常无关
+	原来是因为网页缓存的原因
+
+   2013.03.18
+      用户登录页面已全部完成，开始制做用户注册页面。
+      #C09853;
+   2013.03.20
+      输入框失去焦点事件为 blur，js判断是否相等用 ==
+      jquery发送数据格式不被支持??使用post时必须先定义var postdata = {"data"：data}，然后提交，若直接写{"data":data}将报错？
+      username提交还是报错，名字不吉利，我换个名字试试,无用
+      是返回值无法被接受，估计是数据类型booelan的问题
+   2013.03.21
+      不可使用boolean类型，无法被接受，用string解决问题
+      试下用int，这样字节更短，int不被接受，改回为String
+   2013.03.23
+       将邮箱，用户名，答案验证调整完毕。
+       下步要解决：1 密码强度 2 表单提交
+   2013.03.24 
+        表单如何封装成对象，要自定义封装哪些元素
+	采取用js动态生成并提交的方法,感觉太麻烦，应采取表单直接提交方式。但如何根据条件判断是否提交
+	表单的最后按钮改为button后，将不会自动提交
+	表单提交无内容
+   2013.03.30
+        在input元素中加入name属性，表单提交有效
+        每当保存一个用户时，必须将权限和角色都进行保存，因此在第一次用户注册时，将用户注册为user，权限为view
+	采取testShiro内的方式，使用dao中的方法先将role和permission取出，然后再进行保存
+	save方法只把用户保存进去而没有把用户权限进行保存,但使用shiroTest时都能级联保存
+	级联保存未解决。。
+   2013.04.01
+        如何实现在任何页面均能登录，然后返回时即返回到当前页面，考虑两种方式实现
+	1）使用ajax登录
+	2）在任意页均加上网页头，进行判断是否登录的判断，先完成此部分，在任意页面均加上判断是否登录的判断。
+	   注册可做成ajax，使用内联框架：iframe来完成，如
+	   <iframe id="imengine" name="imengine" src="http://wpi.renren.com/wtalk/ime.htm?v=5" frameborder="0" style="position: absolute; left: -1000pt; top: 20pt; width: 200pt; height: 100pt; "></iframe>
+
+   2013.04.02
+        使用bootstrap自带的js控件，将登录页面作为iframe插入
+	成功
+	将createuser改成ajax提交
+	bug：关了无法再开:将bootstrap.jsp引入register.jsp，问题解决？？？？
+	用户提交注册改为ajax方式,无法封装成对象，取不到值
+	将变量值初始化，成功，因此js全局变量是需要初始
+   
+   2013.04.15
+        js全局变量需要初始化，
+	回调函数无显示，js格式错误，去掉最后的分号，成功
+   
+  

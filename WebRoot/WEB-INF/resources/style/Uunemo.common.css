@@ -1,0 +1,39 @@
+.commonBody {
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #F8F8F8;
+	min-height:600px;
+}
+.commonBody .commonHeader {
+	height: auto;
+	width: 100%;
+}
+.commonBody .commonHeader .navBar{
+	width:100%;
+	height:40px;
+	background-color:black;
+}
+.commonBody .commonHeader .logoImg {
+	width: 100px;
+	height: 100px;
+	background-image: url('images/logo.jpg');
+	margin-left:20px;
+	float:left;
+}
+.commonBody .commonHeader .logoText{
+    font-size: 3em;
+    height: 70px;
+    padding-top: 30px;
+    width: auto;
+}
+.commonBody section{
+	margin-top:20px;
+	width:100%;
+	overflow:auto; 
+	height:auto;
+	margin:auto;
+}
+.commonBody footer{
+	height:30px;
+}

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
+Implementation-Title: Hibernate Annotations
+Implementation-Version: 3.4.0.GA
+Implementation-Vendor: hibernate.org
+Implementation-Vendor-Id: hibernate.org
+Implementation-URL: http://annotations.hibernate.org
+Specification-Title: Java Persistence
+Specification-Version: 1.0
+Specification-Vendor: jcp.org
+

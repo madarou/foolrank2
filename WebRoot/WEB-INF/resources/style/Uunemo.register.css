@@ -1,0 +1,89 @@
+.regPanel{
+	width:80%;
+	padding:5%;
+	border-radius:5px;
+	background-color: white;
+	border:1px solid #C4C4C4;
+	margin-left:5%;
+}
+.regPanel h2{
+	font-size:2em;
+	font-weight:bold;
+}
+.regPanel .regInfo .regLabel{
+	display:block;
+	margin-top: 15px;
+	font-size:1.2em;
+}
+.regPanel .regInfo .alertInfo{
+	color: red;
+}
+.regPanel .regInfo .regInput{
+	display:inline-block;
+	border-radius:5px;
+	border-color: #C4C4C4;
+	background-color:#FAFAFA;
+	height:30px;
+	width:400px;
+}
+.regPanel .regInfo .infoAlert{
+	display:inline-block;
+	width:20px;
+	height:20px;
+	vertical-align: -5px;
+	margin-left:20px;
+}
+.regPanel .regInfo .rightInfo {
+	background:green;
+}
+.regPanel .regInfo .wrongInfo {
+	background:red;
+}
+.regPanel .regInfo .regComment{
+	display:block;
+	font-size:0.9em;
+}
+.regPanel .regInfo .pStrength{
+	display:inline-block;
+	width:350px;
+	height:20px;
+	vertical-align: -5px;
+	margin-left:20px;
+}
+.regPanel .regInfo .pStrengthTitle{
+	display:inline-block;
+	width:70px;
+	vertical-align:5px;
+}
+.regPanel .regInfo .pStrength .pStrengthLevelBlock{
+	display:inline-block;
+	width:50px;
+	height:20px;
+	background-color:#cccccc;
+	color: white ;
+	text-align:center;
+	padding-top:4px;
+}
+.regPanel .regInfo .pStrength .pStrengthLevel1{
+	background-color:#BC3618;
+}
+.regPanel .regInfo .pStrength .pStrengthLevel2{
+	background-color:#E35500;
+}
+.regPanel .regInfo .pStrength .pStrengthLevel3{
+	background-color:#EB7300;
+}
+.regPanel .regInfo .pStrength .pStrengthLevel4{
+	background-color:#93C939;
+}
+.regPanel .regInfo .pStrength .pStrengthLevel5{
+	background-color:#247230;
+}
+.regPanel .regInfo .pStrength .pStrengthLevelWithText{
+	vertical-align:7px;
+}
+.regPanel .regBtn{
+    height: 40px;
+    margin-top: 20px;
+    width: 120px;
+}

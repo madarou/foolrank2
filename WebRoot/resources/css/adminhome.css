@@ -1,0 +1,48 @@
+/* .mainzone{
+ */
+/* 	width:100%; */
+/* 	height:600px; */
+/* 	display:inline-block; */
+/* 	border-radius:10px; */
+/* 	border-color: #c8c8c8; */
+/* 	background-color: #ffffff; */
+/*     margin-top: 30px; */
+/* } */
+
+textarea{
+	overflow-y:visible;
+}
+
+.modalwidth{
+	left:40% !important;
+	width:860px !important;
+	height: 600px !important;
+}
+
+.btngroup{
+	margin-top: 30px;
+}
+
+.main-textarea{
+	width:500px !important;
+}
+
+.label-width{
+	width:50px !important;
+}
+
+.option-area{
+	margin-left: 60px !important;
+}
+
+.option-text{
+	width:450px !important;
+}
+
+.option-zone{
+	padding-top: 30px;
+}
+
+
+
+

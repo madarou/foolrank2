@@ -1,0 +1,53 @@
+.exam{
+	width:100%;
+	height:800px;
+	display:inline-block;
+	border-radius:10px;
+	border-color: #c8c8c8;
+	background-color: #ffffff;
+}
+
+.bulletin{
+	border-radius:10px;
+	border-color:#c8c8c8; 
+	width:200px;
+	height:800px;
+	background-color: #ffffff;	
+}
+
+.essential{
+	margin-top: 30px;
+	margin-left: 30px;
+}
+
+.span1 .c{ 
+	width: 80px;
+	height: 72px;
+	background-image: url(img/c.png);
+}
+
+.span1 .java{
+	width: 80px;
+	height: 72px;
+	background-image: url(img/java.png);
+}
+
+.alertInfo{
+	height:50px;
+	width:100px;
+	color:red;
+}
+
+.registerIframe{
+	width:100%;
+	height:100%;
+	
+}
+
+#registerModal{
+	
+	width:800px;
+	height:600px;
+}
+
+

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:util="http://www.springframework.org/schema/util"
+	
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	   		http://www.springframework.org/schema/context
+	   		http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+			http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/util
+     http://www.springframework.org/schema/util/spring-util-3.0.xsd"> 
+
+	
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/uunemo">
+		</property>
+		<property name="username" value="root"></property>
+	</bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.fetch_size">100</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop> 
+<!--                 <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop> -->
+            </props>
+		</property>
+		
+<!-- 		<property name="eventListeners"> -->
+<!--             <map> -->
+<!--                 <entry key="merge"> -->
+<!--                     <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/> -->
+<!--                 </entry> -->
+<!--             </map> -->
+<!--         </property> -->
+		
+		<property name="packagesToScan">
+            <list>
+                <value>com.uunemo.*</value>
+            </list>
+        </property>
+     </bean>
+	
+	
+	<!-- 声明一个 Hibernate 3 的事务管理器供代理类自动管理事务用 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+	</bean>
+	
+	
+	 <bean id="hibernateTemplate"  class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	<!-- 激活spring的注解. -->
+	<context:annotation-config />
+	
+	<!-- Spring AOP auto-proxy creation (required to support Shiro annotations) -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <property name="proxyTargetClass" value="true"/> 
+    </bean>
+
+<!--  事务控制 -->
+<!-- 加入shiro后报错，代理类异常，因此使用aspectj的注解方式 -->
+<!-- 找到错误原因，不使用aspectj -->
+   <tx:annotation-driven  transaction-manager="transactionManager" proxy-target-class="true"/>
+<!--     <tx:annotation-driven mode="aspectj"></tx:annotation-driven>  -->
+        
+
+	<!-- 扫描注解组件并且自动的注入spring beans中. 
+	例如,他会扫描@Controller 和@Service下的文件.所以确保此base-package设置正确. -->
+	<context:component-scan base-package="com.uunemo" />
+	<context:component-scan base-package="com.uunemo.security" />
+	
+
+	<!-- 配置注解驱动的Spring MVC Controller 的编程模型.注:次标签只在 Servlet MVC工作! -->
+	<mvc:annotation-driven />
+	<!-- 用注解来实现事务管理 -->
+
+	
+   	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
+	 <!-- =========================================================
+         Shiro Components
+         ========================================================= -->
+
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after -->
+	<!-- the lifecycleBeanProcessor has run: -->
+	
+<!-- delete on 04.26 -->	
+<!-- 	<bean -->
+<!-- 		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" -->
+<!-- 		depends-on="lifecycleBeanPostProcessor" /> -->
+     
+    <!-- add on 05.08, shiro work well -->
+    <bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	
+	
+	<!-- Shiro's main business-tier object for web-enabled applications (use 
+		org.apache.shiro.web.mgt.DefaultWebSecurityManager instead when there is 
+		no web environment) -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- Single realm app (realm configured next, below). If you have multiple 
+			realms, use the 'realms' property instead. -->
+		<property name="realm" ref="nemoRealm" />
+		<!-- Uncomment this next property if you want heterogenous session access 
+			or clusterable/distributable sessions. The default value is 'http' which 
+			uses the Servlet container's HttpSession as the underlying Session implementation. 
+			<property name="sessionMode" value="native"/> -->
+    </bean>
+    
+     <!-- Define the Shiro Filter here (as a FactoryBean) instead of directly in web.xml -
+         web.xml uses the DelegatingFilterProxy to access this bean.  This allows us
+         to wire things with more control as well utilize nice Spring things such as
+         PropertiesPlaceholderConfigurer and abstract beans or anything else we might need: -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="checkuser"/>
+        <property name="successUrl" value="home"/>
+        <property name="unauthorizedUrl" value="page/unauthorized.jsp"/>
+        <!-- The 'filters' property is usually not necessary unless performing an override, which we
+             want to do here (make authc point to a PassthruAuthenticationFilter instead of the
+             default FormAuthenticationFilter: -->
+       <property name="filters">
+           <util:map>
+               <entry key="authc">
+                   <bean class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter"/>
+               </entry>
+           </util:map>
+       </property>
+       <property name="filterChainDefinitions">
+           <value>
+<!--                /s/signup = anon -->
+<!--                /s/manageUsers = perms[user:manage] -->
+<!--                /s/** = authc -->
+           </value>
+       </property>
+    </bean>
+	
+	</beans>
+
