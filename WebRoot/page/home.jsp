@@ -139,7 +139,7 @@ body {
    <script src="<%=path%>/resources/js/bootstrap.js"></script>
    <script src="<%=path%>/resources/js/home.js"></script>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
-   <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>
+  
    
   </body>
 </html>

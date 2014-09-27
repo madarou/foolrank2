@@ -78,10 +78,9 @@ public class QuizService {
 		return quest;
 	}
 
-	public String getQuizInfo(int quizId) {
+	public Quiz getQuizInfo(int quizId) {
 		// TODO Auto-generated method stub
-		Quiz quiz = quizDao.getQuizById(quizId);
-		return quiz.getQuizInfo();
+		return quizDao.getQuizById(quizId);
 	}
 
 	public Score mark(int userId,int quizId,String answer, StringBuffer realanswer,StringBuffer point) {
@@ -94,7 +93,11 @@ public class QuizService {
 			//加分
 			System.out.println("right");
 			int questScore =Integer.parseInt(point.toString());
-		    score=scoreService.updateUserScore(userId, quizId, questScore);
+			System.out.print(userId+"..............");
+			if(userId != 0)
+			{
+		      score=scoreService.updateUserScore(userId, quizId, questScore);
+			}
 		}
 		else{
 			//减分，分数无变化

@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.uunemo.beans.User"%>    
 <%
+
+String path = request.getContextPath();
+pageContext.setAttribute("path",path);
 User user = (User)session.getAttribute("user");
 String email="";
 Integer userId =0 ;
@@ -17,8 +20,11 @@ if(user!=null){
 
 }
 
+
+
 %>
 <input style="display:none" id="email" value="${email}"></input>
+<p></p>
 <!--   nav bar -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
@@ -34,7 +40,6 @@ if(user!=null){
 						<li><a href="#contact">联系方式</a></li>
 
 					</ul>
-					       
                     
 					 <ul id="alreadylogin" class="nav pull-right">
 					      <li  class="active"><a id = "showusername">${email}</a></li>
@@ -53,3 +58,5 @@ if(user!=null){
 		</div>
 	</div>
 	<!-- nav bar -->
+ <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+ <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	

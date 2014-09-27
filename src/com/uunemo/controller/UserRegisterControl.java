@@ -99,8 +99,6 @@ public class UserRegisterControl {
 			@RequestParam(value = "company", required = false) String company,
 			@RequestParam(value = "password", required = true) String password,
 			HttpSession session){
-	
-		
 		User user = new User();
 		user.setEmail(email);
 		int schoolId = schoolService.updateSchoolById(school);
@@ -113,12 +111,12 @@ public class UserRegisterControl {
 		userRegisterService.createDefaultUser(user);
 		
 		//if sucess then login, 
-		String name = userLoginService.validataUser(email, password);	
-		if(name.equals("nobody")==false){
-			User tempUser = userService.getUserByEmail(name);
-			session.setAttribute("userId", tempUser.getUserid());
+		String emailName = userLoginService.validataUser(email, password);	
+		if(emailName.equals("nobody")==false){
+			User tempUser = userService.getUserByEmail(emailName);
+			session.setAttribute("user", tempUser);
 		}
-		return name;
+		return emailName;
 	}
 	
 	

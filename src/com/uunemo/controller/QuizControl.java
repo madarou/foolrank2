@@ -57,7 +57,7 @@ public class QuizControl {
 	public @ResponseBody 
 	List takeQuiz(
 			@RequestParam Integer quizId,
-			@RequestParam String answer,
+			@RequestParam(required = false) String answer ,
 			HttpSession session){
 		Set questionSet = (Set) session.getAttribute("questionset");
 		StringBuffer realanswer = (StringBuffer)session.getAttribute("realanswer");
@@ -77,7 +77,12 @@ public class QuizControl {
 			point = new StringBuffer();
 			session.setAttribute("point", point);
 		}
-		Integer userId = (Integer)session.getAttribute("userId");
+		
+		Integer userId;
+		if(session.getAttribute("userId")!=null){
+			userId = (Integer)session.getAttribute("userId");	
+		}
+		else userId =0;
 		//判断问题对错,并对分数进行处理
 	    Score score = quizService.mark(userId,quizId,answer,realanswer,point);
 		//返回下一道题
@@ -94,8 +99,8 @@ public class QuizControl {
 	public String viewQuiz(
 			@RequestParam int quizId,
 			Model model){
-		String quizInfo = quizService.getQuizInfo(quizId);
-		model.addAttribute("quizinfo",quizInfo);
+		Quiz quiz = quizService.getQuizInfo(quizId);
+		model.addAttribute("quiz",quiz);
 	    return quizPage;
 	}
 	

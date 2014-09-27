@@ -36,9 +36,10 @@
 		
 //		$('input').iCheck('uncheck');
 		$("li").hide();
-		 
+		console.log("quizId.........",$("#quizId").text());
+
 		$.post("/uunemo/takequiz",
-				{"quizName":"cEssential","answer":answer},
+				{"quizId":$("#quizId").text(),"answer":answer},
 				function(list){
 				  var score = list[0];
 				  var question = list[1];

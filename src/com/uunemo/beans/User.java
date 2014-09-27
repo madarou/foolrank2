@@ -24,31 +24,56 @@ import javax.persistence.Table;
 public class User {
 
 	// Fields
-   
 	private Integer userid=0 ;
 	private String username="";
 	private String password="";
     private String realname="";
     private int schoolId=0;
     private String email="";	
-    
-   
     private String company;
     
+    private Set<Career> careers = new HashSet<Career>(); //职业规划
+    private Set<Honor> honors = new HashSet<Honor>(); //荣誉
+    private Set<Role> roles = new HashSet<Role>(); //角色
     
     
-    private Set<Role> roles = new HashSet<Role>();
+    @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.LAZY)  
+	@JoinTable(
+		name = "user_career",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "career_id")
+	)
+    public Set<Career> getCareers() {
+		return careers;
+	}
+
+
+	public void setCareers(Set<Career> careers) {
+		this.careers = careers;
+	}
+
+	@ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.LAZY)  
+	@JoinTable(
+		name = "user_career",
+		joinColumns = @JoinColumn(name = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "honor_id")
+	)
+	public Set<Honor> getHonors() {
+		return honors;
+	}
+
+
+	public void setHonors(Set<Honor> honors) {
+		this.honors = honors;
+	}
+
+
+	
     
-    
-//    @ManyToMany(
-//			targetEntity = com.uunemo.beans.Role.class,
-//			cascade = {CascadeType.PERSIST, CascadeType.MERGE },
-//			fetch=FetchType.EAGER)
-    @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.EAGER)  
+    @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.LAZY)  
 	@JoinTable(
 			name = "user_role",
-			joinColumns = @JoinColumn(name = "user_id")
-			,
+			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id")
 			)
 	public Set<Role> getRoles() {

@@ -38,7 +38,6 @@ body {
 <body class="commonBody">
 
 <!--   nav bar -->
-
 <jsp:include page="navbar.jsp" />
 <!-- main img -->
 <jsp:include page="mainimg.jsp" /> 
@@ -48,7 +47,9 @@ body {
        <div class="span9">
         <div class="mainquiz">
          <div class="quizinfo" id="quizinfo">
-            <p class="lead">${quizinfo}</p>
+            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
+            <span>试题名：</span><span class="lead">${quiz.quizName}</span>
+            <p class="lead">简介：${quiz.quizInfo}</p>
          <div class="row">
            <div class="span2 offset9">
              <button class="btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
