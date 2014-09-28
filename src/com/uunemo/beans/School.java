@@ -19,16 +19,16 @@ public class School{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "school_id",unique =true,nullable=false)
-	private Integer school_id;
+	private Integer schoolId;
     
   
-	public Integer getSchool_id() {
-		return school_id;
+	public Integer getSchoolId() {
+		return schoolId;
 	}
 
 
-	public void setSchool_id(Integer school_id) {
-		this.school_id = school_id;
+	public void setSchoolId(Integer schoolId) {
+		this.schoolId = schoolId;
 	}
 
 

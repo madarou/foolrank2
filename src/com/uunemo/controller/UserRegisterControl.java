@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uunemo.beans.RegisterQuestion;
 import com.uunemo.beans.User;
+import com.uunemo.daos.CompanyDao;
+import com.uunemo.daos.SchoolDao;
+import com.uunemo.service.CompanyService;
 import com.uunemo.service.SchoolService;
 import com.uunemo.service.UserLoginService;
 import com.uunemo.service.UserRegisterService;
@@ -30,23 +33,20 @@ import com.uunemo.service.UserService;
 public class UserRegisterControl {
 	
 	private String strHome = "home";
-	
 	private String register = "register";
-	
 	private String resetPassword="resetpassword";
 	
 	@Resource(name="UserRegisterService")
 	private UserRegisterService userRegisterService;
-	
 	@Resource(name="UserLoginService")
 	private UserLoginService userLoginService;
-	
 	@Resource
 	private SchoolService schoolService;
-	
 	@Resource
 	private UserService userService;
-	
+	@Resource
+	private CompanyService companyService;
+
 	// fetch the validate question
 	@RequestMapping(value= "/register/fetchinfo",method=RequestMethod.POST)  
 	public @ResponseBody Map Register(){
@@ -101,10 +101,11 @@ public class UserRegisterControl {
 			HttpSession session){
 		User user = new User();
 		user.setEmail(email);
-		int schoolId = schoolService.updateSchoolById(school);
+		int schoolId = schoolService.updateSchoolByName(school);
 		user.setSchoolId(schoolId);
 		if(company != null){
-			user.setCompany(company);	
+			int companyId = companyService.updateCompanyByName(company);
+			user.setCompanyId(companyId);	
 		}
 		user.setPassword(password);
 //		create default user, have role as "user" and permission as "read"

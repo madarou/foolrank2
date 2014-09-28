@@ -47,64 +47,28 @@ public class QuizService {
 		questionnum= (int) questionDao.countQuestionNum(quizId);
 	}
 	
-	public Question takeQuiz(int quizId,Set<Integer> questionSet,StringBuffer realanswer){
-		Question quest=new Question();
-		if(0==questionnum){
-			countQuestionNum(quizId);
-		}
-		if(questionSet.size()==questionnum){ //问题已取完
-			quest.setQuestionContent("end");
-		}
-        else { //取问题，确保不重复，最后一题则提示，跳转
-			int i;
-			Random random = new Random();
-			i = random.nextInt(questionnum);
-			while (questionSet.contains(i)) {
-				i = random.nextInt(questionnum);
-			}
-			questionSet.add(i);
-			quest = questionDao.fetchQuestion(quizId, i);
-			//将问题是否正确去掉，并将正确答案保存为一个字符串
-			realanswer.delete(0, realanswer.length());
-		    for(Option op:quest.getoptions()){
-		    	if(op.getRightFlag()!=0){
-		    		realanswer.append("1");
-		    	}
-		    	else{
-		    		realanswer.append("0");
-		    	}  	
-		    }
-		}
-		return quest;
-	}
+	
 
 	public Quiz getQuizInfo(int quizId) {
 		// TODO Auto-generated method stub
 		return quizDao.getQuizById(quizId);
 	}
 
-	public Score mark(int userId,int quizId,String answer, StringBuffer realanswer,StringBuffer point) {
+	public int mark(int userId,int quizId,String answer, StringBuffer realanswer,Integer point) {
 		// TODO Auto-generated method stub
-		Quiz quiz = quizDao.getQuizById(quizId);
-		
-		Score score = new Score();
+		int userQuizScore =0;
 		
 		if(realanswer.toString().equals(answer)){
 			//加分
-			System.out.println("right");
 			int questScore =Integer.parseInt(point.toString());
-			System.out.print(userId+"..............");
-			if(userId != 0)
-			{
-		      score=scoreService.updateUserScore(userId, quizId, questScore);
-			}
+			userQuizScore=scoreService.updateScore(userId, quizId, questScore);
 		}
 		else{
 			//减分，分数无变化
 			System.out.println("wrong");
 		}
 		
-		return score;
+		return userQuizScore;
 	}
 	
 	public List getAllQuizSet(){
@@ -146,6 +110,13 @@ public class QuizService {
 		
 		
 		return listQuiz;
+	}
+
+	public List<Question> takeQuestions(Integer quizId) {
+		// TODO Auto-generated method stub
+		Quiz quiz = quizDao.getQuizById(quizId);
+		return quiz.getQuestions();
+		
 	}
 	
 	

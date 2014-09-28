@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uunemo.beans.*;
 import com.uunemo.daos.*;
@@ -19,59 +21,41 @@ public class ScoreService {
 	private QuizSetDao quizSetDao;
 	
 	@Resource
-	private UserScoreDao userScoreDao;
+	private ScoreDao ScoreDao;
 	
 	@Resource
-	private SchoolScoreDao schoolScoreDao;
+	private ScoreDao scoreDao;
 	
 	@Resource
 	private UserService userService;
 	
-	@Resource
-	private Score score;
 	
-	//userid,schoolId 存入session中
-	public Score updateUserScore(int userId,int quizId,int questScore){
-		
-		int currScore =0;
-		int quizScore =0;
+	//更新用户分数，返回本试题的得分
+	public int updateScore(int userId,int quizId,int questScore){
 		
 		User user = userService.getUserById(userId);
-		
-		
 		int schoolId = user.getSchoolId();
+		int companyId = user.getCompanyId();
 		//更新userscore
-		Quiz quiz = quizDao.getQuizById(quizId);
-		quizScore = quiz.getQuizScore();
-		
-        QuizSet quizSet = quiz.getQuizSet();
-        
-        int setScoreCriterion = quizSet.getSetScoreCriterion();
-        
-        List<UserScore> list_uerScore = userScoreDao.getUserScoreBySetId(quizSet.getSetId(),userId);
-        //累加usrscore 判断setscore是否已达标，若达标则开启新的set模块
-        int setTotalScore=0;
-        
-        //将quiz所属set内的quiz全部查出，并累加所有quiz的值,判断这个set
-        for(UserScore userScore : list_uerScore){
-          	if(userScore.getQuizId()==quizId){
-          		currScore = userScore.getScore();
-          		userScore.setScore(currScore+questScore);
-          	}
-          	setTotalScore+=userScore.getScore();
-        }
-        
-        if(setTotalScore>setScoreCriterion){
-        	System.out.println("该级别已达到");
-        }
-        
-        //对schoolscore的处理，可能并发写很多
-        SchoolScore schoolScore = schoolScoreDao.getSScoreBySchoolId(schoolId);
+        UserQuizScore userQuizScore = scoreDao.getQuizScoreById(userId, quizId);
+        int latestScore= userQuizScore.getScore()+questScore;
+        userQuizScore.setScore(latestScore);
+        //更新schoolscore
+        SchoolScore schoolScore = scoreDao.getSchoolScoreById(schoolId);
         schoolScore.setTotalScore(schoolScore.getTotalScore()+questScore);
+        //更新companyscore
+        CompanyScore companyScore = scoreDao.getCompanyScoreById(companyId);
+        companyScore.setTotalScore(companyScore.getTotalScore()+questScore);
+        saveAllScore(userQuizScore,schoolScore,companyScore);      
         
-        score.setUserScore(currScore);
-        score.setQuizScore(quizScore);
-        
-        return score;        
+        return latestScore;        
 	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void saveAllScore(UserQuizScore userQuizScore,SchoolScore schoolScore,CompanyScore companyScore){
+		scoreDao.saveCompanyScore(companyScore);
+		scoreDao.saveSchoolScore(schoolScore);
+		scoreDao.saveUserQuizScore(userQuizScore);
+	}
+	
 }

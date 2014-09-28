@@ -20,31 +20,31 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="schoolscore")
-public class SchoolScore {
+@Table(name="company_score")
+public class CompanyScore {
 
-   
-	private int schoolId;
-	private String shcoolName;
+	// Fields
+	private int companyId;
+	private String companyName;
 	private int totalScore;
 	private int totalPerson;
 	
 	@Id
-	@Column(name="school_id")
+	@Column(name="company_id")
 	@GeneratedValue
-	public int getSchoolId() {
-		return schoolId;
+	public int getCompanyId() {
+		return companyId;
 	}
-	public void setSchoolId(int schoolId) {
-		this.schoolId = schoolId;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
 	
-	@Column(name="school_name")
-	public String getShcoolName() {
-		return shcoolName;
+	@Column(name="company_name")
+	public String getcompanyName() {
+		return companyName;
 	}
-	public void setShcoolName(String shcoolName) {
-		this.shcoolName = shcoolName;
+	public void setcompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 	@Column(name="total_score")
@@ -62,7 +62,7 @@ public class SchoolScore {
 	public void setTotalPerson(int totalPerson) {
 		totalPerson = totalPerson;
 	}
-
+	
 
 
 	

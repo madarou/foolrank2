@@ -32,8 +32,11 @@ public class UserRegisterService {
 	@Resource(name="RoleDao")
 	private RoleDao roleDao;
 	
-
+	@Resource
+    private CompanyService companyService;
 	
+	@Resource
+	private SchoolService schoolService;
 	
 	public RegisterQuestion getRegisterQuestion(){
 		Random rand = new Random();
@@ -76,11 +79,9 @@ public class UserRegisterService {
 		Role defaultRole = roleDao.getRoleByName("user");
 		user.getRoles().add(defaultRole);
 		userDao.save(user);
-		
-	
-		
-		
-		
+		//对应的学校人数和公司人数+1
+		schoolService.updateSchoolTotalPerson(user.getSchoolId());
+		companyService.updateCompanyTotalPerson(user.getCompanyId());
 	}
 	
 	

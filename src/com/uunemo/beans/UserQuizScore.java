@@ -6,11 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//用户、试题分数关联表
 @Entity
-@Table(name = "UserScore")
-public class UserScore {
+@Table(name = "UserQuizScore")
+public class UserQuizScore {
 	
-	
+	private int userId;
+	private int quizId;
+	private int score;
 	
 	
 	
@@ -38,8 +41,5 @@ public class UserScore {
 	}
 	
 	
-	private int userId;
-	private int quizId;
-	private int score;
 	
 }

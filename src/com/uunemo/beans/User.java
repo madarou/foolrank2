@@ -30,9 +30,11 @@ public class User {
     private String realname="";
     private int schoolId=0;
     private String email="";	
-    private String company;
-    
-    private Set<Career> careers = new HashSet<Career>(); //职业规划
+    private int companyId;
+   
+
+
+	private Set<Career> careers = new HashSet<Career>(); //职业规划
     private Set<Honor> honors = new HashSet<Honor>(); //荣誉
     private Set<Role> roles = new HashSet<Role>(); //角色
     
@@ -148,16 +150,15 @@ public class User {
 	}
 
 
-   @Column(name="company",length=100)
-    public String getCompany() {
-		return company;
+   @Column(name="companyId",length=100)
+   public int getCompanyId() {
+		return companyId;
 	}
 
 
-	public void setCompany(String company) {
-		this.company = company;
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
 	}
-
 
 	
     

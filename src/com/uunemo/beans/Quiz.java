@@ -1,6 +1,7 @@
 package com.uunemo.beans;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Quiz {
 	private String quizInfo="";
 	private int quizScore =0;
 	private QuizSet quizSet;
-	private Set<Question> questions = new HashSet<Question>();
+	private List<Question> questions = new ArrayList<Question>();
 	
 	
 	@Id
@@ -39,11 +40,11 @@ public class Quiz {
 	}
 	
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "quiz",fetch = FetchType.LAZY)
-	public Set<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(Set<Question> questions) {	
+	public void setQuestions(List<Question> questions) {	
 		this.questions = questions;
 	}
 
