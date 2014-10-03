@@ -27,6 +27,8 @@ if(user!=null){
 
 
 %>
+
+
 <input style="display:none" id="email" value="${email}"></input>
 <p></p>
 <!--   nav bar -->
@@ -144,7 +146,7 @@ if(user!=null){
 	    <div class="control-group">
 	      <label class="control-label">请输入上传文件</label>
 		    <div class="controls">
-		      <input type="file" id="file" placeholder="file"></input>
+		      <input type="file" id="file_upload" name="file" placeholder="file"></input>
 		    </div>
 	    </div>
 	 </form>
@@ -165,3 +167,4 @@ if(user!=null){
  
  <script src="<%=path%>/resources/js/bootstrap.js"></script>
  <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	
+

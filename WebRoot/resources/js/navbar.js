@@ -1,3 +1,5 @@
+WEBROOT ="/uunemo";
+
 $(document).ready(function(){
 		var email = $("#email").val();
 		if(email =="" ||typeof(email) == "undefined"  ){
@@ -21,10 +23,10 @@ $(document).on("click","#btnlogout",function(){
 });
 
 
-$("#btnImport").click(function(){
-	var file =$("#file");
-	console.log(file);
-	
+$('#file_upload').uploadify({
+	'swf'      : 'page/uploadify.swf',
+	'uploader' : WEBROOT+'/batchimport'
+	// Your options here
 });
 
 $("#showRegisterModal").click(function(){

@@ -1,5 +1,7 @@
 package com.uunemo.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +11,6 @@ import java.util.Random;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.uunemo.beans.Option;
 import com.uunemo.beans.Question;
@@ -121,6 +123,39 @@ public class QuizControl {
 	    
 		return question;
 	}
+	
+	/**
+	 * @param quizId
+	 * @return 正确答案和本测试的得分
+	 * 试题批量导入
+	 */
+	@RequestMapping(value="/batchimport",method=RequestMethod.POST)
+	public @ResponseBody 
+	String batchImport(
+			 @RequestParam MultipartFile[] file,
+			HttpSession session){
+	    if(file[0].getSize()>Integer.MAX_VALUE){//文件长度  
+			 return "上传文件过大";
+	    }  
+		InputStream is = null;
+		  
+	    try {
+			is = file[0].getInputStream();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//多文件也适用,我这里就一个文件 
+	    
+	    System.out.print(file[0].getSize());
+	    try {
+			is.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	
 	
 	/**
