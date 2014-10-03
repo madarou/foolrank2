@@ -31,7 +31,6 @@ public class SchoolScore {
 	
 	@Id
 	@Column(name="school_id")
-	@GeneratedValue
 	public int getSchoolId() {
 		return schoolId;
 	}

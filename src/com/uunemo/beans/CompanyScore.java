@@ -31,7 +31,6 @@ public class CompanyScore {
 	
 	@Id
 	@Column(name="company_id")
-	@GeneratedValue
 	public int getCompanyId() {
 		return companyId;
 	}

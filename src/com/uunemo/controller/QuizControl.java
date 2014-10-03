@@ -9,6 +9,9 @@ import java.util.Random;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.uunemo.beans.Option;
 import com.uunemo.beans.Question;
 import com.uunemo.beans.Quiz;
-import com.uunemo.beans.Score;
+import com.uunemo.beans.User;
 import com.uunemo.service.QuizService;
 import com.uunemo.service.QuizSetService;
+import com.uunemo.util.QuizConstant;
 import com.uunemo.util.QuizUtil;
+
 
 @Controller
 //@SessionAttributes("questionSet")
@@ -56,16 +61,34 @@ public class QuizControl {
 	 * @return 
 	 * 取一道试题
 	 */
-	@RequestMapping(value="/takequiz",method=RequestMethod.POST)
+	@RequestMapping(value="/takeNextQuestion",method=RequestMethod.POST)
 	public @ResponseBody 
 	Question takeNextQuestion(
 			@RequestParam Integer quizId,
 			HttpSession session
 			){
+		//判断quiz及用户权限
+		User user = null;
+		if(session.getAttribute("user")!=null){
+			user = (User)session.getAttribute("user");	
+		}
+		String errormsg = quizService.judge(quizId,user);
+		if(errormsg.equals("sucess")==false){
+			Question question = new Question();
+			question.setQuestionType("error");
+			question.setQuestionContent(errormsg);
+			return question;
+		}
+		
 		//questions用于保存用户的题目
 		List<Question> questions = (List) session.getAttribute("questions");
 		if(questions==null){
 			 questions = quizService.takeQuestions(quizId);
+		}else if(questions.size() ==0){
+			//题目已取完，返回空值
+			 Question question = new Question();
+			 question.setQuestionContent("end");
+			 return question;
 		}
 		//随机取一道题并在list中删除，保证用户题目不重复
 		Random random = new Random();
@@ -84,6 +107,7 @@ public class QuizControl {
 		//清空realanswer，并赋值后重新加入到session
 		realanswer.delete(0, realanswer.length());
 	    for(Option op:question.getoptions()){
+	    	op.setQuestion(null); //尼玛，循环依赖，json解析会报错
 	    	if(op.getRightFlag()!=0){
 	    		realanswer.append("1");
 	    		op.setRightFlag(0); //将正确答案置空，防止用户通过debug查看到正确答案
@@ -93,6 +117,8 @@ public class QuizControl {
 	    	}  	
 	    }
 	    session.setAttribute("realanswer", realanswer);
+	    question.setQuiz(null);
+	    
 		return question;
 	}
 	
@@ -103,13 +129,35 @@ public class QuizControl {
 	 * @return 正确答案和本测试的得分
 	 * 用户答题，判断正误，并更新分数
 	 */
-	@RequestMapping(value="/takequiz",method=RequestMethod.POST)
+	@RequestMapping(value="/answerquestion",method=RequestMethod.POST)
 	public @ResponseBody 
-	Map takeQuiz(
+	Map answerQuestion(
 			@RequestParam(required = true) Integer quizId,
 			@RequestParam(required = true) String answer ,
+			@RequestParam(required = true) Integer questionId,
 			HttpSession session){
 		
+		//判断quiz及用户权限
+		User user = null;
+		if(session.getAttribute("user")!=null){
+			user = (User)session.getAttribute("user");	
+		}
+		String errormsg = quizService.judge(quizId,user);
+		if(errormsg.equals("sucess")==false){
+		    Map map = new HashMap<String,String>();
+		    map.put("error", errormsg);
+		    return map;
+		}
+		
+		
+		//questionId相同，重复提交，测试环境先注释
+//		if(session.getAttribute("questionId")!=null){
+//			Integer lastQuestionId = (Integer)session.getAttribute("questionId");	
+//		    if (questionId == lastQuestionId){
+//		    	return null;
+//		    }
+//		}
+			
 		StringBuffer realanswer = (StringBuffer)session.getAttribute("realanswer");
 		Integer point = (Integer)session.getAttribute("point");
 		//判断问题对错,并对累计分数
@@ -132,7 +180,17 @@ public class QuizControl {
 	/*@RequiresRoles("user")*/
 	public String viewQuiz(
 			@RequestParam int quizId,
+			HttpSession session,
 			Model model){
+		User user = null;
+		if(session.getAttribute("user")!=null){
+			user = (User)session.getAttribute("user");	
+		}
+		String errormsg = quizService.judge(quizId,user);
+		if(errormsg.equals("sucess")==false){
+		   model.addAttribute("errormsg",errormsg);
+		   return QuizConstant.ERROR;
+		}
 		Quiz quiz = quizService.getQuizInfo(quizId);
 		model.addAttribute("quiz",quiz);
 	    return quizPage;
@@ -157,6 +215,15 @@ public class QuizControl {
 		}
 		return rtQuiz;
 	}
+	 
+	@RequiresRoles(value={QuizConstant.ROLE_OPERATOR,QuizConstant.ROLE_ADMIN},logical=Logical.OR) 
+    @RequestMapping(value="/batchImport",method=RequestMethod.POST)
+	@ResponseBody
+	public 	String batchImport(
+	   @RequestParam String excelData	
+			){
+		return null;
+	} 
 	
 	
 }

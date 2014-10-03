@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 //用户、试题分数关联表
 @Entity
-@Table(name = "UserQuizScore")
+@Table(name = "userquizscore")
 public class UserQuizScore {
 	
 	private int userId;
@@ -16,10 +16,8 @@ public class UserQuizScore {
 	private int score;
 	
 	
-	
 	@Id
-	@GeneratedValue
-	@Column(name="userid")
+	@Column(name="user_id")
 	public int getUserId() {
 		return userId;
 	}
@@ -27,12 +25,15 @@ public class UserQuizScore {
 		this.userId = userId;
 	}
 	
+	@Column(name="quiz_id")
 	public int getQuizId() {
 		return quizId;
 	}
 	public void setQuizId(int quizId) {
 		this.quizId = quizId;
 	}
+	
+	@Column(name="score")
 	public int getScore() {
 		return score;
 	}

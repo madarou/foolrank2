@@ -25,7 +25,7 @@
 	<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
 	<link href="<%=path%>/resources/css/common.css" rel="stylesheet">
     <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
-    <link href="<%=path%>/resources/css/line/aero.css" rel="stylesheet">
+    <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
 body {
 	padding-top: 60px;
@@ -58,52 +58,30 @@ body {
          </div>
       
         <div class="takequiz" id="takequiz" style="display:none">
-         
-         <div class="optionplane" id="optionplane" style="display:none">
-          <p class="lead" id="questioncontent">quizcontent</p>      
-          <ul class="options">
-            
-            <li id="option0" style="display:none">
-              <input type="checkbox" id="checkbox1"></input>
-              <label id="content">11</label>
-            </li>
-            
-            <li id="option1" style="display:none">
-              <input type="checkbox" id="checkbox2" name="checkbox2" value="checkbox"></input>
-              <label>12</label>
-            </li>
-            
-            <li id="option2" style="display:none">
-              <input type="checkbox" name="checkbox3" value="checkbox"></input>
-              <label>13</label>
-            </li> 
-            
-            <li id="option3"  style="display:none">
-              <input type="checkbox" name="checkbox4" value="checkbox"></input>
-              <label>14</label>
-            </li>
-            
-            <li id="option4"  style="display:none">
-              <input type="checkbox" name="checkbox5" value="checkbox"></input>
-              <label>15</label>
-            </li>
-            
-            <li id="option5"  style="display:none">
-              <input type="checkbox" name="checkbox6" value="checkbox"></input>
-              <label>16</label>
-            </li>
-           
-           </ul> 
-           <label id="optionnum" style="display:none"></label>
-           <div class="row-fluid">
-            <div class="span2 offset2">
-             <button class="btn btn-large" id="nextquestion" type="button">下一题</button>
-            </div>
-            <div class="span2 offset4">
-             <button class="btn btn-large" type="button">结束</button>
-            </div> 
-           </div>
-          </div>
+          <p class="lead" id="questioncontent"></p>  
+          <dl class="clear">
+	          <dd class="selected">
+		         <div class="optionplane skin-section" id="optionplane">
+		           <ul class="options list" id="options">
+		           </ul> 
+		           <label id="optionnum"></label>
+		           <div class="row-fluid">
+			            <div class="span2 offset2">
+			             <button class="btn btn-info" id="submit" type="button">提交答案</button>
+			            </div>
+			            
+			            <div class="span2 ">
+			             <button class="btn btn-info" id="nextquestion" type="button">下一题</button>
+			            </div>
+			            <div class="span2 ">
+			             <button class="btn btn-info" type="button">结束</button>
+			            </div> 
+		           </div>
+		           
+		          </div>
+	          </dd>
+          </dl>
+          
          </div>
         </div>
        </div>
@@ -118,13 +96,10 @@ body {
 					<div >
            
            </div>
-            
-          
           </div>
        </div>
       </div>
     </div>
-    
 	<div class="container">
 		<footer>
 		<p>&copy;Uunemo Company 2013</p>

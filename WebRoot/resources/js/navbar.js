@@ -18,10 +18,26 @@ $(document).on("click","#btnlogout",function(){
 			  $("#preparelogin").show();
 			  }
 	       )
-	
-})
-;  
+});
 
+
+$("#btnImport").click(function(){
+	var file =$("#file");
+	console.log(file);
+	
+});
+
+$("#showRegisterModal").click(function(){
+	$("#registerModal").modal('show');
+})
+
+$("#showImportModal").click(function(){
+	$("#importModal").modal('show');
+})
+
+$("#viewLoginModal").click(function(){
+	$("#loginModal").modal('show');
+});
 
 $(document).on("click","#btnlogin",function(){
 	
@@ -38,12 +54,24 @@ $(document).on("click","#btnlogin",function(){
 		    var postData = {"email":email,"password":password};
 			$.post("/uunemo/checkuser",
 					postData,
-					function(username){
-				      if(username !="nobody"){
+					function(user){
+				      if(user.username !="nobody"){
 				    	$("#preparelogin").hide();
-				    	$("#showusername").text(username);
+				    	$("#showusername").text(user.email);
 				    	$("#alreadylogin").show();
-				    	$("#loginModalDismiss").click();
+//				    	$("#btnModalClose",parent.document).click();
+				    	
+				    	$("#loginModal").modal('hide');  //可能是内存泄漏，不可使用该方法
+//				    	console.log($("#loginModalDismiss"));
+//				    	$("#loginModalDismiss").click();
+				    	var roles = user.roles;
+				    	for(var i=0;i<roles.length;i++){
+				    		if(roles[i].roleName == "operator"||roles[i].roleName=="admin"){
+				    			$("#leftNav").append("<li><a href='#' data-target='#importModal' data-toggle='modal'>批量导入</a></li>");
+				    		    break;
+				    		}
+				    	}
+//				    	
 				      }
 				      else{
 				    	  $("#alertInfo").text("用户名或密码错误");

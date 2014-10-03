@@ -20,15 +20,10 @@ import com.uunemo.beans.UserQuizScore;
 @Repository(value="ScoreDao")
 public class ScoreDao {
 	
-	
 	private static final Logger log = LoggerFactory.getLogger(ScoreDao.class);
 
 	@Resource
 	private HibernateTemplate hibernateTemplate;
-	
-	@Resource
-	private UserQuizScore userQuizScore;
-	
 	
 	
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -38,7 +33,7 @@ public class ScoreDao {
 			hibernateTemplate.saveOrUpdate(transientInstance);
 		} catch (RuntimeException re) {
 			log.error("save userQuizScore failed", re);
-			throw re;
+			throw re; 
 		}
 	}
 	

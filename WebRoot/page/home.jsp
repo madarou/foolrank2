@@ -77,62 +77,6 @@ body {
 		</footer>
 	</div>
 
-<!-- register Modal begin -->
-<div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">用户注册</h3>
-  </div>
-  <div class="modal-body"></div>
-</div>
-<!-- register Modal end-->
-
-<!-- login Modal begin -->
-<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">用户登录</h3>
-  </div>
-  <div class="modal-body">
-    <form class="form-horizontal">
-        
-	    <div class="control-group">
-	      <label class="control-label" for="inputEmail">Email</label>
-		    <div class="controls">
-		      <input type="text" id="loginEmail" placeholder="Email"></input>
-		    </div>
-	    </div>
-	    
-	    <div class="control-group">
-		    <label class="control-label" for="inputPassword">Password</label>
-		    <div class="controls">
-		    <input type="password" id="password" placeholder="密码"></input>
-		    </div>
-	    </div>
-	    <div class="control-group">
-		    <label class="checkbox"></label>
-		    <div class="controls">
-		    <input type="checkbox">记住我</input>
-		    </div>
-	    </div>
-	    
-	    <div class="control-group">
-	       <label class="control-label"></label>
-	       <div class="controls"><p class="text-error" id = "alertInfo"></p></div> 
-	    </div>
-	    
-	    
-    </form>
-  </div>
-  <div class="modal-footer">
-  
-    <button class="btn" id="btnlogin" class="btn btn-primary">登录</button>
-	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
-	
-  </div>
-
-</div>
-<!-- login Modal end-->
   
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>

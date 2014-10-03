@@ -25,7 +25,22 @@ public class Question {
   private String questionType="";
   private Quiz quiz;
   private Set<Option> options = new HashSet<Option>();
+  private Set<Tag> tags = new HashSet<Tag>();
   
+  @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.LAZY)  
+  @JoinTable(
+		name = "question_tag",
+		joinColumns = @JoinColumn(name = "tag"),
+		inverseJoinColumns = @JoinColumn(name = "tag_id")
+  )
+  public Set<Tag> getTags() {
+	return tags;
+  }
+
+  public void setTags(Set<Tag> tags) {
+	this.tags = tags;
+  }
+
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},fetch = FetchType.LAZY)
   @JoinColumn(name = "quiz_id")
   public Quiz getQuiz() {
@@ -36,7 +51,7 @@ public class Question {
 		this.quiz = quiz;
 	}
  
-  @OneToMany(cascade = CascadeType.ALL,mappedBy = "question",fetch = FetchType.LAZY)
+  @OneToMany(cascade = CascadeType.ALL,mappedBy = "question",fetch = FetchType.EAGER)
 	public Set<Option> getoptions() {
 		return options;
 	}
@@ -45,7 +60,7 @@ public class Question {
 		this.options = options;
 	}
 
-	@Column(name = "question_num", length = 8)
+	@Column(name = "point", length = 8)
 	public int getPoint() {
 		return point;
 	}

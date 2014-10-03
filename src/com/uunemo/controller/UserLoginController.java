@@ -71,19 +71,22 @@ public class UserLoginController {
    //2013.02.21 must use ajax 
 	@RequestMapping(value = "/checkuser",method= RequestMethod.POST)
  	public @ResponseBody
-	String login(
+	User login(
 			@RequestParam(value="email",required = true) String email,
 			@RequestParam(value="password",required = true) String password,
 			HttpSession session
 			)
 	{      
+		User user = new User();
 		String name = userLoginService.validataUser(email, password);	
 		if(name.equals("nobody")==false){
-			User user = userService.getUserByEmail(name);
+			user = userService.getUserByEmail(name);
 			session.setAttribute("user", user);
-			
+			return user;
+		}else{
+			user.setUsername("nobody");
+			return user;
 		}
-        return name;
 	}	
 	
 }

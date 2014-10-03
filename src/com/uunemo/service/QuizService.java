@@ -16,10 +16,11 @@ import com.uunemo.beans.Option;
 import com.uunemo.beans.Question;
 import com.uunemo.beans.Quiz;
 import com.uunemo.beans.QuizSet;
-import com.uunemo.beans.Score;
+import com.uunemo.beans.User;
 import com.uunemo.daos.QuestionDao;
 import com.uunemo.daos.QuizDao;
 import com.uunemo.daos.QuizSetDao;
+import com.uunemo.util.QuizConstant;
 
 @Service("QuizService")
 public class QuizService {
@@ -117,6 +118,26 @@ public class QuizService {
 		Quiz quiz = quizDao.getQuizById(quizId);
 		return quiz.getQuestions();
 		
+	}
+
+
+
+	public String judge(Integer quizId, User user) {
+		// TODO Auto-generated method stub
+		Quiz quiz = quizDao.getQuizById(quizId);
+		if(quiz == null){
+			return "无此试题，请不要做无谓尝试";
+		}else{
+			if (quiz.getQuizAttr()!=QuizConstant.QUIZ_FREE && user == null){
+				//用户未登录但做了需登录区的题
+				return "请先登录";
+			}
+			else if(quiz.getQuizAttr().equals(QuizConstant.QUIZ_PAID) && user.getRoles().contains(QuizConstant.ROLE_PAIDUSER)==false){
+				//用户未付费但做了付费区的题
+				return "请先付费";
+			}
+			return "sucess";
+		}
 	}
 	
 	

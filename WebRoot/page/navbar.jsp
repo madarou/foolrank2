@@ -1,6 +1,10 @@
+<%@page import="com.uunemo.util.QuizConstant"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.uunemo.beans.User"%>    
+<%@ page import="com.uunemo.beans.User"%>
+<%@ page import="com.uunemo.beans.Role"%>    
+<%@ page import="com.uunemo.util.QuizConstant"%>    
+<%@ page import="java.util.Set"%>    
 <%
 
 String path = request.getContextPath();
@@ -35,21 +39,32 @@ if(user!=null){
 						class="icon-bar"></span>
 				</button>
 				<div class="nav-collapse collapse">
-					<ul class="nav">
+					<ul class="nav" id="leftNav">
 						<li class="active"><a href="#">主页</a></li>
 						<li><a href="#contact">联系方式</a></li>
+					    <%
+					      if(user != null){
+					    	  Set<Role> roles =  user.getRoles();
+					    	  for(Role role:roles){
+					    		  if(role.getRoleName().equals(QuizConstant.ROLE_ADMIN)||role.getRoleName().equals(QuizConstant.ROLE_OPERATOR)){
+					    %>	  
+					    	  
+					    	  <li><a href='#' id='showImportModal' data-toggle='modal'>批量导入</a></li>
+					    <%
+					      }}}
+					    %>
 
 					</ul>
                     
 					 <ul id="alreadylogin" class="nav pull-right">
-					      <li  class="active"><a id = "showusername">${email}</a></li>
-					      <li  ><a id="btnlogout" href="#">logout</a></li>
+					      <li  class="active"><a id = "showusername">欢迎！${email}</a></li>
+					      <li  ><a id="btnlogout" href="#">退出</a></li>
 					 </ul>
 					 
 					
 					 <ul id="preparelogin" class="nav pull-right">
-					      <li  class="active"><a href="#" data-target="#loginModal" data-toggle="modal">登录</a></button></li>
-					      <li id="showRegisterModal"><a href="page/register.jsp" data-toggle="modal" data-target="#registerModal">注册</a></li>
+					      <li  class="active"><a href="#" id="viewLoginModal" data-toggle="modal">登录</a></li>
+					      <li id="showRegisterModal"><a href="page/register.jsp" data-toggle="modal" id="showRegisterModal">注册</a></li>
 					 </ul>
 					 
 					
@@ -58,5 +73,95 @@ if(user!=null){
 		</div>
 	</div>
 	<!-- nav bar -->
+
+<!-- register Modal begin -->
+<div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">用户注册</h3>
+  </div>
+  <div class="modal-body"></div>
+</div>
+<!-- register Modal end-->
+
+<!-- login Modal begin -->
+<div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" id="btnLoginModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">用户登录</h3>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+        
+	    <div class="control-group">
+	      <label class="control-label" for="inputEmail">Email</label>
+		    <div class="controls">
+		      <input type="text" id="loginEmail" placeholder="Email"></input>
+		    </div>
+	    </div>
+	    
+	    <div class="control-group">
+		    <label class="control-label" for="inputPassword">Password</label>
+		    <div class="controls">
+		    <input type="password" id="password" placeholder="密码"></input>
+		    </div>
+	    </div>
+	    <div class="control-group">
+		    <label class="checkbox"></label>
+		    <div class="controls">
+		    <input type="checkbox">记住我</input>
+		    </div>
+	    </div>
+	    
+	    <div class="control-group">
+	       <label class="control-label"></label>
+	       <div class="controls"><p class="text-error" id = "alertInfo"></p></div> 
+	    </div>
+	    
+	    
+    </form>
+  </div>
+  <div class="modal-footer">
+  
+    <button class="btn" id="btnlogin" class="btn btn-primary">登录</button>
+	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
+	
+  </div>
+
+</div>
+<!-- login Modal end-->	
+	
+	
+<!-- import Modal begin -->
+<div id="importModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">批量导入</h3>
+  </div>
+  <div class="modal-body">
+     <form class="form-horizontal">
+        
+	    <div class="control-group">
+	      <label class="control-label">请输入上传文件</label>
+		    <div class="controls">
+		      <input type="file" id="file" placeholder="file"></input>
+		    </div>
+	    </div>
+	 </form>
+  
+    
+  </div>
+  <div class="modal-footer">
+  
+    <button class="btn" id="btnImport" class="btn btn-primary">上传</button>
+	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
+	
+  </div>
+
+</div>
+<!-- login Modal end-->	
+	
  <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+ 
+ <script src="<%=path%>/resources/js/bootstrap.js"></script>
  <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	

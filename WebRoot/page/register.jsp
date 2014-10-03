@@ -50,9 +50,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</section>
 	
    <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+   <script src="<%=path%>/resources/js/bootstrap.js"></script>
 	<script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/register.js" type="text/javascript"></script>
-	<script src="<%=path%>/resources/js/bootstrap.js"></script>
+	
 	
 </body>
 </html>

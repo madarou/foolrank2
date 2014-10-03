@@ -7,4 +7,5 @@ $(document).ready(function(){
 	var finalHeight = clientHeight>totalHeight?clientHeight:totalHeight;
 	$(".commonBody").height(finalHeight);
 	$("#registerModal").width(windowWidth/2);
+	WEBROOT="/uunemo";
 });
