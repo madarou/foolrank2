@@ -141,8 +141,7 @@ if(user!=null){
     <h3 id="myModalLabel">批量导入</h3>
   </div>
   <div class="modal-body">
-     <form class="form-horizontal">
-        
+     <form class="form-horizontal" id="importForm">   
 	    <div class="control-group">
 	      <label class="control-label">请输入上传文件</label>
 		    <div class="controls">
@@ -164,7 +163,8 @@ if(user!=null){
 <!-- login Modal end-->	
 	
  <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
- 
  <script src="<%=path%>/resources/js/bootstrap.js"></script>
+  <script src="<%=path%>/resources/js/ajaxfileupload.js"></script>
+ <script src="<%=path%>/resources/js/jquery-form.js"></script>
  <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	
 

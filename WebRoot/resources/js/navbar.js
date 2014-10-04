@@ -23,11 +23,36 @@ $(document).on("click","#btnlogout",function(){
 });
 
 
-$('#file_upload').uploadify({
-	'swf'      : 'page/uploadify.swf',
-	'uploader' : WEBROOT+'/batchimport'
-	// Your options here
-});
+//$('#file_upload').uploadify({
+//	'swf'      : 'page/uploadify.swf',
+//	'uploader' : WEBROOT+'/batchimport'
+//	// Your options here
+//});
+//$("#btnImport").click(function(){
+//	$.fn.ajaxFileUpload({
+//	    url: WEBROOT+"/batchImport",
+//	    secureuri: false,
+//	    fileElementId: 'file_upload',
+//	    dataType: 'json',
+//	    type: 'POST',
+//	    success: function (result) {
+//	       console.log(result);
+//	    }
+//	});
+//	
+//})
+$("#btnImport").click(function(){
+	$("#importForm").ajaxSubmit({
+		url:WEBROOT+'/batchimport',
+		type:"POST",
+		dataType:"json",
+	    success: function(data){
+	    	console.log("data...........",data);
+	    }
+	})
+	
+})
+
 
 $("#showRegisterModal").click(function(){
 	$("#registerModal").modal('show');
