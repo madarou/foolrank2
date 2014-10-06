@@ -1,6 +1,6 @@
 WEBROOT="/uunemo";
 
 $(document).on("click","#c",function(){
-	window.location.assign("viewquiz?quizId=1");	
+	window.location.assign("viewquiz?quizId=2");	
 });	
 

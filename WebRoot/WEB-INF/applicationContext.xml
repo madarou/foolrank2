@@ -29,7 +29,7 @@
 			value="com.mysql.jdbc.Driver">
 		</property>
 		<property name="url"
-			value="jdbc:mysql://127.0.0.1:3306/uunemo">
+			value="jdbc:mysql://127.0.0.1:3306/uunemo?useUnicode=true&amp;characterEncoding=utf8">
 		</property>
 		<property name="username" value="root"></property>
 	</bean>

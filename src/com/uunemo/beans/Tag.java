@@ -11,7 +11,6 @@ import javax.persistence.Table;
 public class Tag {
 	private int tagId;
 	private String tagName;
-	private int questionId;
 	
 	@Id
 	@GeneratedValue
@@ -24,7 +23,7 @@ public class Tag {
 		this.tagId = tagId;
 	}
 	
-	@Column(name="tag_name",length=8,unique=true)
+	@Column(name="tag_name",length=100,unique=true)
 	public String getTagName() {
 		return tagName;
 	}
@@ -33,15 +32,7 @@ public class Tag {
 		this.tagName = tagName;
 	}
 	
-	@Column(name="question_id",length=8)
-	public int getQuestionId() {
-		return questionId;
-	}
-	
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
-	}
-	
+
 	
 	
 

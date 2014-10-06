@@ -21,6 +21,8 @@ import com.uunemo.util.QuizUtil;
 @Repository(value="QuestionDao")
 public class QuestionDao {
 
+	private static final Logger log = LoggerFactory.getLogger(TagDao.class);
+	
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	
@@ -43,7 +45,13 @@ public class QuestionDao {
 
 	public void save(Question question) {
 		// TODO Auto-generated method stub
-		hibernateTemplate.save(question);
+		try {
+			hibernateTemplate.save(question);
+			log.debug("save question successful");
+		} catch (RuntimeException re) {
+			log.error("save question failed", re);
+			throw re;
+		}
 	}
 
 	public List getAllQuestion(int pageNum) {

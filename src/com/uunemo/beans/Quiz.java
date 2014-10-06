@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.uunemo.util.QuizConstant;
+
 
 @Entity
 @Table(name = "quiz")
@@ -24,7 +26,7 @@ public class Quiz {
 	private String quizName="";
 	private String quizInfo="";
 	private int quizScore =0;
-	private String quizAttr ="free"; //测试类型：免登录、需登录、需付费
+	private String quizAttr =QuizConstant.QUIZ_FREE; //测试类型：免登录、需登录、需付费
 	
 	
 	@Column(name="quiz_attr",length=20)

@@ -109,7 +109,6 @@ public class QuizControl {
 		//清空realanswer，并赋值后重新加入到session
 		realanswer.delete(0, realanswer.length());
 	    for(Option op:question.getoptions()){
-	    	op.setQuestion(null); //尼玛，循环依赖，json解析会报错
 	    	if(op.getRightFlag()!=0){
 	    		realanswer.append("1");
 	    		op.setRightFlag(0); //将正确答案置空，防止用户通过debug查看到正确答案
@@ -137,22 +136,14 @@ public class QuizControl {
 	    if(file[0].getSize()>Integer.MAX_VALUE){//文件长度  
 			 return "上传文件过大";
 	    }  
-		InputStream is = null;
-		  
-	    try {
-			is = file[0].getInputStream();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}//多文件也适用,我这里就一个文件 
 	    
-	    System.out.print(file[0].getSize());
 	    try {
-			is.close();
-		} catch (IOException e) {
+			quizService.batchImport(file);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 	

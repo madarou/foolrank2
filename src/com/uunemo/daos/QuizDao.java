@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.uunemo.daos.UserDao;
 import com.uunemo.util.QuizUtil;
@@ -27,6 +29,35 @@ public class QuizDao {
 	@Resource
 	private HibernateTemplate hibernateTemplate;
 	
+	//根据测试名进行精确查询
+	public Quiz getQuizByExactName(String name){
+		String hql = "from Quiz quiz where quiz.quizName=?";
+		List<Quiz> quizes = null;
+		try {
+			quizes = hibernateTemplate.find(hql, name);
+		} catch (RuntimeException re) {
+			log.error("get quiz failed", re);
+			throw re;
+		}
+		if(quizes.size()!=0){
+			return quizes.get(0);
+		}else{
+			return null;
+		}
+	}
+	
+	//保存试题
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void save(User transientInstance) {
+		log.debug("saving quiz instance");
+		try {
+			hibernateTemplate.saveOrUpdate(transientInstance);
+			log.debug("save successful");
+		} catch (RuntimeException re) {
+			log.error("save failed", re);
+			throw re;
+		}
+	}
 	
 	//根据试卷名模糊查询试卷，分页
 	public List getQuizByName(String quizName, int pageNum){
