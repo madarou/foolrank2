@@ -23,6 +23,8 @@
 
 	<!-- Le styles -->
 	<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
+	<link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+<%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
 	<link href="<%=path%>/resources/css/common.css" rel="stylesheet">
     <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
     <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
@@ -57,8 +59,9 @@ body {
          </div>
          </div>
       
-        <div class="takequiz" id="takequiz" style="display:none">
-          <p class="lead" id="questioncontent"></p>  
+        <div class="takequiz " id="takequiz" style="display:none">
+<!--           <textarea id="questioncontent" name="mdeditor"></textarea> -->
+          <div class="lead" id = "questioncontent"></div>
           <dl class="clear">
 	          <dd class="selected">
 		         <div class="optionplane skin-section" id="optionplane">
@@ -109,8 +112,10 @@ body {
 	
   
    <!-- Placed at the end of the document so the pages load faster -->
-   <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+   <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
    <script src="<%=path%>/resources/js/bootstrap.js"></script>
+     <script src="<%=path%>/resources/js/marked.js"></script>
+<%--    <script src="<%=path%>/resources/js/MDEditor/mdeditor.js"></script> --%>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
    <script src="<%=path%>/resources/js/jquery.icheck.js"></script>
    <script src="<%=path%>/resources/js/quiz.js"></script>

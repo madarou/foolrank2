@@ -79,9 +79,7 @@ body {
 
   
    <!-- Placed at the end of the document so the pages load faster -->
-<%--    <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
-   <script src="<%=path%>/resources/js/bootstrap.js"></script>
- --%>   <script src="<%=path%>/resources/js/home.js"></script>
+   <script src="<%=path%>/resources/js/home.js"></script>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
   
    

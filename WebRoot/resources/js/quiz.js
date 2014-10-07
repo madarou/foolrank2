@@ -22,7 +22,6 @@
 	});
 	
 	
-	
 	//取一道题
 	$("#nextquestion").click(function(){
 		$("#options").empty();
@@ -43,7 +42,9 @@
 					if(question.questionType=="option"){
 						 QUESTIONID = question.questionId;
 						 //题目内容
-						 $("#questioncontent").text(question.questionContent);
+						 console.log("questionContent",marked(question.questionContent));
+						 
+						 $("#questioncontent").html(marked(question.questionContent));
 						 //选项
 						 var options = question.options;
 						 //首先生成input

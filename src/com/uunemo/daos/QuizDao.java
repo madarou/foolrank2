@@ -50,7 +50,7 @@ public class QuizDao {
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void save(User transientInstance) {
 		log.debug("saving quiz instance");
-		try {
+		try {	
 			hibernateTemplate.saveOrUpdate(transientInstance);
 			log.debug("save successful");
 		} catch (RuntimeException re) {

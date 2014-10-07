@@ -47,7 +47,7 @@ public class Question {
 		this.quiz = quiz;
 	}
  
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch= FetchType.EAGER)
     @JoinColumn(name="question_id")
 	public Set<Option> getoptions() {
 		return options;

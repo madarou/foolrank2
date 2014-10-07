@@ -65,6 +65,8 @@
 		<property name="sessionFactory"><ref local="sessionFactory" /></property>
 	</bean>
 	
+	<!-- 处理default请求，并不过滤 -->
+	<mvc:default-servlet-handler/>
 	
 	 <bean id="hibernateTemplate"  class="org.springframework.orm.hibernate3.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory" />
