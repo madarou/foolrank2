@@ -9,11 +9,19 @@
 
 .takequiz{
 /* 	height:400px; */
-	display:inline-block;
+/* 	display:inline-block; */
 	border-radius:10px;
 	border-color: #c8c8c8;
 	background-color: #ffffff;	
 }
+
+.quizarea{
+	width:100%;/*自动适应父布局宽度*/  
+    overflow:auto;  
+    word-break:break-all;  
+	
+}
+
 
 .takequiz .lead{
 	margin-top:30px;

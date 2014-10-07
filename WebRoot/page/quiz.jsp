@@ -61,7 +61,7 @@ body {
       
         <div class="takequiz " id="takequiz" style="display:none">
 <!--           <textarea id="questioncontent" name="mdeditor"></textarea> -->
-          <textarea  style="height:200px;width:100%" readonly="readonly" id = "questioncontent"></textarea>
+          <textarea class="quizarea"  readonly="readonly" id = "questioncontent"></textarea>
           <dl class="clear">
 	          <dd class="selected">
 		         <div class="optionplane skin-section" id="optionplane">
@@ -103,6 +103,7 @@ body {
        </div>
       </div>
     </div>
+	</div>
 	<div class="container">
 		<footer>
 		<p>&copy;Uunemo Company 2013</p>
