@@ -40,11 +40,25 @@
 					    return false;
 					}
 					if(question.questionType=="option"){
+						
+						
 						 QUESTIONID = question.questionId;
 						 //题目内容
-						 console.log("questionContent",marked(question.questionContent));
-						 
-						 $("#questioncontent").html(marked(question.questionContent));
+						
+						 var htmlContent;
+						 var ue = UE.getEditor('editor');
+						
+							ue.ready(function() {
+							    //设置编辑器的内容
+							    ue.setContent(question.questionContent);
+							    //获取html内容
+							    htmlContent = ue.getContent();
+							   
+							});
+						
+						 console.log("htmlContent",htmlContent);
+							
+						 $("#questioncontent").html(htmlContent);
 						 //选项
 						 var options = question.options;
 						 //首先生成input

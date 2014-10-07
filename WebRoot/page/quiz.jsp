@@ -109,12 +109,17 @@ body {
 		</footer>
 	</div>
 	
+<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>	
 	
   
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
    <script src="<%=path%>/resources/js/bootstrap.js"></script>
-     <script src="<%=path%>/resources/js/marked.js"></script>
+   <script src="<%=path%>/resources/js/ueditor/ueditor.config.js"></script>
+   <script src="<%=path%>/resources/js/ueditor/ueditor.all.js"></script> 
+   <script src="<%=path%>/resources/js/ueditor/lang/zh-cn/zh-cn.js"></script> 
+    
+<%--      <script src="<%=path%>/resources/js/marked.js"></script> --%>
 <%--    <script src="<%=path%>/resources/js/MDEditor/mdeditor.js"></script> --%>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
    <script src="<%=path%>/resources/js/jquery.icheck.js"></script>
