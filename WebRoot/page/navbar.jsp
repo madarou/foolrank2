@@ -1,6 +1,6 @@
+
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.uunemo.util.QuizConstant"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ page import="com.uunemo.beans.User"%>
 <%@ page import="com.uunemo.beans.Role"%>    
 <%@ page import="com.uunemo.util.QuizConstant"%>    
@@ -20,12 +20,7 @@ if(user!=null){
     	pageContext.setAttribute("email",email);
     	pageContext.setAttribute("userId",userId);
 }
-
-
 }
-
-
-
 %>
 <link href="<%=path%>/resources/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
@@ -170,9 +165,8 @@ if(user!=null){
 </div>
 <!-- login Modal end-->	
 	
- <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+ <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
  <script src="<%=path%>/resources/js/bootstrap.js"></script>
-  <script src="<%=path%>/resources/js/ajaxfileupload.js"></script>
  <script src="<%=path%>/resources/js/jquery-form.js"></script>
  <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	
 

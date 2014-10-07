@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
+<%-- 
 <%
 	String path = request.getContextPath();
 	pageContext.setAttribute("path", path);
@@ -9,7 +10,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 	
-%>
+%> --%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -24,8 +25,8 @@
 	<!-- Le styles -->
 	
 <%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
-    <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
-    <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
+    <link href="uunemo/resources/css/quiz.css" rel="stylesheet">
+    <link href="uunemo/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
 body {
 	padding-top: 60px;
@@ -35,10 +36,10 @@ body {
 	
 </head>
 
-<body >
+<body>
 
 <!--   nav bar -->
-<jsp:include page="navbar.jsp" />
+<%@ include file="navbar.jsp"%> 
 <!-- main img -->
 <jsp:include page="mainimg.jsp" /> 
     
@@ -108,7 +109,6 @@ body {
 		</footer>
 	</div>
 	
-<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>	
 	
   
    <!-- Placed at the end of the document so the pages load faster -->

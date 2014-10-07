@@ -21,9 +21,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="author" content="">
 	<!-- Le styles -->
 	<link href="<%=path%>/resources/css/home.css" rel="stylesheet">
-	
-	
-	
 	<style type="text/css">
 body {
 	padding-top: 60px;
@@ -33,7 +30,7 @@ body {
 	
 </head>
 
-<body class="commonBody">
+<body >
 
 <!--   nav bar -->
 <jsp:include page="navbar.jsp" />
