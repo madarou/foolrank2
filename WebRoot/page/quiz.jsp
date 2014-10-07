@@ -22,10 +22,8 @@
 	<meta name="author" content="">
 
 	<!-- Le styles -->
-	<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
-	<link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
+	
 <%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
-	<link href="<%=path%>/resources/css/common.css" rel="stylesheet">
     <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
     <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
@@ -37,7 +35,7 @@ body {
 	
 </head>
 
-<body class="commonBody">
+<body >
 
 <!--   nav bar -->
 <jsp:include page="navbar.jsp" />
@@ -61,7 +59,7 @@ body {
       
         <div class="takequiz " id="takequiz" style="display:none">
 <!--           <textarea id="questioncontent" name="mdeditor"></textarea> -->
-          <textarea class="quizarea"  readonly="readonly" id = "questioncontent"></textarea>
+          <p class="lead"  id = "questioncontent"></p>
           <dl class="clear">
 	          <dd class="selected">
 		         <div class="optionplane skin-section" id="optionplane">

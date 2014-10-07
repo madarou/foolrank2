@@ -43,9 +43,9 @@
 						
 						 QUESTIONID = question.questionId;
 						 //题目内容
-						 var str = question.questionContent;
-						 
-						 var htmContent = str.replace(new RegExp(" ","gm"),"&nbsp;").replace(new RegExp("\r\n","gm"),"<br/>");
+//						 var str = question.questionContent;
+//						 
+//						 var htmContent = str.replace(new RegExp(" ","gm"),"&nbsp;").replace(new RegExp("\r\n","gm"),"<br/>");
 						 
 //						 console.log("htmlContent",htmContent);
 							

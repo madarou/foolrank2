@@ -19,10 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
 	<!-- Le styles -->
-	<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
-	<link href="<%=path%>/resources/css/common.css" rel="stylesheet">
 	<link href="<%=path%>/resources/css/home.css" rel="stylesheet">
 	
 	

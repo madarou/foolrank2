@@ -27,7 +27,9 @@ if(user!=null){
 
 
 %>
-
+<link href="<%=path%>/resources/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
 <input style="display:none" id="email" value="${email}"></input>
 <p></p>
@@ -35,14 +37,20 @@ if(user!=null){
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<button type="button" class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+				
+				<button class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" type="button">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
 				</button>
+				
+				
+				
+				
 				<div class="nav-collapse collapse">
-					<ul class="nav" id="leftNav">
-						<li class="active"><a href="#">主页</a></li>
+					
+					 <ul class="nav" id="leftNav">
+						<li><a class="active" href="#">主页</a></li>
 						<li><a href="#contact">联系方式</a></li>
 					    <%
 					      if(user != null){
@@ -51,12 +59,12 @@ if(user!=null){
 					    		  if(role.getRoleName().equals(QuizConstant.ROLE_ADMIN)||role.getRoleName().equals(QuizConstant.ROLE_OPERATOR)){
 					    %>	  
 					    	  
-					    	  <li><a href='#' id='showImportModal' data-toggle='modal'>批量导入</a></li>
+					    <li><a href='#' id='showImportModal' data-toggle='modal'>批量导入</a></li>
 					    <%
 					      }}}
 					    %>
 
-					</ul>
+				</ul>
                     
 					 <ul id="alreadylogin" class="nav pull-right">
 					      <li  class="active"><a id = "showusername">欢迎！${email}</a></li>
