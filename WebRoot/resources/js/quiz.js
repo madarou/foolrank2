@@ -41,24 +41,13 @@
 					}
 					if(question.questionType=="option"){
 						
-						
 						 QUESTIONID = question.questionId;
 						 //题目内容
-						
-						 var htmlContent;
-						 var ue = UE.getEditor('editor');
-						
-							ue.ready(function() {
-							    //设置编辑器的内容
-							    ue.setContent(question.questionContent);
-							    //获取html内容
-							    htmlContent = ue.getContent();
-							   
-							});
-						
-						 console.log("htmlContent",htmlContent);
+//						 var str = question.questionContent;
+//						 var htmContent = str.replace(new RegExp(" ","gm"),"&nbsp;").replace(new RegExp("\r\n","gm"),"<br/>");
+//						 console.log("htmlContent",htmContent);
 							
-						 $("#questioncontent").html(htmlContent);
+						 $("#questioncontent").text(question.questionContent);
 						 //选项
 						 var options = question.options;
 						 //首先生成input

@@ -61,7 +61,7 @@ body {
       
         <div class="takequiz " id="takequiz" style="display:none">
 <!--           <textarea id="questioncontent" name="mdeditor"></textarea> -->
-          <div class="lead" id = "questioncontent"></div>
+          <textarea  style="height:200px;width:100%" readonly="readonly" id = "questioncontent"></textarea>
           <dl class="clear">
 	          <dd class="selected">
 		         <div class="optionplane skin-section" id="optionplane">
@@ -115,10 +115,10 @@ body {
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
    <script src="<%=path%>/resources/js/bootstrap.js"></script>
-   <script src="<%=path%>/resources/js/ueditor/ueditor.config.js"></script>
+  <%--  <script src="<%=path%>/resources/js/ueditor/ueditor.config.js"></script>
    <script src="<%=path%>/resources/js/ueditor/ueditor.all.js"></script> 
    <script src="<%=path%>/resources/js/ueditor/lang/zh-cn/zh-cn.js"></script> 
-    
+     --%>
 <%--      <script src="<%=path%>/resources/js/marked.js"></script> --%>
 <%--    <script src="<%=path%>/resources/js/MDEditor/mdeditor.js"></script> --%>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
