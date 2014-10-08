@@ -23,24 +23,6 @@ $(document).on("click","#btnlogout",function(){
 });
 
 
-//$('#file_upload').uploadify({
-//	'swf'      : 'page/uploadify.swf',
-//	'uploader' : WEBROOT+'/batchimport'
-//	// Your options here
-//});
-//$("#btnImport").click(function(){
-//	$.fn.ajaxFileUpload({
-//	    url: WEBROOT+"/batchImport",
-//	    secureuri: false,
-//	    fileElementId: 'file_upload',
-//	    dataType: 'json',
-//	    type: 'POST',
-//	    success: function (result) {
-//	       console.log(result);
-//	    }
-//	});
-//	
-//})
 $("#btnImport").click(function(){
 	$("#importForm").ajaxSubmit({
 		url:WEBROOT+'/batchimport',
@@ -55,7 +37,9 @@ $("#btnImport").click(function(){
 
 
 $("#showRegisterModal").click(function(){
-	$("#registerModal").modal('show');
+	$("#registerModal").modal({
+	  remote:"page/register.jsp"
+	});
 })
 
 $("#showImportModal").click(function(){
@@ -109,7 +93,4 @@ $(document).on("click","#btnlogin",function(){
 }); 
 
 
-$("btnRegister").click(function(){
-	
-})
 
