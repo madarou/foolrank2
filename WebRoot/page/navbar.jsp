@@ -69,7 +69,7 @@ if(user!=null){
 					
 					 <ul id="preparelogin" class="nav pull-right">
 					      <li  class="active"><a href="#" id="viewLoginModal" data-toggle="modal">登录</a></li>
-					      <li id="showRegisterModal"><a href="page/register.jsp" data-toggle="modal" id="showRegisterModal">注册</a></li>
+					      <li id="showRegisterModal"><a href="#" data-toggle="modal" id="showRegisterModal">注册</a></li>
 					 </ul>
 					 
 					

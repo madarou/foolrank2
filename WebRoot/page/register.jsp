@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<title>UUnemo</title>
 </head>
-<body class="commonBody">
+<body class="span6">
 	<section>
 		<article class="regPanel">
 			<form id="regForm" action = "${path}/register/createuser" method= "post" >
