@@ -24,15 +24,12 @@ if(user!=null){
 
 }
 
-
-
 %>
 <link href="<%=path%>/resources/css/bootstrap-responsive.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-<input style="display:none" id="email" value="${email}"></input>
-<p></p>
+
 <!--   nav bar -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
@@ -73,8 +70,8 @@ if(user!=null){
 					 
 					
 					 <ul id="preparelogin" class="nav pull-right">
-					      <li  class="active"><a href="#" id="viewLoginModal" data-toggle="modal">登录</a></li>
-					      <li id="showRegisterModal"><a href="page/register.jsp" data-toggle="modal" id="showRegisterModal">注册</a></li>
+					      <li  class="active"><a  data-toggle="modal" href="#" id="viewLoginModal">登录</a></li>
+					      <li ><a href="#" data-toggle="modal" id="showRegisterModal">注册</a></li>
 					 </ul>
 					 
 					
@@ -85,12 +82,20 @@ if(user!=null){
 	<!-- nav bar -->
 
 <!-- register Modal begin -->
-<div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+style="width: 800">
   <div class="modal-header">
     <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">用户注册</h3>
   </div>
-  <div class="modal-body"></div>
+  <div class="modal-body">
+    	
+  
+  </div>
+   <div class="modal-footer">
+    <button type="button" id = "regBtn" class="btn btn-info" >创建用户</button>
+	<button class="btn" data-dismiss="modal">取消</button>
+  </div>
 </div>
 <!-- register Modal end-->
 
@@ -133,7 +138,7 @@ if(user!=null){
   </div>
   <div class="modal-footer">
   
-    <button class="btn" id="btnlogin" class="btn btn-primary">登录</button>
+    <button id="btnlogin" class="btn btn-info">登录</button>
 	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
 	
   </div>
@@ -170,9 +175,9 @@ if(user!=null){
 </div>
 <!-- login Modal end-->	
 	
- <script src="<%=path%>/resources/js/jquery-1.9.1.js"></script>
+ <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
  <script src="<%=path%>/resources/js/bootstrap.js"></script>
-  <script src="<%=path%>/resources/js/ajaxfileupload.js"></script>
+  
  <script src="<%=path%>/resources/js/jquery-form.js"></script>
  <script src="${path}/resources/js/navbar.js" type="text/javascript"></script>	
 

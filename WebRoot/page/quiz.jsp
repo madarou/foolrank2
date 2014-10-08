@@ -1,14 +1,28 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
+<%@page import="com.uunemo.util.QuizConstant"%>
+<%@ page import="com.uunemo.beans.User"%>
+<%@ page import="com.uunemo.beans.Role"%>    
+<%@ page import="com.uunemo.util.QuizConstant"%>    
+<%@ page import="java.util.Set"%>    
 <%
-	String path = request.getContextPath();
-	pageContext.setAttribute("path", path);
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-	
+
+String path = request.getContextPath();
+pageContext.setAttribute("path",path);
+User user = (User)session.getAttribute("user");
+String email="";
+Integer userId =0 ;
+if(user!=null){
+	System.out.print("get user:"+user);
+	email = user.getEmail();
+    userId = user.getUserid();
+    if(email!=null){
+    	pageContext.setAttribute("email",email);
+    	pageContext.setAttribute("userId",userId);
+}
+}
 %>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -22,23 +36,19 @@
 	<meta name="author" content="">
 
 	<!-- Le styles -->
-	
-<%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
-    <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
-    <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
+<%-- 	<link href="<%=path%>/resources/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet"> --%>
+  <%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
+    <link href="uunemo/resources/css/quiz.css" rel="stylesheet">
+    <link href="uunemo/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
+
 </style>
 	
 </head>
 
-<body >
-
-<!--   nav bar -->
-<jsp:include page="navbar.jsp" />
+<body>
+<jsp:include page="navbar.jsp" /> 
 <!-- main img -->
 <jsp:include page="mainimg.jsp" /> 
     
@@ -104,24 +114,13 @@ body {
 	</div>
 	<div class="container">
 		<footer>
-		<p>&copy;Uunemo Company 2013</p>
+		<p>&copy;FoolRank  2014</p>
 		</footer>
 	</div>
 	
-<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>	
-	
-  
-   <!-- Placed at the end of the document so the pages load faster -->
-   <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
-   <script src="<%=path%>/resources/js/bootstrap.js"></script>
-  <%--  <script src="<%=path%>/resources/js/ueditor/ueditor.config.js"></script>
-   <script src="<%=path%>/resources/js/ueditor/ueditor.all.js"></script> 
-   <script src="<%=path%>/resources/js/ueditor/lang/zh-cn/zh-cn.js"></script> 
-     --%>
-<%--      <script src="<%=path%>/resources/js/marked.js"></script> --%>
-<%--    <script src="<%=path%>/resources/js/MDEditor/mdeditor.js"></script> --%>
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
    <script src="<%=path%>/resources/js/jquery.icheck.js"></script>
+  
    <script src="<%=path%>/resources/js/quiz.js"></script>
   </body>
 </html>
