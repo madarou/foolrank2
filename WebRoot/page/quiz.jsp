@@ -30,40 +30,40 @@ if(user!=null){
 <html lang="en">
 <head>
 <meta charset="utf-8">
-	<title>Uunemo</title>
+	<title>猿奋</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
     <meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Le styles -->
-    <link href="uunemo/resources/css/quiz.css" rel="stylesheet">
-    <link href="uunemo/resources/css/square/green.css" rel="stylesheet">
+    <link href="<%=path%>/resources/css/quiz.css" rel="stylesheet">
+    <link href="<%=path%>/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
 
 </style>
 	
 </head>
 
-<body>
+<body style="background-color:#f2f2f2">
 <jsp:include page="navbar.jsp" /> 
-<!-- main img -->
-<jsp:include page="mainimg.jsp" /> 
     
-    <div class ="container-fluid">
+    <div class ="container-fluid" style="padding-top: 100px">
       <div class="row-fluid">
-       <div class="col-md-9">
-        <div class="mainquiz">
-         <div class="quizinfo" id="quizinfo">
-            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
-            <span>试题名：</span><span class="lead">${quiz.quizName}</span>
-            <p class="lead">简介：${quiz.quizInfo}</p>
-         <div class="row">
-           <div class="col-md-2 -9">
-             <button class="btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
-           </div>    
-         </div>
-         </div>
+        <div class="mainquiz col-md-9">
+	         <div class="quizinfo" id="quizinfo">
+	          <div class="quizcontent">
+	            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
+	            <h3 class="lead quizname">试题名：${quiz.quizName}</h3>
+	            <h4 class=" quizdesc">简介：${quiz.quizInfo}</h4>
+		       </div>
+		        
+		         <div class="row">
+		           <div class="col-md-2 col-md-offset-8">
+		             <button class="btn btn-large" id="letsbegin" type="button">开始做题</button>
+		           </div>   
+		          </div>  
+	         </div>
       
         <div class="takequiz " id="takequiz" style="display:none">
           <p class="lead"  id = "questioncontent"></p>
@@ -92,9 +92,10 @@ if(user!=null){
           
          </div>
         </div>
-       </div>
+        </div>
+    
        
-       <div class="col-md-3 ">
+       <div class="col-md-3" style="display:none">
           <div class="quizright">
            <div class="scorezone">
               <div class="progress">
@@ -108,12 +109,7 @@ if(user!=null){
        </div>
       </div>
     </div>
-	</div>
-	<div class="container">
-		<footer>
-		<p>&copy;FoolRank  2014</p>
-		</footer>
-	</div>
+	
 	
    <script src="${path}/resources/js/initClient.js" type="text/javascript"></script>
    <script src="<%=path%>/resources/js/jquery.icheck.js"></script>

@@ -1,3 +1,4 @@
+
 .exam{
 	width:100%;
 	height:800px;
@@ -21,13 +22,18 @@
 	margin-left: 30px;
 }
 
-.span1 .c{ 
+.panel-heading{
+	background-color:#009966;
+	color:#ffffff;
+}
+
+.cEssential{ 
 	width: 80px;
 	height: 72px;
 	background-image: url(img/c.png);
 }
 
-.span1 .java{
+.javaEssential{
 	width: 80px;
 	height: 72px;
 	background-image: url(img/java.png);

@@ -25,6 +25,7 @@ if(user!=null){
 
 %>
 <link href="<%=path%>/resources/css/bootstrap3/bootstrap.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/flatui/flatui.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
 
@@ -39,7 +40,8 @@ if(user!=null){
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				 <a class="navbar-brand" href="#">FoolRank</a>
+				 <a class="navbar-brand" href="#" style="color:#00CC99">猿奋</a>
+				 <a class="navbar-brand" href="#">foolRank.com</a>
 			</div>	
 				
 				
@@ -63,13 +65,13 @@ if(user!=null){
 				</ul>
                     
 					 <ul id="alreadylogin" class="nav navbar-nav navbar-right">
-					      <li  class="active"><a id = "showusername">欢迎！${email}</a></li>
+					      <li  class="active"><a id = "showusername" style="color:#00CC99">欢迎！${email}</a></li>
 					      <li  ><a id="btnlogout" href="#">退出</a></li>
 					 </ul>
 					 
 					
 					 <ul id="preparelogin" class="nav navbar-nav navbar-right">
-					      <li ><a  data-toggle="modal" href="#" id="viewLoginModal">登录</a></li>
+					      <li ><a  data-toggle="modal" href="#" style="color:#00CC99" id="viewLoginModal">登录</a></li>
 					      <li ><a href="#" data-toggle="modal" id="showRegisterModal">注册</a></li>
 					 </ul>
 					 
@@ -115,7 +117,7 @@ if(user!=null){
 					</div>
 					<label class="control-label col-sm-3 col-md-offset-1 "></label>
 					<div class="col-sm-6">
-					  <p class="" >请填写你所在的学校。填写后不可修改，请谨慎填写</p>
+					  <p class="" >请填写你所在的学校。会影响学校排名，不可更改，请谨慎填写</p>
 					</div>
 			    </div>
 			
@@ -248,6 +250,7 @@ if(user!=null){
 	
  <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
  <script src="<%=path%>/resources/js/bootstrap3/bootstrap.js"></script>
+ <script src="<%=path%>/resources/js/flatui/custom_checkbox_and_radio.js"></script>
  <script src="<%=path%>/resources/js/jquery-form.js"></script>
  <script src="<%=path%>/resources/js/navbar.js"></script>
  <script src="/uunemo/resources/js/register.js"></script>	

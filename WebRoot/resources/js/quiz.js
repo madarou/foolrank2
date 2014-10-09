@@ -55,17 +55,18 @@
 						 //首先生成input
 						 for(var i=0;i< options.length;i++){
 							 var id= "icheckInput"+i;
-							 $("#options").append("<li><input id='"+id+"' type='checkbox'></input><label for='"+id+"'>"+options[i].option+"</label></li>");
+							/* $("#options").append("<li><input id='"+id+"' type='checkbox'></input><label for='"+id+"'>"+options[i].option+"</label></li>");*/
+							 $("#options").append("<input id='"+id+"' type='checkbox'></input><label for='"+id+"'>"+options[i].option+"</label>");
 						 };
 						 //使用icheck，生成选项
-						 $('input').iCheck({
-							    checkboxClass: 'icheckbox_square-green',
-							    increaseArea: '20%', // optional
-							    hoverClass: 'hover',
-							    labelHover: true,
-							    labelHoverClass: 'hover',
-
-						 });
+//						 $('input').iCheck({
+//							    checkboxClass: 'icheckbox_square-green',
+//							    increaseArea: '20%', // optional
+//							    hoverClass: 'hover',
+//							    labelHover: true,
+//							    labelHoverClass: 'hover',
+//
+//						 });
 					}
 				});
 	})

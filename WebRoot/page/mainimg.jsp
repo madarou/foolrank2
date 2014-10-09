@@ -3,9 +3,9 @@
   	 <div class="contain-fluid logohead hidden-sm hidden-xs">
   	    <div class="row"> 
   	      <div class="col-md-5 col-md-offset-2" style="padding-top: 150px">
-  	        <h1 style="color: #00CC66;font-weigh:bolder ">力量</h1>
-  	        <h2  style="color: #00CC66 ">就在你心中</h2> 
-  	        <h2  style="color: #00CC66 ">来，证明你自己</h2> 
+  	        <h1>力量</h1>
+  	        <h2>就在你心中</h2> 
+  	        <h2>来，证明你自己</h2> 
   	      </div>
   	    </div>
   	     	   
@@ -16,5 +16,13 @@
 .logohead{
    background: url("./resources/img/superman3.jpg") no-repeat scroll center top #404040;
    height: 500px; 
+}
+h1{
+  color:#FFFFFF;
+  font-weigh:bolder;
+}
+
+h2{
+  color:#FFFFFF;
 }
 </style>

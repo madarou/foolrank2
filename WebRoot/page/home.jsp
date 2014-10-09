@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
 <head>
 <meta charset="utf-8">
-	<title>Uunemo</title>
+	<title>猿奋</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 </head>
 
-<body >
+<body style="background-color:#f2f2f2" >
 
 <!--   nav bar -->
 <jsp:include page="navbar.jsp" />
@@ -41,8 +41,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
        
         <div class="exam">
-           <div class="panel panel-default">
-               <div class="panel-heading">免登录区，快来尝试下吧</div>
+          
+           <div class="panel">
+               <div class="panel-heading">免登录区</div>
+			       <div class="panel-body">
+				     <div class="col-md-1 col-md-offset-1">
+	                 <div class="cEssential" id="c"></div>
+	               </div>
+	               
+	               <div class= "col-md-1 col-md-offset-1">
+	                 <div class="javaEssential" id="java"></div>
+	               </div>
+			  </div>
+			</div>
+			
+			<div class="panel" style="display:none">
+               <div class="panel-heading" style="background-color:#00CC99">需登录区</div>
+			      <div class="panel-body">
+				     <div class="col-md-1 col-md-offset-1">
+	                 <div class="cEssential" id="cEssential"></div>
+	               </div>
+	               
+	               <div class= "col-md-1 col-md-offset-1">
+	                 <div class="javaEssential" id="javaEssential"></div>
+	               </div>
+			  </div>
+			</div>
+			
+			<div class="panel" style="display:none">
+               <div class="panel-heading" style="background-color:#00CC99">付费区</div>
 			      <div class="panel-body">
 				     <div class="col-md-1 col-md-offset-1">
 	                 <div class="c" id="c"></div>
@@ -53,19 +80,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	               </div>
 			  </div>
 			</div>
-             
-              
-            </div>
+			
+			
+          </div>
         
        </div>
        
-       <div class="col-md-3 ">
+       <div class="col-md-3">
           <div class="bulletin">
 					
 					   
-					</div>
-
-				</div>
+		  </div>
+		 </div>
        </div>
       </div>
     </div>
