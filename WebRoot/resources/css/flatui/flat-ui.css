@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
+/* @import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic"); */
 @font-face {
   font-family: "Flat-UI-Icons-16";
   src: url("../fonts/Flat-UI-Icons-16.eot");
@@ -181,7 +181,7 @@ body {
 
 a {
   color: #1abc9c;
-  text-decoration: underline;
+/*   text-decoration: underline; */
   -webkit-transition: 0.25s;
   -moz-transition: 0.25s;
   -o-transition: 0.25s;

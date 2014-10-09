@@ -25,7 +25,7 @@ if(user!=null){
 
 %>
 <link href="<%=path%>/resources/css/bootstrap3/bootstrap.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/flatui/flatui.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/flatui/flat-ui.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
 

@@ -60,7 +60,7 @@ if(user!=null){
 		        
 		         <div class="row">
 		           <div class="col-md-2 col-md-offset-8">
-		             <button class="btn btn-large" id="letsbegin" type="button">开始做题</button>
+		             <button class="btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
 		           </div>   
 		          </div>  
 	         </div>
@@ -69,20 +69,20 @@ if(user!=null){
           <p class="lead"  id = "questioncontent"></p>
           <dl class="clear">
 	          <dd class="selected">
-		         <div class="optionplane skin-section" id="optionplane">
-		           <ul class="options list" id="options">
-		           </ul> 
+		         <div class="optionplane" id="optionplane">
+		           <div class="options list" id="options">
+		           </div> 
 		           <label id="optionnum"></label>
 		           <div class="row-fluid">
 			            <div class="col-md-2 col-md-offset-2">
-			             <button class="btn btn-info" id="submit" type="button">提交答案</button>
+			             <button class="btn btn-primary" id="submit" type="button">提交答案</button>
 			            </div>
 			            
 			            <div class="col-md-2 ">
-			             <button class="btn btn-info" id="nextquestion" type="button">下一题</button>
+			             <button class="btn btn-primary" id="nextquestion" type="button">下一题</button>
 			            </div>
 			            <div class="col-md-2 ">
-			             <button class="btn btn-info" type="button">结束</button>
+			             <button class="btn btn-primary" type="button">结束</button>
 			            </div> 
 		           </div>
 		           
