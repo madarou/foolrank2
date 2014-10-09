@@ -34,11 +34,9 @@ if(user!=null){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+    <meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<!-- Le styles -->
-<%-- 	<link href="<%=path%>/resources/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/bootstrap.css" rel="stylesheet"> --%>
-  <%-- 	<link href="<%=path%>/resources/css/mdeditor.css" rel="stylesheet"> --%>
     <link href="uunemo/resources/css/quiz.css" rel="stylesheet">
     <link href="uunemo/resources/css/square/green.css" rel="stylesheet">
 	<style type="text/css">
@@ -54,21 +52,20 @@ if(user!=null){
     
     <div class ="container-fluid">
       <div class="row-fluid">
-       <div class="span9">
+       <div class="col-md-9">
         <div class="mainquiz">
          <div class="quizinfo" id="quizinfo">
             <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
             <span>试题名：</span><span class="lead">${quiz.quizName}</span>
             <p class="lead">简介：${quiz.quizInfo}</p>
          <div class="row">
-           <div class="span2 offset9">
+           <div class="col-md-2 -9">
              <button class="btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
            </div>    
          </div>
          </div>
       
         <div class="takequiz " id="takequiz" style="display:none">
-<!--           <textarea id="questioncontent" name="mdeditor"></textarea> -->
           <p class="lead"  id = "questioncontent"></p>
           <dl class="clear">
 	          <dd class="selected">
@@ -77,14 +74,14 @@ if(user!=null){
 		           </ul> 
 		           <label id="optionnum"></label>
 		           <div class="row-fluid">
-			            <div class="span2 offset2">
+			            <div class="col-md-2 col-md-offset-2">
 			             <button class="btn btn-info" id="submit" type="button">提交答案</button>
 			            </div>
 			            
-			            <div class="span2 ">
+			            <div class="col-md-2 ">
 			             <button class="btn btn-info" id="nextquestion" type="button">下一题</button>
 			            </div>
-			            <div class="span2 ">
+			            <div class="col-md-2 ">
 			             <button class="btn btn-info" type="button">结束</button>
 			            </div> 
 		           </div>
@@ -97,7 +94,7 @@ if(user!=null){
         </div>
        </div>
        
-       <div class="span3 ">
+       <div class="col-md-3 ">
           <div class="quizright">
            <div class="scorezone">
               <div class="progress">

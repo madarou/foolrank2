@@ -1,8 +1,20 @@
- <div class ="container" style="padding-top: 60px;">
-	<div class="row">
-		<div class="span4">
-			<div class="logoImg"></div>
-			<h1 class="logoText">FOOLRANK</h1>
-		</div>
-	</div>
-</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  	 <div class="contain-fluid logohead hidden-sm hidden-xs">
+  	    <div class="row"> 
+  	      <div class="col-md-5 col-md-offset-2" style="padding-top: 150px">
+  	        <h1 style="color: #00CC66;font-weigh:bolder ">力量</h1>
+  	        <h2  style="color: #00CC66 ">就在你心中</h2> 
+  	        <h2  style="color: #00CC66 ">来，证明你自己</h2> 
+  	      </div>
+  	    </div>
+  	     	   
+	</div> 
+
+ 
+<style type="text/css">
+.logohead{
+   background: url("./resources/img/superman3.jpg") no-repeat scroll center top #404040;
+   height: 500px; 
+}
+</style>

@@ -38,7 +38,6 @@ $("#btnImport").click(function(){
 
 $("#showRegisterModal").click(function(){
 	$("#registerModal").modal({
-	  remote:"page/register.jsp"
 	});
 })
 

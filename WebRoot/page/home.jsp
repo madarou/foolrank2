@@ -16,16 +16,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta charset="utf-8">
 	<title>Uunemo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!-- Le styles -->
 	<link href="<%=path%>/resources/css/home.css" rel="stylesheet">
 	<style type="text/css">
-body {
-	padding-top: 60px;
-	padding-bottom: 40px;
-}
+
 </style>
 	
 </head>
@@ -37,25 +35,31 @@ body {
 <!-- main img -->
 <jsp:include page="mainimg.jsp" /> 
     
-    <div class ="container-fluid">
-      <div class="row-fluid">
-       <div class="span9">
-         <div class="exam">
-           <div class="essential">
-             <div class="row-fluid">
-               <div class="span1 offset1">
-                 <div class="c" id="c"></div>
-               </div>
-               
-               <div class= "span1 offset1">
-                 <div class="java" id="java"></div>
-               </div>
-             </div>
-           </div>
-         </div>
+    <div class ="container" style="background-color:#f2f2f2;padding-top: 30px">
+      <div class="row">
+       <div class="col-md-9">
+        
+       
+        <div class="exam">
+           <div class="panel panel-default">
+               <div class="panel-heading">免登录区，快来尝试下吧</div>
+			      <div class="panel-body">
+				     <div class="col-md-1 col-md-offset-1">
+	                 <div class="c" id="c"></div>
+	               </div>
+	               
+	               <div class= "col-md-1 col-md-offset-1">
+	                 <div class="java" id="java"></div>
+	               </div>
+			  </div>
+			</div>
+             
+              
+            </div>
+        
        </div>
        
-       <div class="span3 ">
+       <div class="col-md-3 ">
           <div class="bulletin">
 					
 					   
