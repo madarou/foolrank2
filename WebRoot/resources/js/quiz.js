@@ -29,16 +29,35 @@
 						
 						 QUESTIONID = question.questionId;
 						 //题目内容
-							
-						 $("#questioncontent").text(question.questionContent);
+                         var str = question.questionContent;
+                         
+                         //计算换行的个数，以动态设置textarea，居然只有\n没有\r,奇怪了
+                         var length = str.split("\n").length-1;
+                         console.log("length........",length);
+                         
+                         if(length!=0){
+                        	 $("textarea").css("height",length*20+"px");
+                         }else{
+                        	 $("textarea").css("height","80px");
+                         }
+						 $("#questioncontent").text(str);
 						 //选项
 						 var options = question.options;
 						 //首先生成input
 						 for(var i=0;i< options.length;i++){
 							 var id= "checkbox"+i;
 							/* $("#options").append("<li><input id='"+id+"' type='checkbox'></input><label for='"+id+"'>"+options[i].option+"</label></li>");*/
-							 $("#options").append("<label class='checkbox' for='"+id+"'><input id='"+id+"' type='checkbox'>"+options[i].option+"</input></label>");
+							 $("#options").append("<label class='optionlabel checkbox' for='"+id+"'><input id='"+id+"' type='checkbox'>"+options[i].option+"</input></label>");
 						 };
+						 
+						  $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
+
+						  $(".checkbox, .radio").click(function(){
+						        setupLabel();
+						  });
+						  setupLabel();
+						  
+//						  $("label").css("background-color","#ecf0f1");
 						 //使用icheck，生成选项
 //						 $('input').iCheck({
 //							    checkboxClass: 'icheckbox_square-green',

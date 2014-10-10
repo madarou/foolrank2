@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- main img -->
 <jsp:include page="mainimg.jsp" /> 
     
-    <div class ="container" style="background-color:#f2f2f2;padding-top: 30px">
+    <div class ="container" style="background-color:#f2f2f2;padding-top: 50px">
       <div class="row">
        <div class="col-md-9">
         
@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                <div class="panel-heading" style="background-color:#00CC99">付费区</div>
 			      <div class="panel-body">
 				     <div class="col-md-1 col-md-offset-1">
-	                 <div class="c" id="c"></div>
+	                 <div  class="c" id="c"><a href="#"></a></div>
 	               </div>
 	               
 	               <div class= "col-md-1 col-md-offset-1">

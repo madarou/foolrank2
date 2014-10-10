@@ -1,3 +1,8 @@
+textarea{
+	/*height:20% ! important;*/
+	margin-top: 30px ! important;	
+}
+
 .mainquiz{
 	display:inline-block;
 	border-radius:10px;
@@ -5,7 +10,12 @@
 	background-color: #ffffff;	
 	height:500px;
 	width:100%;	
-	margin-left: 30px;
+}
+
+
+.optionlabel{
+	background-color:#ecf0f1;
+	height:50px;
 }
 
 .quizcontent{
@@ -20,12 +30,14 @@
 
 .quizname{
 	margin-top: 30px;
-	margin-left: 60px;
+	margin-left:10px;
 	color:#009966;
 }
 
+
 .quizdesc{
-	margin-left: 60px;
+	margin-top: 30px;
+	margin-left:10px;
 }
 
 letsbegin{

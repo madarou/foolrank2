@@ -25,7 +25,7 @@ if(user!=null){
 
 %>
 <link href="<%=path%>/resources/css/bootstrap3/bootstrap.css" rel="stylesheet">
-<link href="<%=path%>/resources/css/flatui/flat-ui.css" rel="stylesheet">
+<link href="<%=path%>/resources/css/flatui/css/flat-ui.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
 
@@ -40,8 +40,8 @@ if(user!=null){
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				 <a class="navbar-brand" href="#" style="color:#00CC99">猿奋</a>
-				 <a class="navbar-brand" href="#">foolRank.com</a>
+				 <a class="navbar-brand" href="<%=path%>" style="color:#00CC99">猿奋</a>
+				 <a class="navbar-brand" href="<%=path%>"> foolRank.com</a>
 			</div>	
 				
 				
@@ -159,7 +159,7 @@ if(user!=null){
   	   </div>
   	  
  	  <div class="modal-footer">
-	    <button type="button" id = "regBtn" class="btn btn-info" >创建用户</button>
+	    <button type="button" id = "regBtn" class="btn btn-primary" >创建用户</button>
 		<button class="btn" data-dismiss="modal">取消</button>
 	  </div>
 </div>
@@ -193,10 +193,12 @@ if(user!=null){
 			    <input type="password" class="form-control" id="password" placeholder="密码"></input>
 			    </div>
 		    </div>
+		    
 		    <div class="form-group">
-			    <label class="col-sm-2 col-md-offset-2 control-label checkbox"></label>
+			    <label class="col-sm-2 col-md-offset-2 control-label"></label>
 			    <div class="col-sm-4">
-			    <input type="checkbox">记住我</input>
+			    <label class="checkbox" for="rbme"> <input id="rbme" type="checkbox" class="form-control">记住我</input></label>
+			   
 			    </div>
 		    </div>
 		    
@@ -210,7 +212,7 @@ if(user!=null){
 	  </div>
   <div class="modal-footer">
   
-    <button id="btnlogin" class="btn btn-info">登录</button>
+    <button id="btnlogin" class="btn btn-primary">登录</button>
 	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
 	
   </div>
@@ -221,17 +223,20 @@ if(user!=null){
 	
 	
 <!-- import Modal begin -->
-<div id="importModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="importModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+    <div class="modal-content">
+ 
   <div class="modal-header">
     <button type="button" id="btnModalClose" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">批量导入</h3>
   </div>
   <div class="modal-body">
      <form class="form-horizontal" id="importForm">   
-	    <div class="control-group">
-	      <label class="control-label">请输入上传文件</label>
-		    <div class="controls">
-		      <input type="file" id="file_upload" name="file" placeholder="file"></input>
+	    <div class="form-group">
+	      <label class="control-label col-sm-4 col-md-offset-2 ">请输入上传文件</label>
+		    <div class="col-sm-6">
+		      <input type="file"  class="form-controls" id="file_upload" name="file" placeholder="file"></input>
 		    </div>
 	    </div>
 	 </form>
@@ -240,11 +245,12 @@ if(user!=null){
   </div>
   <div class="modal-footer">
   
-    <button class="btn" id="btnImport" class="btn btn-primary">上传</button>
-	<button class="btn" id="loginModalDismiss"  data-dismiss="modal">取消</button>
+    <button  id="btnImport" class="btn btn-primary">上传</button>
+	<button  id="loginModalDismiss"  data-dismiss="modal">取消</button>
 	
   </div>
-
+</div>
+</div>
 </div>
 <!-- login Modal end-->	
 	

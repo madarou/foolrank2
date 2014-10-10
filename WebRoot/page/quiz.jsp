@@ -48,28 +48,22 @@ if(user!=null){
 <body style="background-color:#f2f2f2">
 <jsp:include page="navbar.jsp" /> 
     
-    <div class ="container-fluid" style="padding-top: 100px">
-      <div class="row-fluid">
+    <div class ="container" style="padding-top: 100px">
+      <div class="row">
         <div class="mainquiz col-md-9">
+	        
 	         <div class="quizinfo" id="quizinfo">
-	          <div class="quizcontent">
+	          <div class="quizcontent row">
 	            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
-	            <h3 class="lead quizname">试题名：${quiz.quizName}</h3>
+	            <h3 class=" quizname">试题名：${quiz.quizName}</h3>
 	            <h4 class=" quizdesc">简介：${quiz.quizInfo}</h4>
 		       </div>
-		        
-		         <div class="row">
-		           <div class="col-md-2 col-md-offset-8">
-		             <button class="btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
-		           </div>   
-		          </div>  
-	         </div>
+	             <button class="col-md-2 col-md-offset-8  col-xs-12 btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
+	        </div>  
       
-        <div class="takequiz " id="takequiz" style="display:none">
-          <p class="lead"  id = "questioncontent"></p>
-          <dl class="clear">
-	          <dd class="selected">
-		         <div class="optionplane" id="optionplane">
+	        <div class="takequiz row" id="takequiz" style="display:none">
+	           	<textarea class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12"  id = "questioncontent"></textarea>
+		         <div class="optionplane col-md-12 col-sm-12 col-xs-12" id="optionplane">
 		           <div class="options list" id="options">
 		           </div> 
 		           <label id="optionnum"></label>
@@ -87,10 +81,8 @@ if(user!=null){
 		           </div>
 		           
 		          </div>
-	          </dd>
-          </dl>
-          
-         </div>
+	          
+	         </div>
         </div>
         </div>
     
