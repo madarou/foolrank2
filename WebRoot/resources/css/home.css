@@ -27,6 +27,12 @@
 	color:#ffffff;
 }
 
+.panel-body img{
+	cursor: pointer;
+	height: 72px;
+	padding: 0px;
+}
+
 .cEssential{ 
 	width: 80px;
 	height: 72px;

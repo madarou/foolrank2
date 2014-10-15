@@ -1,7 +1,5 @@
 package com.uunemo.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +9,8 @@ import java.util.Random;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.apache.shiro.authz.annotation.Logical;
-import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +23,7 @@ import com.uunemo.beans.Option;
 import com.uunemo.beans.Question;
 import com.uunemo.beans.Quiz;
 import com.uunemo.beans.User;
+import com.uunemo.daos.QuizDao;
 import com.uunemo.service.QuizService;
 import com.uunemo.service.QuizSetService;
 import com.uunemo.util.QuizConstant;
@@ -34,7 +33,7 @@ import com.uunemo.util.QuizUtil;
 @Controller
 //@SessionAttributes("questionSet")
 public class QuizControl {
-	
+	private static final Logger log = LoggerFactory.getLogger(QuizControl.class);
     private String quizPage="quiz";
 	
    
@@ -66,7 +65,7 @@ public class QuizControl {
 	@RequestMapping(value="/takeNextQuestion",method=RequestMethod.POST)
 	public @ResponseBody 
 	Question takeNextQuestion(
-			@RequestParam Integer quizId,
+			@RequestParam String quizName,
 			HttpSession session
 			){
 		//判断quiz及用户权限
@@ -74,7 +73,7 @@ public class QuizControl {
 		if(session.getAttribute("user")!=null){
 			user = (User)session.getAttribute("user");	
 		}
-		String errormsg = quizService.judge(quizId,user);
+		String errormsg = quizService.judge(quizName,user);
 		if(errormsg.equals("sucess")==false){
 			Question question = new Question();
 			question.setQuestionType("error");
@@ -83,22 +82,56 @@ public class QuizControl {
 		}
 		
 		//questions用于保存用户的题目
-		List<Question> questions = (List) session.getAttribute("questions");
-		if(questions==null){
-			 questions = quizService.takeQuestions(quizId);
-		}else if(questions.size() ==0){
-			//题目已取完，返回空值
-			 Question question = new Question();
-			 question.setQuestionContent("end");
-			 return question;
+//		List<Question> questions = (List) session.getAttribute("questions");
+//		if(questions==null){
+//			 questions = quizService.takeQuestions(quizName);
+//		}else if(questions.size() ==0){
+//			//题目已取完，返回空值
+//			 Question question = new Question();
+//			 question.setQuestionContent("end");
+//			 return question;
+//		}
+		
+		//quizQuestions用于保存用户的试题-题目map，使得用户在同一个session中不会做到同一道题
+		Map<String, ArrayList<Question>> quizQuestions = null;
+		ArrayList<Question> questions = new ArrayList<Question>();
+		//没有，新建
+		if(session.getAttribute("quizQuestions")==null){
+			quizQuestions = new HashMap<String,ArrayList<Question>>();
+		}else{
+			quizQuestions = (Map)session.getAttribute("quizQuestions");
 		}
+		//而后判断map中有无该quiz的试题信息
+		if(quizQuestions.containsKey(quizName) == false){
+			List<Question> tempList = quizService.takeQuestions(quizName);
+			for(Question question:tempList){
+				questions.add(question);
+			}
+			quizQuestions.put(quizName, questions);
+		}else{
+		    questions = quizQuestions.get(quizName);	
+		    if(questions.size()==0){
+		//    	题目已取完，返回空值
+				 Question question = new Question();
+				 question.setQuestionContent("end");
+				 return question;
+		    }
+		}
+		
+		
 		//随机取一道题并在list中删除，保证用户题目不重复
 		Random random = new Random();
 		int num = questions.size();
+//		int rndNum =0;
+//		if(num != 1){
+//			rndNum = random.nextInt(num);
+//		}
+//		log.debug(".....................num:"+num+" rndnum:"+rndNum);
+		
 		Question question= questions.get(random.nextInt(num));
 		questions.remove(question);
 		Integer point = question.getPoint();
-	    session.setAttribute("questions", questions);
+	    session.setAttribute("quizQuestions", quizQuestions);
 	    session.setAttribute("point", point); //设置题目分数
 	    
 		//realanswer用于保存正确答案
@@ -122,6 +155,21 @@ public class QuizControl {
 	    
 		return question;
 	}
+	
+	/**
+	 * @param quizAttr
+	 * @return 根据试题属性取试题
+	 * 根据试题属性取试题
+	 */
+		@RequestMapping(value="/getquizbyattr",method=RequestMethod.POST)
+		public @ResponseBody 
+		List getQuizByAttr(
+				 @RequestParam String attr
+				){
+		  return quizService.getQuizByAttr(attr);
+		 
+		}
+	
 	
 	/**
 	 * @param quizId
@@ -158,7 +206,7 @@ public class QuizControl {
 	@RequestMapping(value="/answerquestion",method=RequestMethod.POST)
 	public @ResponseBody 
 	Map answerQuestion(
-			@RequestParam(required = true) Integer quizId,
+			@RequestParam(required = true) String quizName,
 			@RequestParam(required = true) String answer ,
 			@RequestParam(required = true) Integer questionId,
 			HttpSession session){
@@ -168,7 +216,7 @@ public class QuizControl {
 		if(session.getAttribute("user")!=null){
 			user = (User)session.getAttribute("user");	
 		}
-		String errormsg = quizService.judge(quizId,user);
+		String errormsg = quizService.judge(quizName, user);
 		if(errormsg.equals("sucess")==false){
 		    Map map = new HashMap<String,String>();
 		    map.put("error", errormsg);
@@ -190,7 +238,7 @@ public class QuizControl {
 		Integer userQuizScore =0;
 		if(session.getAttribute("userId")!=null){
 			Integer userId = (Integer)session.getAttribute("userId");
-			userQuizScore = quizService.mark(userId,quizId,answer,realanswer,point);
+			userQuizScore = quizService.mark(userId,quizName,answer,realanswer,point);
 		}
 		
 		//将用户分数和正确答案返回
@@ -205,19 +253,19 @@ public class QuizControl {
 	@RequestMapping(value="/viewquiz",method=RequestMethod.GET)
 	/*@RequiresRoles("user")*/
 	public String viewQuiz(
-			@RequestParam int quizId,
+			@RequestParam String quizName,
 			HttpSession session,
 			Model model){
 		User user = null;
 		if(session.getAttribute("user")!=null){
 			user = (User)session.getAttribute("user");	
 		}
-		String errormsg = quizService.judge(quizId,user);
+		String errormsg = quizService.judge(quizName,user);
 		if(errormsg.equals("sucess")==false){
 		   model.addAttribute("errormsg",errormsg);
 		   return QuizConstant.ERROR;
 		}
-		Quiz quiz = quizService.getQuizInfo(quizId);
+		Quiz quiz = quizService.getQuizInfo(quizName);
 		model.addAttribute("quiz",quiz);
 	    return quizPage;
 	}
@@ -242,14 +290,14 @@ public class QuizControl {
 		return rtQuiz;
 	}
 	 
-	@RequiresRoles(value={QuizConstant.ROLE_OPERATOR,QuizConstant.ROLE_ADMIN},logical=Logical.OR) 
-    @RequestMapping(value="/batchImport",method=RequestMethod.POST)
-	@ResponseBody
-	public 	String batchImport(
-	   @RequestParam String excelData	
-			){
-		return null;
-	} 
-	
+//	@RequiresRoles(value={QuizConstant.ROLE_OPERATOR,QuizConstant.ROLE_ADMIN},logical=Logical.OR) 
+//    @RequestMapping(value="/batchImport",method=RequestMethod.POST)
+//	@ResponseBody
+//	public 	String batchImport(
+//	   @RequestParam String excelData	
+//			){
+//		return null;
+//	} 
+//	
 	
 }

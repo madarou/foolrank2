@@ -8,7 +8,6 @@
 <%@ page import="com.uunemo.util.QuizConstant"%>    
 <%@ page import="java.util.Set"%>    
 <%
-
 String path = request.getContextPath();
 pageContext.setAttribute("path",path);
 User user = (User)session.getAttribute("user");
@@ -21,7 +20,7 @@ if(user!=null){
     if(email!=null){
     	pageContext.setAttribute("email",email);
     	pageContext.setAttribute("userId",userId);
-}
+  }
 }
 %>
 
@@ -55,7 +54,7 @@ if(user!=null){
 	         <div class="quizinfo" id="quizinfo">
 	          <div class="quizcontent row">
 	            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
-	            <h3 class=" quizname">试题名：${quiz.quizName}</h3>
+	            <h3>试题名：</h3><h3 class="quizname" id="quizName">${quiz.quizName}</h3>
 	            <h4 class=" quizdesc">简介：${quiz.quizInfo}</h4>
 		       </div>
 	             <button class="col-md-2 col-md-offset-8  col-xs-12 btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
@@ -67,19 +66,11 @@ if(user!=null){
 		           <div class="options list" id="options">
 		           </div> 
 		           <label id="optionnum"></label>
-		           <div class="row-fluid">
-			            <div class="col-md-2 col-md-offset-2">
-			             <button class="btn btn-primary" id="submit" type="button">提交答案</button>
-			            </div>
-			            
-			            <div class="col-md-2 ">
-			             <button class="btn btn-primary" id="nextquestion" type="button">下一题</button>
-			            </div>
-			            <div class="col-md-2 ">
-			             <button class="btn btn-primary" type="button">结束</button>
-			            </div> 
+		           <div class="row">
+			             <button class="btn btn-primary col-md-2  col-md-offset-1 col-xs-12" style="margin-top: 10px" id="submit" type="button">提交答案</button>
+			             <button class="btn btn-primary col-md-2 col-md-offset-2 col-xs-12" style="margin-top: 10px" id="nextquestion" type="button">下一题</button>
+			             <button class="btn btn-primary col-md-2 col-md-offset-2 col-xs-12" style="margin-top: 10px" id="stop" type="button">结束</button>
 		           </div>
-		           
 		          </div>
 	          
 	         </div>

@@ -125,6 +125,21 @@ public class QuizDao {
 			return l_element;
 		}
 
+	public List<Quiz> getQuizByAttr(String attr) {
+		// TODO Auto-generated method stub
+		String hql = "from Quiz quiz where quiz.quizAttr=?";
+		List<Quiz> quizList;
+		log.debug("get quiz by attr");
+		try {
+			quizList = hibernateTemplate.find(hql,attr);
+			log.debug("get quiz by attr successful");
+		} catch (RuntimeException re) {
+			log.error("get quiz by attr failed", re);
+			throw re;
+		}
+		return quizList;	
+	}
+
 	
 	
 	

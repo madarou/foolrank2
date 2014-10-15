@@ -44,15 +44,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           
            <div class="panel">
                <div class="panel-heading">免登录区</div>
-			       <div class="panel-body">
-				     <div class="col-md-1 col-md-offset-1">
-	                 <div class="cEssential" id="c"></div>
-	               </div>
+			      <div class="panel-body" id="freepanel">
+				       <!--  <div class="col-md-2 col-xs-4">
+					     <img  src="./resources/css/img/cEssential.png" class="img-responsive" id="c" ></img>
+					   </div>
 	               
-	               <div class= "col-md-1 col-md-offset-1">
-	                 <div class="javaEssential" id="java"></div>
-	               </div>
-			  </div>
+	                    <div class="col-md-2 col-xs-4">
+					     <img  src="./resources/css/img/java.png" class="img-responsive" id="java" ></img>
+					   </div>-->
+			       </div> 
 			</div>
 			
 			<div class="panel" style="display:none">
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 	<div class="container">
 		<footer>
-		<p>&copy;Uunemo Company 2013</p>
+		<p>&copy;foolRank Company 2014</p>
 		</footer>
 	</div>
 

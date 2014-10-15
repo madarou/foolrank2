@@ -65,19 +65,20 @@ public class QuizService {
 	
 	
 
-	public Quiz getQuizInfo(int quizId) {
+	public Quiz getQuizInfo(String quizName) {
 		// TODO Auto-generated method stub
-		return quizDao.getQuizById(quizId);
+		return quizDao.getQuizByExactName(quizName);
 	}
 
-	public int mark(int userId,int quizId,String answer, StringBuffer realanswer,Integer point) {
+	public int mark(int userId,String quizName,String answer, StringBuffer realanswer,Integer point) {
 		// TODO Auto-generated method stub
 		int userQuizScore =0;
+		Quiz quiz = quizDao.getQuizByExactName(quizName);
 		
 		if(realanswer.toString().equals(answer)){
 			//加分
 			int questScore =Integer.parseInt(point.toString());
-			userQuizScore=scoreService.updateScore(userId, quizId, questScore);
+			userQuizScore=scoreService.updateScore(userId, quiz.getQuizId(), questScore);
 		}
 		else{
 			//减分，分数无变化
@@ -128,18 +129,18 @@ public class QuizService {
 		return listQuiz;
 	}
 
-	public List<Question> takeQuestions(Integer quizId) {
+	public List<Question> takeQuestions(String quizName) {
 		// TODO Auto-generated method stub
-		Quiz quiz = quizDao.getQuizById(quizId);
+		Quiz quiz = quizDao.getQuizByExactName(quizName);
 		return quiz.getQuestions();
 		
 	}
 
 
 
-	public String judge(Integer quizId, User user) {
+	public String judge(String quizName, User user) {
 		// TODO Auto-generated method stub
-		Quiz quiz = quizDao.getQuizById(quizId);
+		Quiz quiz = quizDao.getQuizByExactName(quizName);
 		if(quiz == null){
 			return "无此试题，请不要做无谓尝试";
 		}else{
@@ -264,6 +265,21 @@ public class QuizService {
 	
 		is.close();
 	    return "sucess";
+	}
+
+
+
+	public List getQuizByAttr(String attr) {
+		// TODO Auto-generated method stub
+		List<Quiz> quizes = quizDao.getQuizByAttr(attr);
+		List<String> quizNames = new ArrayList<String>();
+		if(quizes.size()!=0){
+			for(Quiz quiz:quizes){
+				quizNames.add(quiz.getQuizName());
+			}	
+		}
+		
+		return quizNames;
 	}
 	
 	

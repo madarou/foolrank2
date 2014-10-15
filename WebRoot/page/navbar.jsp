@@ -24,7 +24,7 @@ if(user!=null){
 }
 
 %>
-<link href="<%=path%>/resources/css/bootstrap3/bootstrap.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/flatui/css/flat-ui.css" rel="stylesheet">
 <link href="<%=path%>/resources/css/font-awesome/css/font-awesome.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@ if(user!=null){
 					
 					 <ul class="nav navbar-nav" id="leftNav">
 						<li><a class="active" href="/uunemo">主页</a></li>
-						<li><a href="#contact">联系方式</a></li>
+<!-- 						<li><a href="#contact">联系方式</a></li> -->
 					    <%
 					      if(user != null){
 					    	  Set<Role> roles =  user.getRoles();
@@ -253,9 +253,11 @@ if(user!=null){
 </div>
 </div>
 <!-- login Modal end-->	
-	
- <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script>
- <script src="<%=path%>/resources/js/bootstrap3/bootstrap.js"></script>
+ <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>	
+ <script type="text/javascript"> !window.jQuery && document.write('<script src="<%=path%>"/resources/js/jquery-1.11.1.j><\/script>');</script>
+ <%-- <script src="<%=path%>/resources/js/jquery-1.11.1.js"></script> --%>
+ <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<%--  <script src="<%=path%>/resources/js/bootstrap3/bootstrap.js"></script> --%>
  <script src="<%=path%>/resources/js/flatui/custom_checkbox_and_radio.js"></script>
  <script src="<%=path%>/resources/js/jquery-form.js"></script>
  <script src="<%=path%>/resources/js/navbar.js"></script>

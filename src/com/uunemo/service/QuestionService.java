@@ -36,7 +36,6 @@ public class QuestionService {
 			String strOption = strsOption[i];
 			strOption = strOption.substring(1,strOption.length()-1);
 			opt.setOption(strOption);
-			opt.setQuestion(question);
 			setOption.add(opt);
 		}
 		question.setOptions(setOption);
