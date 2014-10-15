@@ -18,6 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<title>猿奋</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!-- Le styles -->
@@ -45,13 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <div class="panel">
                <div class="panel-heading">免登录区</div>
 			      <div class="panel-body" id="freepanel">
-				       <!--  <div class="col-md-2 col-xs-4">
-					     <img  src="./resources/css/img/cEssential.png" class="img-responsive" id="c" ></img>
-					   </div>
-	               
-	                    <div class="col-md-2 col-xs-4">
-					     <img  src="./resources/css/img/java.png" class="img-responsive" id="java" ></img>
-					   </div>-->
+				      
 			       </div> 
 			</div>
 			

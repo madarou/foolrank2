@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
   	 <div class="contain-fluid logohead hidden-sm hidden-xs">
   	    <div class="row"> 
-  	      <div class="col-md-5 col-md-offset-2" style="padding-top: 150px">
+  	      <div class="col-md-5 col-md-offset-2 hidden-sm hidden-xs" style="padding-top: 150px">
   	        <h1>力量</h1>
   	        <h2>就在你心中</h2> 
   	        <h2>来，证明你自己</h2> 

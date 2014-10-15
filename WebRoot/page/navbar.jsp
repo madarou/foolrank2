@@ -41,7 +41,7 @@ if(user!=null){
 					<span class="icon-bar"></span>
 				</button>
 				 <a class="navbar-brand" href="<%=path%>" style="color:#00CC99">猿奋</a>
-				 <a class="navbar-brand" href="<%=path%>"> foolRank.com</a>
+				 <a class="navbar-brand hidden-sm hidden-xs" href="<%=path%>"> foolRank.com</a>
 			</div>	
 				
 				
