@@ -234,7 +234,7 @@ if(user!=null){
   <div class="modal-body">
      <form class="form-horizontal" id="importForm">   
 	    <div class="form-group">
-	      <label class="control-label col-sm-4 col-md-offset-2 ">请输入上传文件</label>
+	      <label class="control-label col-sm-4 col-md-offset-2 ">请输入上传文件（.xls）</label>
 		    <div class="col-sm-6">
 		      <input type="file"  class="form-controls" id="file_upload" name="file" placeholder="file"></input>
 		    </div>

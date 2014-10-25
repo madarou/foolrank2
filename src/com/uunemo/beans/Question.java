@@ -27,8 +27,12 @@ public class Question {
   private Set<Option> options = new HashSet<Option>(); 
   private Set<Tag> tags = new HashSet<Tag>();
   
-  @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-  @JoinColumn(name="question_id")
+  @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.EAGER)  
+	@JoinTable(
+		name = "question_tag",
+		joinColumns = @JoinColumn(name = "question_id"),
+		inverseJoinColumns = @JoinColumn(name = "tag_id")
+	)
   public Set<Tag> getTags() {
 	return tags;
   }

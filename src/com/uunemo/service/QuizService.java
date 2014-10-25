@@ -249,6 +249,7 @@ public class QuizService {
 			      			}else{
 			      				tag = new Tag();
 			      				tag.setTagName(tagName);
+			      				tagDao.save(tag);
 			      				tagSet.add(tag);
 			      			}
 			      		}

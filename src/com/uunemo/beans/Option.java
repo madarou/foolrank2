@@ -18,16 +18,7 @@ public class Option {
 	private int optionId;
 	private String option;
 	private int rightFlag=0;
-//	private Question question;
-	
-//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},fetch = FetchType.LAZY)
-//	@JoinColumn(name = "question_id")
-//	public Question getQuestion() {
-//		return question;
-//	}
-//	public void setQuestion(Question question) {
-//		this.question = question;
-//	}
+
 	@Column(name="right_flag")
 	public int getRightFlag() {
 		return rightFlag;

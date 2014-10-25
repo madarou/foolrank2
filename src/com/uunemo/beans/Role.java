@@ -23,16 +23,10 @@ import com.uunemo.beans.Permission;
 @Table(name="role")
 public class Role {
 	
-	
     private int roleId;
-
-	
     private String roleName;
-
-   
 	private Set<Permission> permissions = new HashSet<Permission>();
 	
-
 
 	@Id
 	@GeneratedValue
