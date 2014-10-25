@@ -67,9 +67,9 @@ if(user!=null){
 		           </div> 
 		           <label id="optionnum"></label>
 		           <div class="row">
-			             <button class="btn btn-primary col-md-2  col-md-offset-1 col-xs-12" style="margin-top: 10px" id="submit" type="button">提交答案</button>
-			             <button class="btn btn-primary col-md-2 col-md-offset-2 col-xs-12" style="margin-top: 10px" id="nextquestion" type="button">下一题</button>
-			             <button class="btn btn-primary col-md-2 col-md-offset-2 col-xs-12" style="margin-top: 10px" id="stop" type="button">结束</button>
+			             <button class="btn btn-primary col-md-2 col-md-offset-1 col-xs-12" style="margin-top:20px " id="submit" type="button">提交答案</button>
+			             <button class="btn btn-default col-md-2 col-md-offset-2 col-xs-12" style="margin-top:20px"  id="nextquestion" type="button">下一题</button>
+			             <button class="btn btn-danger col-md-2 col-md-offset-2 col-xs-12" style="margin-top:20px"  id="stop" type="button">结束</button>
 		           </div>
 		          </div>
 	          

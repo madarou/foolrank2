@@ -39,6 +39,10 @@ public class CompanyDao {
 		}
 	}
 	
+	public Company getCompanyById(int id){
+		return getHibernateTemplate().get(Company.class, id);
+	}
+	
 	
 	public Company getCompanyByName(String name){
 		String hql = "from Company company where company.companyName = ?";
@@ -54,7 +58,6 @@ public class CompanyDao {
 		}else{
 			return new Company();
 		}
-		
 	}
 
 	

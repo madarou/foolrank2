@@ -51,8 +51,12 @@ public class UserRegisterControl {
 	@RequestMapping(value= "/register/fetchinfo",method=RequestMethod.POST)  
 	public @ResponseBody Map Register(){
 		RegisterQuestion registerQuestion = userRegisterService.getRegisterQuestion();
-		String validateQuestion = registerQuestion.getRegquestionContent();
-		String validateAnswer = registerQuestion.getRegquestionAnswer();
+		String validateQuestion = "";
+		String validateAnswer = "";
+		if(registerQuestion != null){
+			validateQuestion = registerQuestion.getRegquestionContent();
+			validateAnswer = registerQuestion.getRegquestionAnswer();
+		}
 		Map<String, String> rtMap = new HashMap<String,String>();
 		rtMap.put("validateQuestion", validateQuestion);
 		rtMap.put("validateAnswer", validateAnswer);
@@ -101,15 +105,9 @@ public class UserRegisterControl {
 			HttpSession session){
 		User user = new User();
 		user.setEmail(email);
-		int schoolId = schoolService.updateSchoolByName(school);
-		user.setSchoolId(schoolId);
-		if(company != null){
-			int companyId = companyService.updateCompanyByName(company);
-			user.setCompanyId(companyId);	
-		}
 		user.setPassword(password);
 //		create default user, have role as "user" and permission as "read"
-		userRegisterService.createDefaultUser(user);
+		userRegisterService.createDefaultUser(user,school,company);
 		
 		//if sucess then login, 
 		String emailName = userLoginService.validataUser(email, password);	

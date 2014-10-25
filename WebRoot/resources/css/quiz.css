@@ -11,14 +11,28 @@ textarea{
 	width:100%;	
 }
 
+
+
 label input{
 	cursor: pointer;
 }
 
 .optionlabel{
-	background-color:#ecf0f1;
-	height:50px;
+/* 	height:50px; */
 	cursor: pointer;
+	border-width: 2px;
+    border-style: solid; 
+    border-color: #f2f2f2;
+	border-radius :5px;
+/* 	padding-top: 15px; */
+	padding-left: 10% !important;
+	padding-top: 3%!important;
+	padding-bottom:3%!important;
+}
+
+label span{
+ 	margin-top: 3%; 
+	margin-left: 2%;
 }
 
 .quizcontent{
@@ -81,13 +95,19 @@ letsbegin{
 }
 
 .options{
-	width:80%;
+	width:90%;
 	height:100%;	
-	margin-left:50px;
+	margin-left:5%;
 }
 
 .options li{
 	list-style: none;	
 	padding-bottom: 5px;
 	height: 15%;
+}
+
+button{
+ 	height:50px !important;
+
+	
 }

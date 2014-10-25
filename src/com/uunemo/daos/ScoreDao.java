@@ -37,7 +37,7 @@ public class ScoreDao {
 		}
 	}
 	
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+/*	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void saveSchoolScore(SchoolScore transientInstance) {
 		log.debug("saving SchoolScore instance");
 		try {
@@ -58,7 +58,7 @@ public class ScoreDao {
 			log.error("save CompanyScore failed", re);
 			throw re;
 		}
-	}
+	}*/
 	
 	
 	public UserQuizScore getQuizScoreById(int userId, int quizId){
@@ -80,7 +80,7 @@ public class ScoreDao {
 				
 	}
 	
-	public SchoolScore getSchoolScoreById(int schoolId) {
+/*	public SchoolScore getSchoolScoreById(int schoolId) {
 		// TODO Auto-generated method stub
 		SchoolScore schoolScore=new SchoolScore();
 		try {
@@ -104,6 +104,6 @@ public class ScoreDao {
 		}
 		return companyScore;
 	}
-	
+	*/
 
 }

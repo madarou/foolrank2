@@ -30,7 +30,7 @@
 .panel-body img{
 	cursor: pointer;
 	height: 72px;
-	padding: 0px;
+	padding-top: 20px;
 }
 
 .cEssential{ 

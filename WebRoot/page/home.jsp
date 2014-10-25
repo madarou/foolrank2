@@ -53,13 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="panel" style="display:none">
                <div class="panel-heading" style="background-color:#00CC99">需登录区</div>
 			      <div class="panel-body">
-				     <div class="col-md-1 col-md-offset-1">
-	                 <div class="cEssential" id="cEssential"></div>
-	               </div>
-	               
-	               <div class= "col-md-1 col-md-offset-1">
-	                 <div class="javaEssential" id="javaEssential"></div>
-	               </div>
+				   
 			  </div>
 			</div>
 			

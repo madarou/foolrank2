@@ -21,6 +21,24 @@ public class School{
     @Column(name = "school_id",unique =true,nullable=false)
 	private Integer schoolId;
     
+    @Column(name="conuntry",length=50 )
+	private String conuntry ="";
+
+	@Column(name="location",length=20)
+	private String location="";
+
+    @Column(name="school_name",length=100)
+    private String schoolName="";
+    
+    @Column(name="preset",length=2)
+    private int preset = 0;
+    
+	@Column(name="total_score")
+    private int totalScore;
+	
+	@Column(name="total_person")
+	private int totalPerson;
+    
   
 	public Integer getSchoolId() {
 		return schoolId;
@@ -41,18 +59,7 @@ public class School{
 		this.schoolName = name;
 	}
 
-	@Column(name="conuntry",length=50 )
-	private String conuntry ="";
-
-	@Column(name="location",length=20)
-	private String location="";
-
-    @Column(name="school_name",length=100)
-    private String schoolName="";
-    
-    @Column(name="preset",length=2)
-    private int preset = 0;
-    
+	
     public int getPreset() {
 		return preset;
 	}
@@ -83,6 +90,23 @@ public class School{
 	public void setLocation(String location) {
 		this.location = location;
 	}
+	
+
+	public int getTotalScore() {
+		return totalScore;
+	}
+	public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+	}
+	
+
+	public int getTotalPerson() {
+		return totalPerson;
+	}
+	public void setTotalPerson(int totalPerson) {
+		this.totalPerson = totalPerson;
+	}
+
 
 
 }

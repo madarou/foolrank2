@@ -50,6 +50,10 @@ public class SchoolDao {
 		}
 	}
 	
+	public School getSchoolById(int id){
+		return getHibernateTemplate().get(School.class, id);
+	}
+	
 	public School getSchoolByName(String name){
 		String hql = "from School school where school.schoolName = ?";
 		List schoolList = null;

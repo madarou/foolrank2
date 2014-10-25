@@ -32,6 +32,13 @@
 			value="jdbc:mysql://127.0.0.1:3306/uunemo?useUnicode=true&amp;characterEncoding=utf8">
 		</property>
 		<property name="username" value="root"></property>
+		<!-- 防止数据库超时，下面三项是确保获得的连接是有效的 -->
+		  <property name="testOnBorrow" value="true"></property>
+		  <property name="testOnReturn" value="true"></property>
+		  <property name="testWhileIdle" value="true"></property>
+		  <property name="validationQuery" value="SELECT 1"></property>
+		  <!-- property name="timeBetweenEvictionRunsMillis" value="检查无效连接的时间间隔"></property-->
+		  <!-- property name="minEvictableIdleTimeMillis" value="连接闲置的时间"></property-->
 	</bean>
 	
 	<bean id="sessionFactory"

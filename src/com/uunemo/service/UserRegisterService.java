@@ -42,7 +42,6 @@ public class UserRegisterService {
 		Random rand = new Random();
 		long questionCount = registerQuestionDao.getQuestionNum();
 		int id = (int)(questionCount*Math.random());
-		System.out.println("id..........."+id);
 		return registerQuestionDao.getQuestionById(id);		
 	}
 	
@@ -73,15 +72,19 @@ public class UserRegisterService {
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor = Exception.class)
-	public void createDefaultUser(User user) {
+	public void createDefaultUser(User user,String school,String company) {
 		// TODO Auto-generated method stub
 		//加入默认权限
+		int schoolId = schoolService.updateSchoolByName(school);
+		user.setSchoolId(schoolId);
+		if(company != null){
+			int companyId = companyService.updateCompanyByName(company);
+			user.setCompanyId(companyId);	
+		}
+		
 		Role defaultRole = roleDao.getRoleByName("user");
 		user.getRoles().add(defaultRole);
 		userDao.save(user);
-		//对应的学校人数和公司人数+1
-		schoolService.updateSchoolTotalPerson(user.getSchoolId());
-		companyService.updateCompanyTotalPerson(user.getCompanyId());
 	}
 	
 	

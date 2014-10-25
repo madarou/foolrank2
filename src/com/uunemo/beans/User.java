@@ -99,7 +99,7 @@ public class User {
 		this.userid = userid;
 	}
 
-	@Column(name="user_name",unique=true,length=100 )
+	@Column(name="user_name",length=100 )
 	public String getUsername() {
 		return username;
 	}

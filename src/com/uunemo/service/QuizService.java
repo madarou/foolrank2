@@ -156,6 +156,25 @@ public class QuizService {
 		}
 	}
 
+	
+	private String getValuebyCell(HSSFCell cell){
+		int cellType = cell.getCellType();
+		switch (cellType){
+     		case HSSFCell.CELL_TYPE_NUMERIC:
+	    		return (int)cell.getNumericCellValue()+"";
+     		case HSSFCell.CELL_TYPE_BOOLEAN:
+     			if( cell.getBooleanCellValue() ){
+     				return "1";
+     			}else{
+     				return "0";
+     			}
+     		case HSSFCell.CELL_TYPE_BLANK:
+     			return "";
+     	    default:
+     	    	return cell.getStringCellValue();
+     	         
+		}
+	}
 
 //批量导入试题，若有错误则回滚, throw exception to rollback
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -202,12 +221,12 @@ public class QuizService {
 	      		Question question = new Question();
 	      	    
 	      		question.setQuiz(quiz);
-	      		question.setQuestionContent((row.getCell(map.
-	      				get(QuizConstant.QUESTION_CONTENT)).getStringCellValue()));
-	      		question.setPoint((int) (row.getCell(map.
-	      				get(QuizConstant.QUESTION_SCORE)).getNumericCellValue()));
-	      		question.setQuestionType((row.getCell(map.
-	      				get(QuizConstant.QUESTION_TYPE)).getStringCellValue()));
+	      		question.setQuestionContent(getValuebyCell(row.getCell(map.
+	      				get(QuizConstant.QUESTION_CONTENT))));
+	      		question.setPoint((int)Double.parseDouble(((getValuebyCell(row.getCell(map.
+	      				get(QuizConstant.QUESTION_SCORE)))))));
+	      		question.setQuestionType(getValuebyCell(row.getCell(map.
+	      				get(QuizConstant.QUESTION_TYPE))));
 	      		
 	      		//处理tag
 	      		
@@ -240,16 +259,9 @@ public class QuizService {
 	      		Set<Option> optionSet = new HashSet<Option>();
 	      		for(int k=0;k<options.size();k++){
 	      			Option option = new Option();
-	      			String optionContent ="";
-	      			HSSFCell cell = row.getCell(options.get(k));
+  	      			HSSFCell cell = row.getCell(options.get(k));
 	      			
-	      			if(cell.getCellType() == HSSFCell.CELL_TYPE_NUMERIC){
-	      				optionContent = cell.getNumericCellValue()+"";
-	      			}else{
-	      			    optionContent = cell.getStringCellValue();	
-	      			}
-	      			
-	      			option.setOption(optionContent);
+	      			option.setOption(getValuebyCell(cell));
 	      			option.setRightFlag((int) row.getCell(rights.get(k)).getNumericCellValue());
 	      			optionSet.add(option);
 	      		}
