@@ -69,11 +69,7 @@ $(document).on("click","#btnlogin",function(){
 				    	$("#preparelogin").hide();
 				    	$("#showusername").text(user.email);
 				    	$("#alreadylogin").show();
-//				    	$("#btnModalClose",parent.document).click();
-				    	
-				    	$("#loginModal").modal('hide');  //可能是内存泄漏，不可使用该方法
-//				    	console.log($("#loginModalDismiss"));
-//				    	$("#loginModalDismiss").click();
+				    	$("#loginModal").modal('hide');  
 				    	var roles = user.roles;
 				    	for(var i=0;i<roles.length;i++){
 				    		if(roles[i].roleName == "operator"||roles[i].roleName=="admin"){
@@ -81,7 +77,6 @@ $(document).on("click","#btnlogin",function(){
 				    		    break;
 				    		}
 				    	}
-//				    	
 				      }
 				      else{
 				    	  $("#alertInfo").text("用户名或密码错误");

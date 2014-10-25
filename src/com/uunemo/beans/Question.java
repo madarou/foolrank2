@@ -78,7 +78,7 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	@Column(name="question_content")
+	@Column(name="question_content",length=5000)
 	public String getQuestionContent() {
 		return questionContent;
 	}

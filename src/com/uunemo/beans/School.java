@@ -34,10 +34,10 @@ public class School{
     private int preset = 0;
     
 	@Column(name="total_score")
-    private int totalScore;
+    private int totalScore=0;
 	
 	@Column(name="total_person")
-	private int totalPerson;
+	private int totalPerson=0;
     
   
 	public Integer getSchoolId() {

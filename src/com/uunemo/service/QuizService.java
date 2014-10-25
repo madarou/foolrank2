@@ -262,7 +262,7 @@ public class QuizService {
   	      			HSSFCell cell = row.getCell(options.get(k));
 	      			
 	      			option.setOption(getValuebyCell(cell));
-	      			option.setRightFlag((int) row.getCell(rights.get(k)).getNumericCellValue());
+	      			option.setRightFlag((Integer.parseInt(getValuebyCell(row.getCell(rights.get(k))))));
 	      			optionSet.add(option);
 	      		}
 	      		

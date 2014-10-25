@@ -37,29 +37,7 @@ public class ScoreDao {
 		}
 	}
 	
-/*	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void saveSchoolScore(SchoolScore transientInstance) {
-		log.debug("saving SchoolScore instance");
-		try {
-			hibernateTemplate.saveOrUpdate(transientInstance);
-		} catch (RuntimeException re) {
-			log.error("save SchoolScore failed", re);
-			throw re;
-		}
-	}
-	
-	
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void saveCompanyScore(CompanyScore transientInstance) {
-		log.debug("saving SchoolScore instance");
-		try {
-			hibernateTemplate.saveOrUpdate(transientInstance);
-		} catch (RuntimeException re) {
-			log.error("save CompanyScore failed", re);
-			throw re;
-		}
-	}*/
-	
+
 	
 	public UserQuizScore getQuizScoreById(int userId, int quizId){
 		Integer[] params ={userId,quizId};
@@ -79,31 +57,6 @@ public class ScoreDao {
 		}
 				
 	}
-	
-/*	public SchoolScore getSchoolScoreById(int schoolId) {
-		// TODO Auto-generated method stub
-		SchoolScore schoolScore=new SchoolScore();
-		try {
-			schoolScore =  hibernateTemplate.get(SchoolScore.class,  schoolId);
-		} catch (RuntimeException re) {
-			// TODO: handle exception
-			log.error("get school score failed", re);
-			throw re;
-		}
-		return schoolScore;
-	}
-	
-	public CompanyScore getCompanyScoreById(int companyId){
-		CompanyScore companyScore = new CompanyScore();
-		try {
-			companyScore =  hibernateTemplate.get(CompanyScore.class,  companyId);
-		} catch (RuntimeException re) {
-			// TODO: handle exception
-			log.error("get school score failed", re);
-			throw re;
-		}
-		return companyScore;
-	}
-	*/
+		
 
 }

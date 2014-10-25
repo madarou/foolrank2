@@ -12,8 +12,8 @@ public class Company {
 	
 	private int companyId =0;
 	private String companyName="";
-	private int totalScore;
-	private int totalPerson;
+	private int totalScore =0;
+	private int totalPerson =0;
 	
 	@Id
 	@GeneratedValue
@@ -24,6 +24,8 @@ public class Company {
 	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
+	
+	
 	
 	@Column(name="company_name")
 	public String getCompanyName() {

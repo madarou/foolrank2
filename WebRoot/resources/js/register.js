@@ -127,10 +127,15 @@
 		    		 function(result){
 		    			 //关闭窗口modal
 		    			 $("#btnModalClose",parent.document).click();
+		    			 $("#registerModal").modal('hide');  
 		    			 alert("恭喜您，注册成功");
+		    			
 		    		 }
+		    		
 		     );
 		 } });
+	
+		
 
 })();
 	
