@@ -26,9 +26,12 @@ public class Question {
   private Quiz quiz;
   private Set<Option> options = new HashSet<Option>(); 
   private Set<Tag> tags = new HashSet<Tag>();
+  private String answer="";
   
+ 
+
   @ManyToMany(cascade ={ CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.EAGER)  
-	@JoinTable(
+  @JoinTable(
 		name = "question_tag",
 		joinColumns = @JoinColumn(name = "question_id"),
 		inverseJoinColumns = @JoinColumn(name = "tag_id")
@@ -101,7 +104,14 @@ public class Question {
 		this.questionType = questionType;
 	}
 
-  
+	@Column(name = "answer", length = 5000)
+	  public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
   
   
 }

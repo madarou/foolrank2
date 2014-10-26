@@ -37,7 +37,7 @@ public class Option {
 	}
 	
 	
-	@Column(name="options",length=200)
+	@Column(name="options",length=5000)
 	public String getOption() {
 		return option;
 	}

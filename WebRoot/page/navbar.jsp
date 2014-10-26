@@ -246,7 +246,7 @@ if(user!=null){
   <div class="modal-footer">
   
     <button  id="btnImport" class="btn btn-primary">上传</button>
-	<button  id="loginModalDismiss"  data-dismiss="modal">取消</button>
+	<button  id="loginModalDismiss"  class="btn" data-dismiss="modal">取消</button>
 	
   </div>
 </div>

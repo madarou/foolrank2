@@ -36,9 +36,9 @@
                          var length = str.split("\n").length-1;
                          
                          if(length > 2){
-                        	 $("textarea").css("height",length*30+"px");
+                        	 $("textarea").css("height",length*25+"px");
                          }else{
-                        	 $("textarea").css("height","80px");
+                        	 $("textarea").css("height","120px");
                          }
 						 $("#questioncontent").text(str);
 						 //选项

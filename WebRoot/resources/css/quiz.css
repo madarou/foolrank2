@@ -1,5 +1,13 @@
 textarea{
-	margin-top: 30px ! important;	
+	margin-top: 30px!important;	
+	color:#000000!important;
+	background-color: #ffffff!important;	
+	border-width: 2px;
+    border-style: solid; 
+    border-color: #2fe2bf!important;
+	border-radius :5px;
+	
+	
 }
 
 .mainquiz{
@@ -69,7 +77,7 @@ letsbegin{
 }
 
 .quizarea{
-	width:100%;/*自动适应父布局宽度*/  
+	width:100%;/*�����ㄩ��搴���跺��灞�瀹藉害*/  
     overflow:auto;  
     word-break:break-all;  
 }
@@ -93,6 +101,8 @@ letsbegin{
 	height:800px;
 	background-color: #ffffff;		
 }
+
+
 
 .options{
 	width:90%;

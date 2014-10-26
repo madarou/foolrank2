@@ -55,7 +55,6 @@ public class QuizService {
     private ScoreService scoreService;
     
     
-    
   
 	HashSet<Integer> mySet = new HashSet<Integer>();
 	
@@ -196,14 +195,18 @@ public class QuizService {
 	    	Map<String, Integer> map = new HashMap<String,Integer>();
 	    	List<Integer> options = new ArrayList<Integer>();
 	    	List<Integer> rights = new ArrayList<Integer>();
+	    	int answerIndex =0; //excel中answer所在的位置
 	    	//循环处理第一行，生成对应的列名、列号键值对。将option和right的列号分别存在一个list中
+	    	//20141026 question中添加answer
 	    	for(int j=0 ;j<rowName.getLastCellNum();j++){
 	    		 String cellVal = rowName.getCell(j).getStringCellValue();
 		    		 if(cellVal.equals(QuizConstant.QUESTION_OPTION)){
 		    			 options.add(j);
 		    		 }else if(cellVal.equals(QuizConstant.QUESTION_RIGHT)){
 		    			 rights.add(j);
-		    		 } else {
+		    		 }else if(cellVal.equals(QuizConstant.QUESTION_ANSWER)){
+		    			 answerIndex = j;
+		    		 }else {
 		    			 map.put(cellVal, j);
 		    		 }
 	    	}
@@ -256,15 +259,23 @@ public class QuizService {
 		      		}
 	      		}
 	      		
-	      		
+	      		//处理option
 	      		Set<Option> optionSet = new HashSet<Option>();
 	      		for(int k=0;k<options.size();k++){
 	      			Option option = new Option();
   	      			HSSFCell cell = row.getCell(options.get(k));
-	      			
-	      			option.setOption(getValuebyCell(cell));
-	      			option.setRightFlag((Integer.parseInt(getValuebyCell(row.getCell(rights.get(k))))));
-	      			optionSet.add(option);
+  	      			//若该选项不为空
+	  	      	    if(getValuebyCell(cell).equals("") == false){
+	  	      		   option.setOption(getValuebyCell(cell));
+	  	      		   option.setRightFlag((Integer.parseInt(getValuebyCell(row.getCell(rights.get(k))))));
+	  	      		   optionSet.add(option);
+	  	      		}
+	      		}
+	      		
+	      		//处理answer
+	      		HSSFCell cell = row.getCell(answerIndex);
+	      		if(getValuebyCell(cell).equals("") == false){
+	      			question.setAnswer(getValuebyCell(cell));
 	      		}
 	      		
 	      		question.setQuiz(quiz);

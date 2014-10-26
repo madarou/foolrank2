@@ -61,7 +61,7 @@ if(user!=null){
 	        </div>  
       
 	        <div class="takequiz row" id="takequiz" style="display:none">
-	           	<textarea class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12"  id = "questioncontent"></textarea>
+	           	<textarea class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12"  id = "questioncontent" disabled="disabled"></textarea>
 		         <div class="optionplane col-md-12 col-sm-12 col-xs-12" id="optionplane">
 		           <div class="options list" id="options">
 		           </div> 

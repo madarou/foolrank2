@@ -26,4 +26,5 @@ public class QuizConstant {
 	public static final String QUESTION_RESULT = "result";
 	public static final String QUESTION_TESTSCORE = "testscore";
 	public static final String QUESTION_REPONAME = "reponame";
+	public static final String QUESTION_ANSWER = "answer";
 }
