@@ -23,7 +23,7 @@ public class Tag {
 		this.tagId = tagId;
 	}
 	
-	@Column(name="tag_name",length=100,unique=true)
+	@Column(name="tag_name",length=100,unique=true,nullable=false)
 	public String getTagName() {
 		return tagName;
 	}

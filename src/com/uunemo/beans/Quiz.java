@@ -62,7 +62,7 @@ public class Quiz {
 		this.questions = questions;
 	}
 
-	@Column(name="quiz_score")
+	@Column(name="quiz_score",nullable=false)
 	public int getQuizScore() {
 		return quizScore;
 	}
@@ -71,7 +71,7 @@ public class Quiz {
 		this.quizScore = quizScore;
 	}
 
-	@Column(name="quiz_info")
+	@Column(name="quiz_info",nullable=false)
 	public String getQuizInfo() {
 		return quizInfo;
 	}
@@ -94,7 +94,7 @@ public class Quiz {
 	
 	
 	
-	@Column(name="quiz_name",length=20,unique=true)
+	@Column(name="quiz_name",length=20,unique=true,nullable=false)
 	public String getQuizName() {
 		return quizName;
 	}

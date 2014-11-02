@@ -14,13 +14,13 @@ public class RegisterQuestion {
 	@Column(name="regquestionid",unique=true,nullable=false)
 	private int regQuestionId;
 	
-	@Column(name="regquestionname",length=20)
+	@Column(name="regquestionname",length=20,nullable=false)
 	private String regquestionName;
 	
-	@Column(name="regquestioncontent",length=200)
+	@Column(name="regquestioncontent",length=200,nullable=false)
 	private String regquestionContent;
 	
-	@Column(name="regquestionanswer", length=100)
+	@Column(name="regquestionanswer", length=100,nullable=false)
 	private String regquestionAnswer;
 
    

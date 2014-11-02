@@ -64,7 +64,7 @@ public class Question {
 		this.options = options;
 	}
 
-	@Column(name = "point", length = 8)
+	@Column(name = "point", length = 8,nullable=false)
 	public int getPoint() {
 		return point;
 	}
@@ -85,7 +85,7 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	@Column(name="question_content",length=5000)
+	@Column(name="question_content",length=5000,nullable=false)
 	public String getQuestionContent() {
 		return questionContent;
 	}
@@ -95,7 +95,7 @@ public class Question {
 	}
 
 	
-	@Column(name="question_type",length=10)
+	@Column(name="question_type",length=10,nullable=false)
 	public String getQuestionType() {
 		return questionType;
 	}
@@ -104,7 +104,7 @@ public class Question {
 		this.questionType = questionType;
 	}
 
-	@Column(name = "answer", length = 5000)
+	@Column(name = "answer", length = 5000,nullable=false)
 	  public String getAnswer() {
 		return answer;
 	}

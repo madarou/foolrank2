@@ -122,34 +122,36 @@ public class QuizControl {
 		//随机取一道题并在list中删除，保证用户题目不重复
 		Random random = new Random();
 		int num = questions.size();
-//		int rndNum =0;
-//		if(num != 1){
-//			rndNum = random.nextInt(num);
-//		}
-//		log.debug(".....................num:"+num+" rndnum:"+rndNum);
-		
 		Question question= questions.get(random.nextInt(num));
 		questions.remove(question);
 		Integer point = question.getPoint();
+		session.setAttribute("questionType", question.getQuestionType());
+		System.out.print("type............"+question.getQuestionType());
 	    session.setAttribute("quizQuestions", quizQuestions);
 	    session.setAttribute("point", point); //设置题目分数
 	    
 		//realanswer用于保存正确答案
-		StringBuffer realanswer = (StringBuffer)session.getAttribute("realanswer");
+		String realanswer = (String)session.getAttribute("realanswer");
 		if(realanswer==null){  
-			realanswer=new StringBuffer();
+			realanswer="";
 		}
 		//清空realanswer，并赋值后重新加入到session
-		realanswer.delete(0, realanswer.length());
-	    for(Option op:question.getoptions()){
-	    	if(op.getRightFlag()!=0){
-	    		realanswer.append("1");
-	    		op.setRightFlag(0); //将正确答案置空，防止用户通过debug查看到正确答案
-	    	}
-	    	else{
-	    		realanswer.append("0");
-	    	}  	
-	    }
+		realanswer="";
+		//选择题循环生成正确答案，解答题直接给出答案
+		if(question.getQuestionType().equals(QuizConstant.QUESTION_TYPE_OPTION)){
+			  for(Option op:question.getoptions()){
+			    	if(op.getRightFlag()!=0){
+			    		realanswer+=1;
+			    		op.setRightFlag(0); //将正确答案置空，防止用户通过debug查看到正确答案
+			    	}
+			    	else{
+			    		realanswer+=0;
+			    	}  	
+			    }
+		}else{
+			realanswer = question.getAnswer();
+		}
+	  
 	    session.setAttribute("realanswer", realanswer);
 	    question.setQuiz(null);
 	    
@@ -161,13 +163,11 @@ public class QuizControl {
 	 * @return 根据试题属性取试题
 	 * 根据试题属性取试题
 	 */
-		@RequestMapping(value="/getquizbyattr",method=RequestMethod.POST)
+		@RequestMapping(value="/getallquiz",method=RequestMethod.POST)
 		public @ResponseBody 
-		List getQuizByAttr(
-				 @RequestParam String attr
-				){
-		  return quizService.getQuizByAttr(attr);
-		 
+		List getAllQuiz()			 
+		{
+		  return quizService.getAllQuiz();
 		}
 	
 	
@@ -211,7 +211,7 @@ public class QuizControl {
 			@RequestParam(required = true) Integer questionId,
 			HttpSession session){
 		
-		//判断quiz及用户权限
+		//判断quiz及用户权限是否相符
 		User user = null;
 		if(session.getAttribute("user")!=null){
 			user = (User)session.getAttribute("user");	
@@ -231,22 +231,30 @@ public class QuizControl {
 //		    	return null;
 //		    }
 //		}
+		
+		Map map = new HashMap<String, Object>();
+		//使用StringBuffer，若使用STring会有值传递的问题
+		StringBuffer realanswer = new StringBuffer((String)session.getAttribute("realanswer"));
+		String questionType = (String)session.getAttribute("questionType");
+		//选择题直接计算得分，简答或编程题直接返回答案
+		if(questionType.equals(QuizConstant.QUESTION_TYPE_OPTION)){
+			Integer point = (Integer)session.getAttribute("point");
+			//判断问题对错,并对累计分数
+			Integer userQuizScore =0;
+			if(session.getAttribute("userId")!=null){
+				Integer userId = (Integer)session.getAttribute("userId");
+				userQuizScore = quizService.mark(userId,quizName,answer,realanswer,point);
+			}
 			
-		StringBuffer realanswer = (StringBuffer)session.getAttribute("realanswer");
-		Integer point = (Integer)session.getAttribute("point");
-		//判断问题对错,并对累计分数
-		Integer userQuizScore =0;
-		if(session.getAttribute("userId")!=null){
-			Integer userId = (Integer)session.getAttribute("userId");
-			userQuizScore = quizService.mark(userId,quizName,answer,realanswer,point);
+			//将用户分数和正确答案返回
+			map.put("score",userQuizScore);
 		}
-		
-		//将用户分数和正确答案返回
-	    Map map = new HashMap<String, Object>();
 		map.put("realanswer", realanswer);
-		map.put("score",userQuizScore);
 		
-	    return map;
+		System.out.print("rttype..............................."+questionType);
+		map.put("questionType",questionType);
+		return map;
+		
 	}
 	
 	

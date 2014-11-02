@@ -99,7 +99,7 @@ public class User {
 		this.userid = userid;
 	}
 
-	@Column(name="user_name",length=100 )
+	@Column(name="user_name",length=100,nullable=false )
 	public String getUsername() {
 		return username;
 	}
@@ -109,7 +109,7 @@ public class User {
 		this.username = username;
 	}
 
-	 @Column(name="password",length=100)
+	 @Column(name="password",length=100,nullable=false)
 	public String getPassword() {
 		return password;
 	}
@@ -119,7 +119,7 @@ public class User {
 		this.password = password;
 	}
 
-	 @Column(name="real_name",length=100)
+	 @Column(name="real_name",length=100,nullable=false)
 	public String getRealname() {
 		return realname;
 	}
@@ -129,7 +129,7 @@ public class User {
 		this.realname = realname;
 	}
 
-	 @Column(name="school_id",length=100)
+	 @Column(name="school_id",length=100,nullable=false)
 	public int getSchoolId() {
 		return schoolId;
 	}
@@ -139,7 +139,7 @@ public class User {
 		this.schoolId = schoolid;
 	}
 
-	 @Column(name="email",length=100)
+	 @Column(name="email",length=100,nullable=false)
 	public String getEmail() {
 		return email;
 	}
@@ -150,7 +150,7 @@ public class User {
 	}
 
 
-   @Column(name="companyId",length=100)
+   @Column(name="companyId",length=100,nullable=false)
    public int getCompanyId() {
 		return companyId;
 	}

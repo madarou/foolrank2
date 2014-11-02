@@ -140,6 +140,21 @@ public class QuizDao {
 		return quizList;	
 	}
 
+	public List getAllQuiz() {
+		// TODO Auto-generated method stub
+		String hql = "from Quiz quiz";
+		List<Quiz> quizList;
+		log.debug("get all quiz");
+		try {
+			quizList = hibernateTemplate.find(hql);
+			log.debug("get all quiz successful");
+		} catch (RuntimeException re) {
+			log.error("get all quiz failed", re);
+			throw re;
+		}
+		return quizList;
+	}
+
 	
 	
 	

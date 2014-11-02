@@ -24,7 +24,7 @@ public class Permission {
 		this.permissionId = id;
 	}
 
-	@Column(name="permission_name",unique=true,length=20)
+	@Column(name="permission_name",unique=true,length=20,nullable=false)
 	public String getPermissionName() {
 		return permissionName;
 	}

@@ -1,18 +1,27 @@
 (function (){
 	WEBROOT="/uunemo";
 	var QUESTIONID =0;
+	var hasAnswer = false;
 	
  	$(document).on("click","#letsbegin",function(){
 		$(".quizinfo").hide();
 		$(".takequiz").show();
 		$("#nextquestion").click();
 	});
+ 	
+ 	$(window).resize(function(){
+ 		if($(window).width()<600){
+ 			$("label span").hide();
+ 		}
+ 	})
 	
 	
 	//取一道题
 	$("#nextquestion").click(function(){
 		$("#submit").show();
 		$("#options").empty();
+		$("#questionAnswer").hide();
+		
 		$.post(WEBROOT+"/takeNextQuestion",
 				{"quizName":$("#quizName").text()},
 				function(question){
@@ -27,52 +36,58 @@
 						window.location.assign("home");	
 					    return false;
 					}
-					if(question.questionType=="option"){
-						
+					
 						 QUESTIONID = question.questionId;
 						 //题目内容
                          var str = question.questionContent;
                          //计算换行的个数，以动态设置textarea，居然只有\n没有\r,奇怪了
                          var length = str.split("\n").length-1;
                          
-                         if(length > 2){
+                         if(length > 4){
                         	 $("textarea").css("height",length*25+"px");
                          }else{
                         	 $("textarea").css("height","120px");
                          }
 						 $("#questioncontent").text(str);
-						 //选项
-						 var options = question.options;
-						 //首先生成input
-						 for(var i=0;i< options.length;i++){
-							 var id= "checkbox"+i;
-							 console.log("generate options..................");
-							/* $("#options").append("<li><input id='"+id+"' type='checkbox'></input><label for='"+id+"'>"+options[i].option+"</label></li>");*/
-							 $("#options").append("<label  class='optionlabel checkbox' for='"+id+"'><input id='"+id+"' type='checkbox'>"+options[i].option+"</input></label>");
-						 };
-						 
-						  $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
-
-						  $(".checkbox, .radio").click(function(){
-						        setupLabel();
-						        console.log("click checkbox............");
-						        //若checkbox被选择，则变色；否则恢复颜色
-						        if($(this).hasClass("checked")){
-						        	$(this).css("border-color","#2fe2bf");	
-						        }else{
-						        	$(this).css("border-color","#f2f2f2");
-						        }
-						        
-						  });
-						  //setupLabel();
-						  
-					}
+						 //选择题
+						if(question.questionType=="option"){
+							//选择题，若有解答则将解答赋给解答面板，
+							
+							 var options = question.options;
+							 //首先生成input
+							 for(var i=0;i< options.length;i++){
+								 var id= "checkbox"+i;
+								 $("#options").append("<label  class='optionlabel checkbox' for='"+id+"'><input id='"+id+"' type='checkbox'><textarea class='optiontext' id=textarea"+i+"></textarea></input></label>");
+								 var textAreaId = "#textarea"+i;
+								 //计算选项textarea的高度
+								 var length = options[i].option.split("\n").length-1;
+								 console.log("length",length);
+			                        if(length > 0){
+			                       	 $(textAreaId).css("height",50+length*20+"px");
+			                        }else{
+			                       	 $(textAreaId).css("height","40px");
+			                        }
+								 
+								 $(textAreaId).text(options[i].option);
+							 };
+							 
+							 
+							  $(".checkbox, .radio").prepend("<span class='icon'></span><span class='icon-to-fade'></span>");
+							  $(".checkbox, .radio").click(function(){
+							        setupLabel();
+							        //若checkbox被选择，则变色；否则恢复颜色
+							        if($(this).hasClass("checked")){
+							        	$(this).css("border-color","#2fe2bf");	
+							        }else{
+							        	$(this).css("border-color","#f2f2f2");
+							        }
+							  });
+						//问答、编程题等
+						}else{
+							$("#submit").text("查看答案");
+						}
 				});
-	})
-	
-	
-		
-		
+	})	
 	
 	
 	$("#submit").click(function(){
@@ -102,23 +117,34 @@
 						return false;
 					}
 					var realanswer = data.realanswer;
-					console.log("realanswer...",realanswer);
-					for(var i=0;i<answer.length;i++){
-						//匹配答案
-						if(answer.charAt(i) != realanswer.charAt(i) && realanswer.charAt(i) == 0){
-							//答案错误，提示错误
-							var errorSelect= ".options label:eq("+i+")";
-							$(errorSelect).css ("border-color","#FF0000");
-							$(errorSelect).removeClass("checked");
-							$(errorSelect).addClass("disabled");
-						}else if(realanswer.charAt(i)==1){
-						    //显示正确答案	
-							var rightSelect = ".options label:eq("+i+")";
-							$(rightSelect).css("border-color","#00FFFF");
-							$(rightSelect).addClass("checked");
+					if(data.questionType == "option"){
+						for(var i=0;i<answer.length;i++){
+							//匹配答案
+							if(answer.charAt(i) != realanswer.charAt(i) && realanswer.charAt(i) == 0){
+								//答案错误，提示错误
+								var errorSelect= ".options label:eq("+i+")";
+								$(errorSelect).css ("border-color","#FF0000");
+								$(errorSelect).removeClass("checked");
+								$(errorSelect).addClass("disabled");
+							}else if(realanswer.charAt(i)==1){
+							    //显示正确答案	
+								var rightSelect = ".options label:eq("+i+")";
+								$(rightSelect).css("border-color","#00FFFF");
+								$(rightSelect).addClass("checked");
+							}
 						}
-						
+					}else{
+                        //计算换行的个数，以动态设置textarea，居然只有\n没有\r,奇怪了
+                        var length = realanswer.split("\n").length-1;
+                        if(length > 20){
+                       	 $("#questionAnswer").css("height",length*20+"px");
+                        }else{
+                       	 $("#questionAnswer").css("height","400px");
+                        }
+                        $("#questionAnswer").show();
+						$("#questionAnswer").text(realanswer);
 					}
+					
 				}
 				
 		);

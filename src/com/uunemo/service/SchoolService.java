@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.uunemo.beans.School;
-import com.uunemo.beans.SchoolScore;
 import com.uunemo.daos.SchoolDao;
 import com.uunemo.daos.ScoreDao;
 

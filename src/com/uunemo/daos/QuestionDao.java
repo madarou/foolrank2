@@ -96,14 +96,12 @@ public class QuestionDao {
   	    return record.intValue();
 	 }
 
-	public Question findQuestionById(int questionId){
-		return hibernateTemplate.get(Question.class, questionId);
-	} 
+	
 	 
 	 
 	public void delQuestion(int questionId) {
 		// TODO Auto-generated method stub
-		Question questinon = findQuestionById(questionId);
+		Question questinon = getQuestionById(questionId);
 		hibernateTemplate.delete(questinon);
 	}
 
@@ -111,5 +109,23 @@ public class QuestionDao {
 		// TODO Auto-generated method stub
 		return hibernateTemplate.get(Question.class, questionId);
 	}
-	
+
+	public Question getQuestionbyContent(String questionContent) {
+		// TODO Auto-generated method stub
+		String hql = "from Question question where question.questionContent = ?";
+		List<Question> listQuestion = null;
+		log.debug("get question by content");
+		try {
+			listQuestion = hibernateTemplate.find(hql,questionContent);
+			log.debug("save successful");
+		} catch (RuntimeException re) {
+			log.error("save failed", re);
+			throw re;
+		}
+		if(listQuestion.size()!=0){
+			return listQuestion.get(0);
+		}else{
+			return null;
+		}
+	}
 }

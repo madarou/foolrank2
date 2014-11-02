@@ -27,7 +27,7 @@ public class Career {
 			this.careerId = careerId;
 		}
 
-		@Column(name="career_name" )
+		@Column(name="career_name",nullable=false )
 		public String getCareerName() {
 			return careerName;
 		}

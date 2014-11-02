@@ -8,6 +8,12 @@
 	background-color: #ffffff;
 }
 
+.weixincode{
+	height:200px !important;
+	padding-top:0px !important;
+	padding-left:10%;
+}
+
 
 
 .bulletin{
@@ -15,6 +21,8 @@
 	height:800px;
 	border-color:#c8c8c8; 
 	background-color: #ffffff;	
+	padding-left:0px !important;
+	padding-right:0px !important;
 }
 
 .essential{
@@ -23,7 +31,7 @@
 }
 
 .panel-heading{
-	background-color:#009966;
+	background-color:#18bc9c;
 	color:#ffffff;
 }
 
@@ -31,6 +39,7 @@
 	cursor: pointer;
 	height: 72px;
 	padding-top: 20px;
+	margin-bottom:20px;
 }
 
 .cEssential{ 

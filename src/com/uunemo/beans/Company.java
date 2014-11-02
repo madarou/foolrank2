@@ -27,7 +27,7 @@ public class Company {
 	
 	
 	
-	@Column(name="company_name")
+	@Column(name="company_name",nullable=false)
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -35,7 +35,7 @@ public class Company {
 		this.companyName = companyName;
 	}
 	
-	@Column(name="total_score")
+	@Column(name="total_score",nullable=false)
 	public int getTotalScore() {
 		return totalScore;
 	}
@@ -43,7 +43,7 @@ public class Company {
 		this.totalScore = totalScore;
 	}
 	
-	@Column(name="total_person")
+	@Column(name="total_person",nullable=false)
 	public int getTotalPerson() {
 		return totalPerson;
 	}

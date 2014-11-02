@@ -2,17 +2,22 @@ WEBROOT="/uunemo";
 
 
 $(document).ready(function(){
-	var url = WEBROOT + "/getquizbyattr";
-	var data ={"attr":"free"};
+	//循环生成
+	var url = WEBROOT + "/getallquiz";
 	$.post(
 	   url,
-	   data,
 	   function(data){
+		   console.log(data);
 		   for(var i in data){
-			  var quizName = data[i];
+			  var quizName = data[i].quizName;
 			  var img = '<div class="col-md-2 col-ms-4 col-xs-4"><img  src="./resources/css/img/'+quizName+'.png"'+
 				  'class="img-responsive" id="'+quizName+ '" onClick="window.location.assign('+"'viewquiz?quizName="+quizName+"'"+')"></img></div>';
-			  $("#freepanel").append(img);
+			  if(data[i].quizAttr == "free"){
+				  $("#freepanel").append(img);  
+			  }else if(data[i].quizAttr == "paid"){
+				  $("paidpanel").append(img);
+			  }
+			  
 		   }
 	   }
 	)

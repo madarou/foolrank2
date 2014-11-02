@@ -92,4 +92,10 @@ public class QuestionService {
 		// TODO Auto-generated method stub
 		return questionDao.getQuestionById(questionId);
 	}
+
+	public Question getQuestionbyContent(String questionContent) {
+		// TODO Auto-generated method stub
+		
+		return questionDao.getQuestionbyContent(questionContent);
+	}
 }

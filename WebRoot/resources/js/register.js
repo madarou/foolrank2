@@ -126,97 +126,19 @@
 		    		 mydata,
 		    		 function(result){
 		    			 //关闭窗口modal
-		    			 $("#btnModalClose",parent.document).click();
 		    			 $("#registerModal").modal('hide');  
-		    			 alert("恭喜您，注册成功");
-		    			
-		    		 }
-		    		
+		    			 $("#preparelogin").hide();
+					     $("#showusername").text(result);
+					     $("#alreadylogin").show();
+		    			 alert("恭喜您，注册成功!");    			
+		    		 }   		
 		     );
 		 } });
 	
 		
 
 })();
-	
-//	$(document).on("blur","#password",function(){
-//		var checkStrength = function (password){
-//			//initial strength
-//		    var strength = 1;
-//			
-//			//if password contains both lower and uppercase characters, increase strength value
-//		    if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))  strength += 1;
-//				
-//			//if it has numbers and characters, increase strength value
-//		    if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/))  strength += 1 ;
-//				
-//			//if it has one special character, increase strength value
-//		    if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/))  strength += 1;
-//				
-//			//if it has two special characters, increase strength value
-//			if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1;
-//			return strength;
-//		};
-//		var self = $(this);
-//		var password = self.val();
-//		//initialize pStrength
-//		var levelBlocks = $(".pStrengthLevelBlock");
-//		levelBlocks.each(function(){
-//			$(this).empty();
-//		});
-//		$(".pStrengthLevelWithText").removeClass("pStrengthLevelWithText");
-//		//start to validate the password
-//		if (password.length < 8) { 
-//			$(this).next(".infoAlert").addClass("wrongInfo").attr("title","输入的密码太短，至少8位");
-//		}else{
-//			$(this).next(".infoAlert").removeClass("wrongInfo").addClass("rightInfo").removeAttr("title");
-//			var strength = checkStrength(password);
-//			switch (strength){
-//				case 1: 
-//					$(".pStrengthLevel2").removeClass("pStrengthLevel2");
-//					levelBlocks.eq(0).html("不安全");
-//					break;
-//				case 2:
-//					$(".pStrengthLevel1").removeClass("pStrengthLevel1");
-//					$(".pStrengthLevel3").removeClass("pStrengthLevel3");
-//					levelBlocks.eq(1).html( "弱");
-//					break;
-//				case 3:
-//					$(".pStrengthLevel2").removeClass("pStrengthLevel2");
-//					$(".pStrengthLevel4").removeClass("pStrengthLevel4");
-//					levelBlocks.eq(2).html("一般");
-//					break;
-//				case 4:
-//					$(".pStrengthLevel3").removeClass("pStrengthLevel3");
-//					$(".pStrengthLevel5").removeClass("pStrengthLevel5");
-//					levelBlocks.eq(3).html("良好");
-//					break;
-//				case 5:
-//					$(".pStrengthLevel4").removeClass("pStrengthLevel4");
-//					levelBlocks.eq(4).html("安全");
-//					break;
-//			}
-//			levelBlocks.each(function(index,element){
-//				if (index < strength)
-//					$(this).addClass( "pStrengthLevel"+strength);
-//				if (index + 1 == strength)
-//					$(this).addClass("pStrengthLevelWithText");
-//			});
-//			
-//			
-//		}
-//		
-//	});
-//	$(document).on("blur","#confirmPassword",function(){
-//		var passwd = $("#password").val();
-//		var comfirmPasswd = $(this).val();
-//		if (passwd != comfirmPasswd){
-//			$(this).next(".infoAlert").addClass("wrongInfo").attr("title","两次密码不匹配");
-//		}else{
-//			$(this).next(".infoAlert").removeClass("wrongInfo").addClass("rightInfo");
-//		}
-//	});
-	
+
 	
 	
 	

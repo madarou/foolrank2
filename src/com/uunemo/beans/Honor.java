@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+/*
+ * 荣誉，用户完成特定题库后可以赋予诸如 C Master之类额称号
+ */
 @Entity
 @Table(name="honor")
 public class Honor {

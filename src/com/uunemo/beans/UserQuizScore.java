@@ -33,7 +33,7 @@ public class UserQuizScore {
 		this.quizId = quizId;
 	}
 	
-	@Column(name="score")
+	@Column(name="score",nullable=false)
 	public int getScore() {
 		return score;
 	}

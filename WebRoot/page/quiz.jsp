@@ -52,26 +52,46 @@ if(user!=null){
         <div class="mainquiz col-md-9">
 	        
 	         <div class="quizinfo" id="quizinfo">
-	          <div class="quizcontent row">
+	          <div class="quizcontent">
 	            <p class="lead" id="quizId" style="display:none">${quiz.quizId}</p>
 	            <h3>试题名：</h3><h3 class="quizname" id="quizName">${quiz.quizName}</h3>
 	            <h4 class=" quizdesc">简介：${quiz.quizInfo}</h4>
 		       </div>
-	             <button class="col-md-2 col-md-offset-8  col-xs-12 btn btn-large btn-primary" id="letsbegin" type="button">开始做题</button>
+	             <button class="col-md-2 col-md-offset-8  col-xs-12 btn btn-large btn-primary" id="letsbegin" type="button" style="margin-top: 30px">开始做题</button>
 	        </div>  
       
 	        <div class="takequiz row" id="takequiz" style="display:none">
-	           	<textarea class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12"  id = "questioncontent" disabled="disabled"></textarea>
-		         <div class="optionplane col-md-12 col-sm-12 col-xs-12" id="optionplane">
-		           <div class="options list" id="options">
-		           </div> 
+	           	  <textarea class="col-md-10 col-md-offset-1 col-sm-12  col-xs-12"  id = "questioncontent" disabled="disabled"></textarea>
+		          <div class="optionplane col-md-12 col-sm-12 col-xs-12" id="optionplane">
+		           
+		           <div class="panel panel-default hidden">
+				    <div class="panel-heading" role="tab" id="headingOne">
+				      <h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				          查看答案
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+				      <div class="panel-body" id="answerContent">
+				        
+				      </div>
+				    </div>
+				  </div>
+		           
+		            <div class="options list" id="options">
+		            </div> 
+		          
+		          </div>
+		           
 		           <label id="optionnum"></label>
+		           <textarea class="col-md-10 col-md-offset-1 col-sm-12  col-xs-12"  id = "questionAnswer" disabled="disabled" style="display:none"></textarea> 
 		           <div class="row">
 			             <button class="btn btn-primary col-md-2 col-md-offset-1 col-xs-12" style="margin-top:20px " id="submit" type="button">提交答案</button>
 			             <button class="btn btn-default col-md-2 col-md-offset-2 col-xs-12" style="margin-top:20px"  id="nextquestion" type="button">下一题</button>
 			             <button class="btn btn-danger col-md-2 col-md-offset-2 col-xs-12" style="margin-top:20px"  id="stop" type="button">结束</button>
 		           </div>
-		          </div>
+		          
 	          
 	         </div>
         </div>

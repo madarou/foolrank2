@@ -19,7 +19,7 @@ public class Option {
 	private String option;
 	private int rightFlag=0;
 
-	@Column(name="right_flag")
+	@Column(name="right_flag",nullable=false)
 	public int getRightFlag() {
 		return rightFlag;
 	}
@@ -37,7 +37,7 @@ public class Option {
 	}
 	
 	
-	@Column(name="options",length=5000)
+	@Column(name="options",length=5000,nullable=false)
 	public String getOption() {
 		return option;
 	}

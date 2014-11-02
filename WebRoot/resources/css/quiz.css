@@ -10,6 +10,15 @@ textarea{
 	
 }
 
+.optiontext{
+	margin-top: 0 !important;
+	width: 90%;
+	border-style: none !important;
+	resize:none;
+	cursor: pointer;
+		
+}
+
 .mainquiz{
 	display:inline-block;
 	border-radius:10px;
@@ -25,6 +34,14 @@ label input{
 	cursor: pointer;
 }
 
+label #icon{
+	
+}
+
+label #icon-to-fade{
+	
+}
+
 .optionlabel{
 /* 	height:50px; */
 	cursor: pointer;
@@ -34,8 +51,8 @@ label input{
 	border-radius :5px;
 /* 	padding-top: 15px; */
 	padding-left: 10% !important;
-	padding-top: 3%!important;
-	padding-bottom:3%!important;
+	padding-top: 2% !important;
+	padding-bottom:0px !important;
 }
 
 label span{
@@ -74,7 +91,9 @@ letsbegin{
 	border-radius:10px;
 	border-color: #c8c8c8;
 	background-color: #ffffff;	
+	padding-bottom: 50px;
 }
+
 
 .quizarea{
 	width:100%;/*�����ㄩ��搴���跺��灞�瀹藉害*/  

@@ -54,6 +54,8 @@
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.jdbc.fetch_size">100</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop> 
+                <prop key="hibernate.connection.release_mode">after_transaction</prop>
+
 <!--                 <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheProvider</prop> -->
             </props>
 		</property>

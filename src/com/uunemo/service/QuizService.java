@@ -54,6 +54,9 @@ public class QuizService {
     @Resource
     private ScoreService scoreService;
     
+    @Resource
+    private QuestionService questionService;
+    
     
   
 	HashSet<Integer> mySet = new HashSet<Integer>();
@@ -222,17 +225,22 @@ public class QuizService {
 	    	for(int j=1;j<sheet.getLastRowNum();j++){
 	      		HSSFRow row = sheet.getRow(j);
 	      		Question question = new Question();
+	      	    String questionContent = getValuebyCell(row.getCell(map.
+	      				get(QuizConstant.QUESTION_CONTENT)));
+	      	    
+	      	    //若试题内容相同，则不做处理,去下一行
+	      	    if(questionService.getQuestionbyContent(questionContent)!=null){
+	      	    	continue;
+	      	    }
 	      	    
 	      		question.setQuiz(quiz);
-	      		question.setQuestionContent(getValuebyCell(row.getCell(map.
-	      				get(QuizConstant.QUESTION_CONTENT))));
+	      		question.setQuestionContent(questionContent);
 	      		question.setPoint((int)Double.parseDouble(((getValuebyCell(row.getCell(map.
 	      				get(QuizConstant.QUESTION_SCORE)))))));
 	      		question.setQuestionType(getValuebyCell(row.getCell(map.
 	      				get(QuizConstant.QUESTION_TYPE))));
 	      		
 	      		//处理tag
-	      		
 	      		Set<Tag> tagSet = new HashSet<Tag>(); 
 	      		HSSFCell tagCell = row.getCell(map.get(QuizConstant.QUESTION_TAG));
 	      		if(tagCell != null){
@@ -304,6 +312,18 @@ public class QuizService {
 		}
 		
 		return quizNames;
+	}
+
+
+
+	public List getAllQuiz() {
+		// TODO Auto-generated method stub
+		List<Quiz> listQuiz =  quizDao.getAllQuiz();
+		for(Quiz quiz:listQuiz){
+			quiz.setQuestions(null);
+			quiz.setQuizSet(null);
+		}
+		return listQuiz;
 	}
 	
 	

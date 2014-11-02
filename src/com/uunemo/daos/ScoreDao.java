@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.uunemo.beans.CompanyScore;
-import com.uunemo.beans.SchoolScore;
 import com.uunemo.beans.User;
 import com.uunemo.beans.UserQuizScore;
 

@@ -10,9 +10,9 @@ import javax.persistence.Table;
 /**
  * User entity. @author MyEclipse Persistence Tools
  */
-
 @Entity
 @Table(name="school")
+@org.hibernate.annotations.Entity(dynamicUpdate=true,dynamicInsert=true)
 public class School{
 
 	// Fields
@@ -21,23 +21,23 @@ public class School{
     @Column(name = "school_id",unique =true,nullable=false)
 	private Integer schoolId;
     
-    @Column(name="conuntry",length=50 )
+    @Column(name="conuntry",length=50,nullable=false )
 	private String conuntry ="";
 
-	@Column(name="location",length=20)
+	@Column(name="location",length=20,nullable=false)
 	private String location="";
 
-    @Column(name="school_name",length=100)
+    @Column(name="school_name",length=100,nullable=false)
     private String schoolName="";
     
-    @Column(name="preset",length=2)
+    @Column(name="preset",length=2,nullable=false)
     private int preset = 0;
     
-	@Column(name="total_score")
-    private int totalScore=0;
+	@Column(name="total_score",nullable=false)
+    private int totalScore;
 	
-	@Column(name="total_person")
-	private int totalPerson=0;
+	@Column(name="total_person",nullable=false)
+	private int totalPerson;
     
   
 	public Integer getSchoolId() {

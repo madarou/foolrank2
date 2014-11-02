@@ -30,7 +30,7 @@ if(user!=null){
 
 
 <!--   nav bar -->
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0px">
+	<div class="navbar navbar-inverse navbar-static-top" role="navigation" style="margin-bottom: 0px">
 		<div class="container-fluid">
 			
 			<div class="navbar-header">
@@ -40,8 +40,8 @@ if(user!=null){
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				 <a class="navbar-brand" href="<%=path%>" style="color:#00CC99">猿奋</a>
-				 <a class="navbar-brand hidden-sm hidden-xs" href="<%=path%>"> foolRank.com</a>
+				 <a class="navbar-brand" href="/" style="color:#00CC99">猿奋</a>
+				 <a class="navbar-brand hidden-sm hidden-xs" href="/"> foolRank.com</a>
 			</div>	
 				
 				
@@ -55,7 +55,7 @@ if(user!=null){
 					    	  Set<Role> roles =  user.getRoles();
 					    	  for(Role role:roles){
 					    		  if(role.getRoleName().equals(QuizConstant.ROLE_ADMIN)||role.getRoleName().equals(QuizConstant.ROLE_OPERATOR)){
-					    %>	  
+					    %>	  	
 					    	  
 					    <li><a href='#' id='showImportModal' data-toggle='modal'>批量导入</a></li>
 					    <%

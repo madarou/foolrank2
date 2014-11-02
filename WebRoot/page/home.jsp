@@ -57,16 +57,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  </div>
 			</div>
 			
-			<div class="panel" style="display:none">
-               <div class="panel-heading" style="background-color:#00CC99">付费区</div>
-			      <div class="panel-body">
-				     <div class="col-md-1 col-md-offset-1">
-	                 <div  class="c" id="c"><a href="#"></a></div>
-	               </div>
-	               
-	               <div class= "col-md-1 col-md-offset-1">
-	                 <div class="java" id="java"></div>
-	               </div>
+			<div class="panel hidden">
+               <div class="panel-heading">付费区(免费至11.31日)</div>
+			      <div class="panel-body" id="paidpanel">
+				    
 			  </div>
 			</div>
 			
@@ -75,18 +69,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         
        </div>
        
-       <div class="col-md-3">
-          <div class="bulletin">
-					
-					   
+       <div class="	col-md-3 bulletin hidden-xs">
+          <div class="panel">
+            <div class="panel-heading">笔试详解，在线做题，请加微信：</div>
+          	<div class="panel-body">
+	          	<img src = "./resources/css/img/weixincode.jpg" class="img-responsive weixincode"></img>   
+          	</div>
+			
 		  </div>
 		 </div>
        </div>
       </div>
-    </div>
+ 
 	<div class="container">
 		<footer>
-		<p>&copy;foolRank Company 2014</p>
+		<p>&copy;foolRank Company 2014 沪ICP备14039106号-2</p>
 		</footer>
 	</div>
 

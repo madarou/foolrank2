@@ -27,4 +27,9 @@ public class QuizConstant {
 	public static final String QUESTION_TESTSCORE = "testscore";
 	public static final String QUESTION_REPONAME = "reponame";
 	public static final String QUESTION_ANSWER = "answer";
+	
+	//试题类型
+	public static final String QUESTION_TYPE_OPTION = "option";
+	public static final String QUESTION_TYPE_ESSAY ="essay";
+	public static final String QUESTION_TYPE_PROGRAM ="pragram";
 }
