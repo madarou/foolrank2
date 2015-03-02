@@ -32,7 +32,7 @@
 			value="jdbc:mysql://127.0.0.1:3306/uunemo2?useUnicode=true&amp;characterEncoding=utf8">
 		</property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="makao"></property>
 		<!-- 防止数据库超时，下面三项是确保获得的连接是有效的 -->
 		  <property name="testOnBorrow" value="true"></property>
 		  <property name="testOnReturn" value="true"></property>
