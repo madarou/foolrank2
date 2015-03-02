@@ -31,7 +31,8 @@ public class User {
     private int schoolId=0;
     private String email="";	
     private int companyId;
-   
+    private Boolean locked = Boolean.FALSE;
+    private String salt; //加密密码的盐
 
 
 	private Set<Career> careers = new HashSet<Career>(); //职业规划
@@ -99,7 +100,7 @@ public class User {
 		this.userid = userid;
 	}
 
-	@Column(name="user_name",length=100,nullable=false )
+	@Column(name="username",length=100,nullable=false )
 	public String getUsername() {
 		return username;
 	}
@@ -160,9 +161,26 @@ public class User {
 		this.companyId = companyId;
 	}
 
-	
+	@Column(name="locked",length=1,nullable=false)
+	   public Boolean getLocked() {
+			return locked;
+		}
     
-    public User(Integer user_id, String user_name, String password,
+    public void setLocked(Boolean locked) {
+		this.locked = locked;
+	}
+
+    @Column(name="salt",length=100,nullable=false)
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+
+	public User(Integer user_id, String user_name, String password,
 			String real_name, int school_id, String email) {
 		super();
 		this.userid = user_id;
@@ -178,8 +196,9 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	
+    public String fetchCredentialsSalt() {
+        return username + salt;
+    }
 	
 
 }

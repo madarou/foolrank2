@@ -1,6 +1,8 @@
 package com.uunemo.daos;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -144,6 +146,59 @@ public class UserDao  {
 			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
+			throw re;
+		}
+	}
+
+	public User findByUsername(String username) {
+		log.debug("getting User instance with username: " + username);
+		try {
+			//user find to found User
+		    List<User> list_user = getHibernateTemplate().find("from User as us where us.username = ?", username);
+			if(list_user.size()==0){
+				log.info("can not found username");
+				return null;
+			}else{
+                return list_user.get(0);				
+			}
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
+
+	public Set<String> findRoles(String username) {
+		log.debug("getting User Roles with username: " + username);
+		try {
+			
+		    //List<String> list_roles = getHibernateTemplate().find("from User as us where us.username = ?", username);
+			String sql = "select role_name from user u, role r,user_role ur where u.username=? and u.user_id=ur.user_id and r.role_id=ur.role_id";
+			Set<String> list_roles = new HashSet(getHibernateTemplate().find(sql, username));
+			if(list_roles.size()==0){
+				log.info("can not found User Roles");
+				return null;
+			}else{
+                return list_roles;			
+			}
+		} catch (RuntimeException re) {
+			log.error("get User Roles failed", re);
+			throw re;
+		}
+	}
+
+	public Set<String> findPermissions(String username) {
+		log.debug("getting User Permissions with username: " + username);
+		try {
+			String sql = "select permission_name from user u, role r, permission p, user_role ur, role_permission rp where u.username=? and u.id=ur.user_id and r.id=ur.role_id and r.id=rp.role_id and p.id=rp.permission_id";
+			Set<String> list_permissions = new HashSet(getHibernateTemplate().find(sql, username));
+			if(list_permissions.size()==0){
+				log.info("can not found User Permissions");
+				return null;
+			}else{
+                return list_permissions;			
+			}
+		} catch (RuntimeException re) {
+			log.error("get User Permissions failed", re);
 			throw re;
 		}
 	}

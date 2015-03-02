@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="uunemo"
+  name="foolrank"
   id="myeclipse.1351234489288"
   context-root="/uunemo"
   j2ee-spec="5.0"
-  archive="uunemo.war">
+  archive="foolrank.war">
   <attributes>
-    <attribute name="webrootdir" value="/WebRoot" />
+    <attribute name="webrootdir" value="WebRoot" />
   </attributes>
 </project-module>
 

@@ -14,5 +14,9 @@
 		p:prefix="/page/" p:suffix=".jsp" />
 
 
-
+  	<!-- 以下是开启Shiro Spring AOP 权限注解的支持 -->
+    <aop:config proxy-target-class="true"></aop:config>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
 </beans>

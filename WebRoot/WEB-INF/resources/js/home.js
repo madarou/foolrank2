@@ -43,7 +43,7 @@
 						function(username){
 					      if(username !="nobody"){
 					    	$("#preparelogin").hide();
-					    	$("#showusername").text(username);
+					    	$("#showusername").text("欢迎! "+username);
 					    	$("#alreadylogin").show();
 					      }
 					      else{

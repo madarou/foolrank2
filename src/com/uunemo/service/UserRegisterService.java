@@ -38,6 +38,9 @@ public class UserRegisterService {
 	@Resource
 	private SchoolService schoolService;
 	
+	@Resource
+	private PasswordHelper passwordHelper;
+	
 	public RegisterQuestion getRegisterQuestion(){
 		Random rand = new Random();
 		long questionCount = registerQuestionDao.getQuestionNum();
@@ -84,6 +87,8 @@ public class UserRegisterService {
 		
 		Role defaultRole = roleDao.getRoleByName("user");
 		user.getRoles().add(defaultRole);
+		passwordHelper.encryptPassword(user);
+		
 		userDao.save(user);
 	}
 	

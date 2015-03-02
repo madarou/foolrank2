@@ -9,6 +9,7 @@ import java.util.Random;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -259,7 +260,7 @@ public class QuizControl {
 	
 	
 	@RequestMapping(value="/viewquiz",method=RequestMethod.GET)
-	/*@RequiresRoles("user")*/
+//	@RequiresRoles("user")
 	public String viewQuiz(
 			@RequestParam String quizName,
 			HttpSession session,

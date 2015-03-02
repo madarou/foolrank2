@@ -1,5 +1,8 @@
 package com.uunemo.service;
 
+import java.util.Collections;
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -24,7 +27,18 @@ public class UserService {
 	}
 
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
 		return userDao.findByEmail(email);
+	}
+
+	public Set<String> findRoles(String username) {
+		return userDao.findRoles(username);
+	}
+
+	public Set<String> findPermissions(String username) {
+		return userDao.findPermissions(username);
+	}
+
+	public User findByUsername(String username) {
+		return userDao.findByUsername(username);
 	}
 }

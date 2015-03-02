@@ -54,6 +54,8 @@ $(document).on("click","#btnlogin",function(){
 	var email = $("#loginEmail").val();
 	console.log("email..........",email);
 	var password = $("#password").val();
+	var rememberMe = $("#rbme").prop('checked');
+	console.log("rememberMe..........",rememberMe);
 	if (email == ""){
 		$("#alertInfo").text("您还没有输入用户名！");
 		return;
@@ -61,13 +63,13 @@ $(document).on("click","#btnlogin",function(){
 		$("#alertInfo").text("您还没有输入密码！");
 		return;
 	}else{
-		    var postData = {"email":email,"password":password};
+		    var postData = {"email":email,"password":password,"rememberMe":rememberMe};
 			$.post("/uunemo/checkuser",
 					postData,
 					function(user){
 				      if(user.username !="nobody"){
 				    	$("#preparelogin").hide();
-				    	$("#showusername").text(user.email);
+				    	$("#showusername").text("欢迎！"+user.email);
 				    	$("#alreadylogin").show();
 				    	$("#loginModal").modal('hide');  
 				    	var roles = user.roles;
