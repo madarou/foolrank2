@@ -70,7 +70,7 @@ public class UserLoginController {
 	public @ResponseBody
 	String logOut(Model model){
 		SecurityUtils.getSubject().logout();
-		return home;
+		return "redirect:"+home;
 	}
 	
 	
@@ -109,10 +109,8 @@ public class UserLoginController {
         result.put("success", "true");  
         result.put("status", false);  
   
-        //boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
-        System.out.println("*********************"+rememberMe+"***********************");
         String host = request.getRemoteHost();  
-  
+ 
         //构造登陆令牌环  
         UsernamePasswordToken token = new UsernamePasswordToken(email,password);
         token.setRememberMe(rememberMe);
@@ -129,13 +127,11 @@ public class UserLoginController {
                 if (user.getEmail()==null || "".equals(user.getEmail())) {  
                     user.setUsername("nobody");
                 }else{
-                	 //根据输入的用户名和密码确实查到了用户信息  
-                    //session.removeAttribute("rand");  
+                	 //根据输入的用户名和密码确实查到了用户信息   
                     session.setAttribute("user", user);  
                     result.put("msg", "登录成功!");  
-                    result.put("status", true);  
-                    //result.put("main_url", "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/main");  
-                }
+                    result.put("status", true);
+                    }
             } catch (Exception e) {  
                 log.error(e.getMessage(), e);  
             }  
@@ -151,5 +147,30 @@ public class UserLoginController {
         }  
         return user; 
 	}	
+	
+	@RequestMapping(value = "/rememberMeCheck",method =RequestMethod.POST)
+ 	public @ResponseBody
+	User rememberMeLogin(HttpServletRequest request)
+	{   
+        User user = new User();
+        user.setUsername("nobody");
+  
+        try{  
+            HttpSession session = request.getSession();  
+            try {  
+                user = userService.getUserByEmail((String)(session.getAttribute("email")));  
+                if (user.getEmail()==null || "".equals(user.getEmail())) {  
+                    user.setUsername("nobody");
+                }else{
+                    session.setAttribute("user", user);  
+                    }
+            } catch (Exception e) {  
+                log.error(e.getMessage(), e);  
+            }  
+        }catch (Exception e){  
+            e.printStackTrace();
+        }  
+        return user; 
+	}
 	
 }

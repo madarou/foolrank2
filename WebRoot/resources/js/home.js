@@ -4,6 +4,7 @@ WEBROOT="/uunemo";
 $(document).ready(function(){
 	//循环生成
 	var url = WEBROOT + "/getallquiz";
+	
 	$.post(
 	   url,
 	   function(data){
@@ -20,7 +21,26 @@ $(document).ready(function(){
 			  
 		   }
 	   }
-	)
+	);
+	url = WEBROOT + "/rememberMeCheck";
+	$.post(
+			url,
+			function(user){
+				if(user.username !="nobody"){
+			    	$("#preparelogin").hide();
+			    	$("#showusername").text("欢迎！"+user.email);
+			    	$("#alreadylogin").show();
+			    	$("#loginModal").modal('hide');  
+			    	var roles = user.roles;
+			    	for(var i=0;i<roles.length;i++){
+			    		if(roles[i].roleName == "operator"||roles[i].roleName=="admin"){
+			    			$("#leftNav").append("<li><a href='#' data-target='#importModal' data-toggle='modal'>批量导入</a></li>");
+			    		    break;
+			    		}
+			    	}
+			      }
+			});
+	
 })
 //
 //$(document).on("click","#c",function(){

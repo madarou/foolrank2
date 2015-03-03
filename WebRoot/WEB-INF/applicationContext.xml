@@ -61,7 +61,6 @@
             </props>
 		</property>
 		
-		
 		<property name="packagesToScan">
             <list>
                 <value>com.uunemo.*</value>
@@ -95,17 +94,14 @@
    <tx:annotation-driven  transaction-manager="transactionManager" proxy-target-class="true"/>
 <!--     <tx:annotation-driven mode="aspectj"></tx:annotation-driven>  -->
         
-
 	<!-- 扫描注解组件并且自动的注入spring beans中. 
 	例如,他会扫描@Controller 和@Service下的文件.所以确保此base-package设置正确. -->
 	<context:component-scan base-package="com.uunemo" />
 	<context:component-scan base-package="com.uunemo.security" />
 	
-
 	<!-- 配置注解驱动的Spring MVC Controller 的编程模型.注:次标签只在 Servlet MVC工作! -->
 	<mvc:annotation-driven />
 	<!-- 用注解来实现事务管理 -->
-
 	
    	<mvc:resources location="/resources/" mapping="/resources/**"/>
 	
@@ -133,8 +129,7 @@
 	 <!-- =========================================================
          Shiro Components
          ========================================================= -->
-  
-	<import resource="spring-config-shiro.xml"/>
+       <import resource="spring-config-shiro.xml"/>
 	
 	</beans>
 

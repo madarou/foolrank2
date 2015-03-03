@@ -16,13 +16,21 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   --%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+<%
+String path = request.getContextPath();
+pageContext.setAttribute("path",path);
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+
+%>
 <html>
 <head>
     <title>Apache Shiro Spring-Hibernate Sample Application</title>
     <link rel="stylesheet" type="text/css" href="home"/>
 </head>
 <body>
-<h3>Unauthorized</h3>
-<p>You are not authorized to access the requested page.  Please return to the <a href="home">homepage</a>.</p>
+<h3>友情提示</h3>
+<p>您还没有登录哦，请先<a href="<%=basePath %>">返回</a>登录.</p>
 </body>
 </html>

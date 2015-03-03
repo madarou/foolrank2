@@ -50,23 +50,23 @@
 		</init-param>
 	</filter>
 
- <listener>
-  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
- </listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
-<listener>  
-        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>  
-</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
 
-<!-- 配置常见错误页面 -->
-<error-page>
-	<error-code>403</error-code>
-	<location>/unauthorized.jsp</location>
-</error-page>
+	<!-- 配置常见错误页面 -->
 	<error-page>
-		<error-code>404</error-code>
+		<error-code>403</error-code>
 		<location>/unauthorized.jsp</location>
 	</error-page>
+	<!-- <error-page>
+		<error-code>404</error-code>
+		<location>/unauthorized.jsp</location>
+	</error-page> -->
 	<error-page>
 		<error-code>500</error-code>
 		<location>/unauthorized.jsp</location>
@@ -83,74 +83,67 @@
 	 <error-page>
         <error-code>401</error-code>
         <location>/unauthorized.jsp</location>
-    </error-page>	
-	
-  <context-param>
-      <param-name>log4jConfigLocation</param-name>
-      <param-value>/WEB-INF/log4j.properties</param-value>
-   </context-param>
-   <context-param>
-      <param-name>log4jRefreshInterval</param-name>
-      <param-value>6000</param-value>
-   </context-param>
+    </error-page>
+
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jRefreshInterval</param-name>
+		<param-value>6000</param-value>
+	</context-param>
 	
     <listener>
       <listener-class>
         org.springframework.web.util.Log4jConfigListener
       </listener-class>
-   </listener> 
+    </listener> 
 
   <!-- ===================================================================
  -  Filters
  -  =================================================================== -->
+	<!-- add to avoid "Write operations are not allowed in read-only mode (FlushMode.MANUAL)"" error -->
+	<filter> 
+	   <filter-name>openSessionInViewFilter</filter-name> 
+	   <filter-class> 
+	     org.springframework.orm.hibernate3.support.OpenSessionInViewFilter 
+	   </filter-class> 
+	   <init-param> 
+	    <param-name>sessionFactoryBeanName</param-name> 
+	    <param-value>sessionFactory</param-value> 
+	   </init-param> 
+	   <init-param> 
+	            <param-name>singleSession</param-name> 
+	            <param-value>true</param-value>            
+	        </init-param> 
+	        <init-param> 
+		        <param-name> flushMode </param-name> 
+		        <param-value>AUTO </param-value>         
+	        </init-param> 
+	</filter>
 
 
-<!-- add to avoid "Write operations are not allowed in read-only mode (FlushMode.MANUAL)"" error -->
-<filter> 
-   <filter-name>openSessionInViewFilter</filter-name> 
-   <filter-class> 
-     org.springframework.orm.hibernate3.support.OpenSessionInViewFilter 
-   </filter-class> 
-   <init-param> 
-    <param-name>sessionFactoryBeanName</param-name> 
-    <param-value>sessionFactory</param-value> 
-   </init-param> 
-   <init-param> 
-            <param-name>singleSession</param-name> 
-            <param-value>true</param-value>            
-        </init-param> 
-        <init-param> 
-	        <param-name> flushMode </param-name> 
-	        <param-value>AUTO </param-value>         
-        </init-param> 
-</filter>
-
-
- <servlet-mapping>
+ 	<servlet-mapping>
 	    <servlet-name>default</servlet-name>
 	    <url-pattern>/resources/js/MDEditor/*</url-pattern>
      </servlet-mapping>
 
- <servlet>
-  <servlet-name>spring</servlet-name>
-  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
- </servlet>
- <servlet-mapping>
-  <servlet-name>spring</servlet-name>
-  <url-pattern>/</url-pattern>
- </servlet-mapping>
- <welcome-file-list>
-  <welcome-file>/page/home.jsp</welcome-file>
- </welcome-file-list>
- <login-config>
-  <auth-method>BASIC</auth-method>
- </login-config>
- 
- 
- 
- 	 
-	
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>/page/home.jsp</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
 
 
     <!-- Shiro Filter is defined in the spring application context: -->

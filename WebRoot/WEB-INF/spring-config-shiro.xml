@@ -24,11 +24,11 @@
     <!-- Realm实现 -->
     <bean id="userRealm" class="com.uunemo.security.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
-        <property name="cachingEnabled" value="false"/>
-        <!--<property name="authenticationCachingEnabled" value="true"/>-->
-        <!--<property name="authenticationCacheName" value="authenticationCache"/>-->
-        <!--<property name="authorizationCachingEnabled" value="true"/>-->
-        <!--<property name="authorizationCacheName" value="authorizationCache"/>-->
+        <property name="cachingEnabled" value="true"/>
+        <property name="authenticationCachingEnabled" value="true"/>
+        <property name="authenticationCacheName" value="authenticationCache"/>
+        <property name="authorizationCachingEnabled" value="true"/>
+        <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
 
     <!-- 会话ID生成器 -->
@@ -38,6 +38,7 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
+        <!-- 表示浏览器关闭时失效此 Cookie -->
         <property name="maxAge" value="-1"/>
     </bean>
 
@@ -101,11 +102,13 @@
     </bean> -->
 
     <!-- <bean id="sysUserFilter" class="com.github.zhangkaitao.shiro.chapter16.web.shiro.filter.SysUserFilter"/> -->
-
+	<bean id="rememberAuthFilter" class="com.uunemo.filter.RememberAuthenticationFilter" ></bean>
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="/home"/>
+        <!-- 其实shiro验证登陆失败后会返回loginUrl，而unauthorized是授权使用的 -->
+        <property name="loginUrl" value="/unauthorized.jsp"/>
+        <!-- <property name="unauthorizedUrl" value="/unauthorized.jsp" /> -->
         <property name="filters">
             <util:map>
                 <entry key="authc">
@@ -119,11 +122,13 @@
                 /checkuser = anon
                 / = anon
                 /getallquiz = anon
+                /rememberMeCheck = anon
                 /logout = logout
 		        /resources/** = anon
 		        /unauthorized.jsp = anon
 		        /home = anon
-		        /** = authc
+		        <!-- 如果换成/** = authc 则rememberMe将不生效，不退出关闭浏览器重新打开仍需登陆 -->
+		        /** = rememberAuthFilter
             </value>
         </property>
     </bean>
